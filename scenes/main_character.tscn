@@ -1,10 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=8 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
-[ext_resource type="SpriteFrames" uid="uid://c6h0uq7i3yprh" path="res://sprites/dragosterrible/mc/mc.res" id="1_xd8sj"]
+[ext_resource type="Texture2D" uid="uid://dd5o6haigbj8a" path="res://scenes/spinningtopfirstproto.png" id="2_5ilc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e5nqs"]
 radius = 16.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnh02"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoina"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8006m"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlwcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoina")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8006m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 texture_filter = 1
@@ -15,10 +44,24 @@ script = ExtResource("1_72jni")
 shape = SubResource("CircleShape2D_e5nqs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_xd8sj")
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_tlwcf")
 autoplay = "default"
-frame = 1
-frame_progress = 0.976734
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/alexstuff/spinningtopfirstproto.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "77b164a378b549f3bae022134d6464b9"
 
 [node name="dashTimer" type="Timer" parent="."]
 unique_name_in_owner = true
