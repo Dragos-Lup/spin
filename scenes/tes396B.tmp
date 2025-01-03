@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://ff5cps2hlnvs"]
+
+[ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
+[ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
+bounce = 154.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("1_3mtgv")]
+z_index = 5
+position = Vector2(732, 420)
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+position = Vector2(938, 531)
+collision_layer = 4
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_jdkx6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
+polygon = PackedVector2Array(427, -315, 464, -269, 520, -141, 536, -1, 514, 140, 465, 269, 379, 382, 269, 468, 138, 521, -2, 540, -137, 520, -269, 466, -381, 380, -466, 269, -520, 140, -538, -2, -519, -140, -464, -269, -379, -382, -270, -465, -139, -518, 2, -538, 138, -521, 270, -464, 378, -382)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+z_index = -10
+texture_filter = 1
+scale = Vector2(4.16054, 4.16054)
+texture = ExtResource("2_cxu6o")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://asesprite/dragosbad/arena.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
