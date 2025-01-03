@@ -7,10 +7,15 @@
 bounce = 154.0
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_3mtgv")]
+[node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
 z_index = 5
 position = Vector2(974, 632)
+
+[node name="Camera2D" type="Camera2D" parent="MainSpinner"]
+process_callback = 0
+position_smoothing_enabled = true
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
