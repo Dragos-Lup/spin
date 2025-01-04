@@ -153,5 +153,3 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_1iu5i")
 }
-
-[connection signal="timeout" from="dashTimer" to="." method="_on_timer_timeout"]
