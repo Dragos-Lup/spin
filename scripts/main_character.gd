@@ -19,7 +19,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") && canDash: 
 		dash_start_time = Time.get_ticks_msec()
-		print("JUMPED")
 		state_machine.travel("jump")
 		#var dash_vector = (get_global_mouse_position() - global_position).normalized()
 		#velocity = dash_vector * DASH_SPEED
@@ -27,8 +26,6 @@ func _physics_process(delta: float) -> void:
 		%dashTimer.start()
 	
 	velocity = velocity.move_toward(target_vel, FRICTION)
-	
-	print($AnimationTree/AnimationPlayer.current_animation)
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
