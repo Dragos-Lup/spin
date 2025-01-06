@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=18 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="Texture2D" uid="uid://dd5o6haigbj8a" path="res://scenes/spinningtopfirstproto.png" id="2_5ilc7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e5nqs"]
-radius = 16.1
+[sub_resource type="CircleShape2D" id="CircleShape2D_d632g"]
+radius = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnh02"]
 atlas = ExtResource("2_5ilc7")
@@ -35,9 +35,6 @@ animations = [{
 "speed": 30.0
 }]
 
-<<<<<<< Updated upstream
-[node name="CharacterBody2D" type="CharacterBody2D"]
-=======
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usv1h"]
 animation = &"idle"
 
@@ -117,16 +114,14 @@ _data = {
 }
 
 [node name="MainSpinner" type="CharacterBody2D"]
->>>>>>> Stashed changes
 texture_filter = 1
 collision_mask = 7
 script = ExtResource("1_72jni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_e5nqs")
+shape = SubResource("CircleShape2D_d632g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tlwcf")
 autoplay = "default"
 metadata/_aseprite_wizard_interface_config_ = {
@@ -149,4 +144,12 @@ metadata/_aseprite_wizard_source_file_hash_ = "77b164a378b549f3bae022134d6464b9"
 unique_name_in_owner = true
 one_shot = true
 
-[connection signal="timeout" from="dashTimer" to="." method="_on_timer_timeout"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_t2dfo")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_1iu5i")
+}
