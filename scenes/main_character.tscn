@@ -35,7 +35,89 @@ animations = [{
 "speed": 30.0
 }]
 
+<<<<<<< Updated upstream
 [node name="CharacterBody2D" type="CharacterBody2D"]
+=======
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usv1h"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0jryu"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0mbo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tr7di"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ylf7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t2dfo"]
+states/Start/position = Vector2(231.429, 108)
+states/idle/node = SubResource("AnimationNodeAnimation_usv1h")
+states/idle/position = Vector2(484.198, 126.571)
+states/jump/node = SubResource("AnimationNodeAnimation_0jryu")
+states/jump/position = Vector2(484.262, 32.4286)
+transitions = ["jump", "idle", SubResource("AnimationNodeStateMachineTransition_m0mbo"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_tr7di"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_0ylf7")]
+graph_offset = Vector2(-43, -9)
+
+[sub_resource type="Animation" id="Animation_byfn0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_lflkc"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g2050"]
+resource_name = "jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00477858, 0.1, 0.194353),
+"transitions": PackedFloat32Array(0.707107, 1.89465, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1iu5i"]
+_data = {
+"RESET": SubResource("Animation_byfn0"),
+"idle": SubResource("Animation_lflkc"),
+"jump": SubResource("Animation_g2050")
+}
+
+[node name="MainSpinner" type="CharacterBody2D"]
+>>>>>>> Stashed changes
 texture_filter = 1
 collision_mask = 7
 script = ExtResource("1_72jni")
