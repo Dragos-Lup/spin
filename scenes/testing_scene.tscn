@@ -9,6 +9,21 @@ bounce = 154.0
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpinBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -616.0
+offset_right = 170.0
+grow_vertical = 0
+step = 1.0
+value = 30.0
+allow_greater = true
+fill_mode = 3
+
 [node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
 z_index = 5
 position = Vector2(974, 632)
@@ -16,38 +31,6 @@ position = Vector2(974, 632)
 [node name="Camera2D" type="Camera2D" parent="MainSpinner"]
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="MainSpinner2" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(913, 710)
-
-[node name="MainSpinner3" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(981, 685)
-
-[node name="MainSpinner4" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(1030, 590)
-
-[node name="MainSpinner5" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(1055, 630)
-
-[node name="MainSpinner6" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(1065, 734)
-
-[node name="MainSpinner7" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(930, 645)
-
-[node name="MainSpinner8" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(951, 583)
-
-[node name="MainSpinner9" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(988, 567)
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
