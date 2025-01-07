@@ -29,6 +29,7 @@ z_index = 5
 position = Vector2(974, 632)
 
 [node name="Camera2D" type="Camera2D" parent="MainSpinner"]
+zoom = Vector2(1.915, 1.915)
 process_callback = 0
 position_smoothing_enabled = true
 
@@ -66,3 +67,6 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://asesprite/dragosbad/arena.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+offset = Vector2(0.435, 2.45)

@@ -124,7 +124,7 @@ collision_mask = 7
 script = ExtResource("1_72jni")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 1000
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_2lcra")
 texture = ExtResource("2_ygpbf")
 lifetime = 3.0
@@ -152,9 +152,10 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "77b164a378b549f3bae022134d6464b9"
 
-[node name="dashTimer" type="Timer" parent="."]
+[node name="LocationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-one_shot = true
+wait_time = 0.1
+autostart = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_t2dfo")
@@ -165,3 +166,5 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_1iu5i")
 }
+
+[connection signal="timeout" from="LocationTimer" to="." method="_on_location_timer_timeout"]
