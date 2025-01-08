@@ -1,6 +1,6 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-const SPEED = 3000.0
+const SPEED = 1000.0
 var MAX_SPEED = 1000.0
 const DASH_SPEED = 2000.0
 const FRICTION = 20.0 ## calling this friction is evil, it's the value move_toward uses.
@@ -16,37 +16,37 @@ var move_array: PackedVector2Array = PackedVector2Array()
 var dash_start_time = 0
 
 func _init() -> void:
-	#move_array.append(self.position)
-	#move_array.append(self.position)
-	if (intersect(Vector2(0,5), Vector2(0,-5), Vector2(-5,0), Vector2(5,0))):
-		print("well these two definitely do...")
+	pass
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	var target_vel = (direction * SPEED).limit_length(MAX_SPEED) #This is how fast we want to go
-
-	if Input.is_action_just_pressed("dash"): 
-		dash_start_time = Time.get_ticks_msec()
-		state_machine.travel("jump")
-		MAX_SPEED *= DASH_SLOW
-		
-	if Input.is_action_just_released("dash"):
-		assert(MAX_SPEED == 200)  ## This will need to be removed in final build
-		MAX_SPEED *= 1 / DASH_SLOW
-		var chargetime = Time.get_ticks_msec() - dash_start_time
-		if (chargetime) > 850:
-			var dash_vector = (get_global_mouse_position() - global_position).normalized()
-			velocity = dash_vector * (DASH_SPEED * chargetime/1000)
-	velocity = velocity.move_toward(target_vel, FRICTION)
 	
-	spin_bar.value = velocity.length() / 10
+	#if Input.is_action_just_pressed("dash"): 
+		#dash_start_time = Time.get_ticks_msec()
+		#state_machine.travel("jump")
+		#MAX_SPEED *= DASH_SLOW
+		#
+	#if Input.is_action_just_released("dash"):
+		#assert(MAX_SPEED == 200)  ## This will need to be removed in final build
+		#MAX_SPEED *= 1 / DASH_SLOW
+		#var chargetime = Time.get_ticks_msec() - dash_start_time
+		#if (chargetime) > 850:
+			#var dash_vector = (get_global_mouse_position() - global_position).normalized()
+			#velocity = dash_vector * (DASH_SPEED * chargetime/1000)
+	#velocity = velocity.move_toward(target_vel, FRICTION)
+	
+	#spin_bar.value = velocity.length() / 10
+	
+	if (linear_velocity.length() < MAX_SPEED):
+		apply_central_force(target_vel)
 	
 	
 	
-	var collision = move_and_collide(velocity * delta)
+	#var collision = move_and_collide(velocity * delta)
 	
-	if collision:
-		velocity = velocity.bounce(collision.get_normal()) * BOUNCY
+	#if collision:
+	#	velocity = velocity.bounce(collision.get_normal()) * BOUNCY
 		
 
 func _on_location_timer_timeout() -> void:

@@ -1,8 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=21 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="Texture2D" uid="uid://dd5o6haigbj8a" path="res://scenes/spinningtopfirstproto.png" id="2_5ilc7"]
 [ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="2_ygpbf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7upm"]
+bounce = 1.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2lcra"]
 particle_flag_disable_z = true
@@ -118,9 +121,12 @@ _data = {
 "jump": SubResource("Animation_g2050")
 }
 
-[node name="MainSpinner" type="CharacterBody2D"]
+[node name="MainSpinner" type="RigidBody2D"]
 texture_filter = 1
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_l7upm")
+lock_rotation = true
+continuous_cd = 1
 script = ExtResource("1_72jni")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
