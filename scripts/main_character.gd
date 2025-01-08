@@ -6,6 +6,7 @@ const DASH_SPEED = 2000.0
 const FRICTION = 20.0 ## calling this friction is evil, it's the value move_toward uses.
 const BOUNCY = .8
 const DASH_SLOW = .2
+@export var VOLUME_CURVE:Curve
 
 @onready var spin_bar: ProgressBar = %SpinBar
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -37,8 +38,9 @@ func _physics_process(delta: float) -> void:
 		if (chargetime) > 850:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized()
 			velocity = dash_vector * (DASH_SPEED * chargetime/1000)
+			$Dash_SE.play()
 	velocity = velocity.move_toward(target_vel, FRICTION)
-	
+	$Spinning_SE.set_pitch_scale(velocity.length()/950 + 1)
 	spin_bar.value = velocity.length() / 10
 	
 	
@@ -47,8 +49,11 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * BOUNCY
+		if velocity.length() >= MAX_SPEED*.18:
+			$Clash_SE.play()
+			$Clash_SE.set_volume_db(0+(velocity.length()/450))
+			print($Clash_SE.get_volume_db())
 		
-
 func _on_location_timer_timeout() -> void:
 	var p : Vector2 = self.position
 	move_array.append(p)

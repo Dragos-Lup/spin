@@ -1,8 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=27 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="Texture2D" uid="uid://dd5o6haigbj8a" path="res://scenes/spinningtopfirstproto.png" id="2_5ilc7"]
 [ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="2_ygpbf"]
+[ext_resource type="AudioStream" uid="uid://dd0fy1ovymn4b" path="res://sound_effects/clash1.ogg" id="4_qn757"]
+[ext_resource type="AudioStream" uid="uid://dgu4qxnk4s77i" path="res://sound_effects/clash2.ogg" id="5_g1lp1"]
+[ext_resource type="AudioStream" uid="uid://b470m7vxv25oi" path="res://sound_effects/dash.ogg" id="6_icwvi"]
+[ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
+
+[sub_resource type="Curve" id="Curve_sk41o"]
+min_value = -1.0
+_data = [Vector2(0.284211, -0.67033), 0.0, 7.26903, 0, 0, Vector2(1, 1), -0.0907787, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2lcra"]
 particle_flag_disable_z = true
@@ -118,10 +127,22 @@ _data = {
 "jump": SubResource("Animation_g2050")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yhso0"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("4_qn757")
+stream_1/stream = ExtResource("5_g1lp1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3aysq"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_icwvi")
+
 [node name="MainSpinner" type="CharacterBody2D"]
 texture_filter = 1
 collision_mask = 7
 script = ExtResource("1_72jni")
+VOLUME_CURVE = SubResource("Curve_sk41o")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 30
@@ -166,5 +187,20 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_1iu5i")
 }
+
+[node name="Clash_SE" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yhso0")
+volume_db = -0.465
+max_polyphony = 3
+playback_type = 2
+
+[node name="Dash_SE" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_3aysq")
+volume_db = 1.981
+
+[node name="Spinning_SE" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oqu8g")
+autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="LocationTimer" to="." method="_on_location_timer_timeout"]
