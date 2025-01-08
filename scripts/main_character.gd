@@ -34,20 +34,10 @@ func _physics_process(delta: float) -> void:
 		if (chargetime) > 850:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized()
 			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000))
-	#velocity = velocity.move_toward(target_vel, FRICTION)
-	
-	#spin_bar.value = velocity.length() / 10
 	
 	if (linear_velocity.length() < MAX_SPEED):
 		apply_central_force(target_vel)
-	
-	
-	
-	#var collision = move_and_collide(velocity * delta)
-	
-	#if collision:
-	#	velocity = velocity.bounce(collision.get_normal()) * BOUNCY
-		
+
 
 func _on_location_timer_timeout() -> void:
 	var p : Vector2 = self.position
