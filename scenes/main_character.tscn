@@ -1,27 +1,176 @@
-[gd_scene load_steps=4 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=21 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
-[ext_resource type="SpriteFrames" uid="uid://c6h0uq7i3yprh" path="res://sprites/dragosterrible/mc/mc.res" id="1_xd8sj"]
+[ext_resource type="Texture2D" uid="uid://dd5o6haigbj8a" path="res://scenes/spinningtopfirstproto.png" id="2_5ilc7"]
+[ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="2_ygpbf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e5nqs"]
-radius = 16.1
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7upm"]
+bounce = 1.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2lcra"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d632g"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnh02"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoina"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8006m"]
+atlas = ExtResource("2_5ilc7")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlwcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoina")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8006m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usv1h"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0jryu"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0mbo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tr7di"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ylf7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t2dfo"]
+states/Start/position = Vector2(231.429, 108)
+states/idle/node = SubResource("AnimationNodeAnimation_usv1h")
+states/idle/position = Vector2(484.198, 126.571)
+states/jump/node = SubResource("AnimationNodeAnimation_0jryu")
+states/jump/position = Vector2(484.262, 32.4286)
+transitions = ["jump", "idle", SubResource("AnimationNodeStateMachineTransition_m0mbo"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_tr7di"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_0ylf7")]
+graph_offset = Vector2(-43, -9)
+
+[sub_resource type="Animation" id="Animation_byfn0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_lflkc"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g2050"]
+resource_name = "jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00477858, 0.1, 0.194353),
+"transitions": PackedFloat32Array(0.707107, 1.89465, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1iu5i"]
+_data = {
+"RESET": SubResource("Animation_byfn0"),
+"idle": SubResource("Animation_lflkc"),
+"jump": SubResource("Animation_g2050")
+}
+
+[node name="MainSpinner" type="RigidBody2D"]
 texture_filter = 1
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_l7upm")
+lock_rotation = true
+continuous_cd = 1
 script = ExtResource("1_72jni")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_2lcra")
+texture = ExtResource("2_ygpbf")
+lifetime = 3.0
+trail_lifetime = 1.32
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_e5nqs")
+shape = SubResource("CircleShape2D_d632g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_xd8sj")
+sprite_frames = SubResource("SpriteFrames_tlwcf")
 autoplay = "default"
-frame = 1
-frame_progress = 0.976734
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/alexstuff/spinningtopfirstproto.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "77b164a378b549f3bae022134d6464b9"
 
-[node name="dashTimer" type="Timer" parent="."]
+[node name="LocationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-one_shot = true
+wait_time = 0.1
+autostart = true
 
-[connection signal="timeout" from="dashTimer" to="." method="_on_timer_timeout"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_t2dfo")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_1iu5i")
+}
+
+[connection signal="timeout" from="LocationTimer" to="." method="_on_location_timer_timeout"]

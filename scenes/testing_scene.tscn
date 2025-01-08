@@ -1,40 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=8 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
+[ext_resource type="Script" path="res://scenes/character_body_2d.gd" id="3_pdt6j"]
+[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="4_mjoxr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
-bounce = 154.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vealx"]
+friction = 0.76
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86ksp"]
+radius = 65.123
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_3mtgv")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpinBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -616.0
+offset_right = 170.0
+grow_vertical = 0
+step = 1.0
+value = 30.0
+allow_greater = true
+fill_mode = 3
+
+[node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
 z_index = 5
 position = Vector2(974, 632)
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(939, 585)
-
-[node name="CharacterBody2D3" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(901, 419)
-
-[node name="CharacterBody2D4" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(1077, 461)
-
-[node name="CharacterBody2D5" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(861, 485)
-
-[node name="CharacterBody2D6" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(732, 525)
-
-[node name="CharacterBody2D7" parent="." instance=ExtResource("1_3mtgv")]
-z_index = 5
-position = Vector2(788, 411)
+[node name="Camera2D" type="Camera2D" parent="MainSpinner"]
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+position_smoothing_enabled = true
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
@@ -43,8 +49,9 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_jdkx6")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-build_mode = 1
-polygon = PackedVector2Array(427, -315, 464, -269, 520, -141, 536, -1, 514, 140, 465, 269, 379, 382, 269, 468, 138, 521, -2, 540, -137, 520, -269, 466, -381, 380, -466, 269, -520, 140, -538, -2, -519, -140, -464, -269, -379, -382, -270, -465, -139, -518, 2, -538, 138, -521, 270, -464, 378, -382)
+position = Vector2(1.5, 0)
+scale = Vector2(1.15, 1)
+polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 283.913, 423, 198.696, 481, 130.87, 511, 89.1304, 525, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -656.957, 631, 727.391, 631, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 z_index = -10
@@ -70,3 +77,21 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://asesprite/dragosbad/arena.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+offset = Vector2(0.435, 2.45)
+
+[node name="CharacterBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1084, 321)
+collision_mask = 5
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_vealx")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("3_pdt6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_86ksp")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("4_mjoxr")
