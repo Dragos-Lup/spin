@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
@@ -5,6 +6,88 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
 bounce = 154.0
+=======
+[gd_scene load_steps=16 format=3 uid="uid://ff5cps2hlnvs"]
+
+[ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
+[ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
+[ext_resource type="Texture2D" uid="uid://d07lx2m6773do" path="res://scenes/jesterspinner.png" id="3_6pgk0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48i7k"]
+friction = 0.6
+bounce = 0.9
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx5ns"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(0, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lam1y"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(112, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0tse"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(224, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff6un"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(0, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h2r4"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(112, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smj82"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(224, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfpwx"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(0, 138, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vbhy"]
+atlas = ExtResource("3_6pgk0")
+region = Rect2(112, 138, 112, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ea3br"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx5ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lam1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0tse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff6un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h2r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smj82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfpwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vbhy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nggsj"]
+radius = 15.9994
+height = 63.9626
+>>>>>>> Stashed changes
 
 [node name="Node2D" type="Node2D"]
 
@@ -46,3 +129,41 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://asesprite/dragosbad/arena.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
+<<<<<<< Updated upstream
+=======
+
+[node name="CharacterBody2D" type="RigidBody2D" parent="."]
+position = Vector2(932, 369)
+collision_layer = 2
+collision_mask = 7
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_48i7k")
+lock_rotation = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ea3br")
+autoplay = "default"
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": true,
+"output_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/alexstuff/jesterspinner.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d15c8ead35c67d08667541d6412aa63c"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -3)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_nggsj")
+>>>>>>> Stashed changes
