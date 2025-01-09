@@ -23,33 +23,33 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_d632g"]
 radius = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnh02"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ckg3"]
 atlas = ExtResource("2_5ilc7")
-region = Rect2(0, 0, 48, 48)
+region = Rect2(0, 0, 72, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aoina"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uu7p"]
 atlas = ExtResource("2_5ilc7")
-region = Rect2(48, 0, 48, 48)
+region = Rect2(72, 0, 72, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8006m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ume2o"]
 atlas = ExtResource("2_5ilc7")
-region = Rect2(0, 48, 48, 48)
+region = Rect2(0, 76, 72, 76)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tlwcf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ef7cn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mnh02")
+"texture": SubResource("AtlasTexture_0ckg3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aoina")
+"texture": SubResource("AtlasTexture_2uu7p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8006m")
+"texture": SubResource("AtlasTexture_ume2o")
 }],
 "loop": true,
 "name": &"default",
-"speed": 30.0
+"speed": 10.0
 }]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usv1h"]
@@ -164,7 +164,8 @@ trail_lifetime = 1.32
 shape = SubResource("CircleShape2D_d632g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_tlwcf")
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ef7cn")
 autoplay = "default"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
@@ -180,7 +181,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://asesprite/alexstuff/spinningtopfirstproto.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "77b164a378b549f3bae022134d6464b9"
+metadata/_aseprite_wizard_source_file_hash_ = "110119e6731a00e2dfe8855dc66da1dd"
 
 [node name="LocationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
