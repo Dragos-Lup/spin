@@ -127,6 +127,7 @@ collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_l7upm")
 lock_rotation = true
 continuous_cd = 1
+linear_damp_mode = 1
 script = ExtResource("1_72jni")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
