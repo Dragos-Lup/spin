@@ -1,11 +1,10 @@
 extends RigidBody2D
 
 const SPEED = 1000.0
-var MAX_SPEED = 1000.0
 const ACCELERATION = 500.0
 const DASH_SPEED = 2000.0
 const DASH_SLOW = .2
-const C = .5
+const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
 
 @onready var spin_bar: ProgressBar = %SpinBar
@@ -19,15 +18,15 @@ var dash_start_time = 0
 func _init() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Get the current input direction
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	# This is where the player wants to be moving. 
 	var target_vel = direction * SPEED
 	# print(target_vel)
-	var vel_difference = (target_vel - linear_velocity) - C * linear_velocity * 2
+	var vel_difference = (target_vel - linear_velocity) - C_DRAG * linear_velocity * 2
 	
-	print(vel_difference)
+	#print(vel_difference)
 	
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
@@ -40,25 +39,14 @@ func _physics_process(delta: float) -> void:
 		if (chargetime) > 850:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized()
 			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000))
+			$Dash_SE.play()
+			
 	apply_central_force(vel_difference)
 
-			velocity = dash_vector * (DASH_SPEED * chargetime/1000)
-			$Dash_SE.play()
-	velocity = velocity.move_toward(target_vel, FRICTION)
-	$Spinning_SE.set_pitch_scale(velocity.length()/950 + 1)
-	spin_bar.value = velocity.length() / 10
-	
-	
-	
-	var collision = move_and_collide(velocity * delta)
-	
-	if collision:
-		velocity = velocity.bounce(collision.get_normal()) * BOUNCY
-		if velocity.length() >= MAX_SPEED*.18:
-			$Clash_SE.play()
-			$Clash_SE.set_volume_db(0+(velocity.length()/450))
-			print($Clash_SE.get_volume_db())
-		
+	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
+	spin_bar.value = linear_velocity.length() / 10
+
+
 func _on_location_timer_timeout() -> void:
 	var p : Vector2 = self.position
 	move_array.append(p)
@@ -87,3 +75,10 @@ func ccw(A : Vector2,B : Vector2,C : Vector2):
 # Checks if two line segements intersect at all
 func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
+
+func _on_body_entered(_body: Node) -> void:
+	print("YELLOW")
+	if linear_velocity.length() >= SPEED*.18:
+		$Clash_SE.play()
+		$Clash_SE.set_volume_db(0+(linear_velocity.length()/450))
+		print($Clash_SE.get_volume_db())

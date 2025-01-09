@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://boftnlm2cplsb"
-valid=false
+path="res://.godot/imported/possibleprojectile.aseprite-8711d42f18d06fb882550eb991b388ff.res"
 
 [deps]
 
 source_file="res://asesprite/alexstuff/possibleprojectile.aseprite"
+dest_files=["res://.godot/imported/possibleprojectile.aseprite-8711d42f18d06fb882550eb991b388ff.res"]
 
 [params]
 

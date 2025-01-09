@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bjers8nb1c3wk"
-valid=false
+path="res://.godot/imported/spinningtorp.aseprite-fc80af0bb96637273e39060cfc98598b.res"
 
 [deps]
 
 source_file="res://asesprite/ericsprite/spinningtorp.aseprite"
+dest_files=["res://.godot/imported/spinningtorp.aseprite-fc80af0bb96637273e39060cfc98598b.res"]
 
 [params]
 

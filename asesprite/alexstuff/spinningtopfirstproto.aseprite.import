@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://ceco17o8axynx"
-valid=false
+path="res://.godot/imported/spinningtopfirstproto.aseprite-e4a4056ede4e0916d51787f97ed42711.res"
 
 [deps]
 
 source_file="res://asesprite/alexstuff/spinningtopfirstproto.aseprite"
+dest_files=["res://.godot/imported/spinningtopfirstproto.aseprite-e4a4056ede4e0916d51787f97ed42711.res"]
 
 [params]
 
