@@ -1,19 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=10 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
-[ext_resource type="Script" path="res://scenes/character_body_2d.gd" id="3_pdt6j"]
-[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="4_mjoxr"]
+[ext_resource type="Texture2D" uid="uid://dv7cs248crwu0" path="res://scenes/spinningtorp.png" id="3_kwmq0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
 bounce = 1.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vealx"]
-friction = 0.76
-bounce = 0.8
+[sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
+atlas = ExtResource("3_kwmq0")
+region = Rect2(0, 0, 68, 50)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_86ksp"]
-radius = 65.123
+[sub_resource type="AtlasTexture" id="AtlasTexture_efd7j"]
+atlas = ExtResource("3_kwmq0")
+region = Rect2(68, 0, 68, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sacbn"]
+atlas = ExtResource("3_kwmq0")
+region = Rect2(0, 50, 68, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vp0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pep6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efd7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sacbn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 34.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nggsj"]
+radius = 15.9994
+height = 63.9626
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
@@ -78,20 +103,35 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-offset = Vector2(0.435, 2.45)
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(932, 369)
+motion_mode = 1
 
-[node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(1084, 321)
-collision_mask = 5
-mass = 10.0
-physics_material_override = SubResource("PhysicsMaterial_vealx")
-gravity_scale = 0.0
-lock_rotation = true
-script = ExtResource("3_pdt6j")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6vp0c")
+autoplay = "default"
+frame = 2
+frame_progress = 0.46851
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": true,
+"output_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/ericsprite/spinningtorp.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "7baf85e7f2412965ceb3e858838d57be"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_86ksp")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("4_mjoxr")
+position = Vector2(0, -3)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_nggsj")
