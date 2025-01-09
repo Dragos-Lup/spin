@@ -6,6 +6,8 @@ const ACCELERATION = 500.0
 const DASH_SPEED = 2000.0
 const DASH_SLOW = .2
 const C = .5
+@export var VOLUME_CURVE:Curve
+
 @onready var spin_bar: ProgressBar = %SpinBar
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -40,6 +42,23 @@ func _physics_process(delta: float) -> void:
 			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000))
 	apply_central_force(vel_difference)
 
+			velocity = dash_vector * (DASH_SPEED * chargetime/1000)
+			$Dash_SE.play()
+	velocity = velocity.move_toward(target_vel, FRICTION)
+	$Spinning_SE.set_pitch_scale(velocity.length()/950 + 1)
+	spin_bar.value = velocity.length() / 10
+	
+	
+	
+	var collision = move_and_collide(velocity * delta)
+	
+	if collision:
+		velocity = velocity.bounce(collision.get_normal()) * BOUNCY
+		if velocity.length() >= MAX_SPEED*.18:
+			$Clash_SE.play()
+			$Clash_SE.set_volume_db(0+(velocity.length()/450))
+			print($Clash_SE.get_volume_db())
+		
 func _on_location_timer_timeout() -> void:
 	var p : Vector2 = self.position
 	move_array.append(p)

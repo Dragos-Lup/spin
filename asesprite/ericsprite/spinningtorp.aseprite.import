@@ -2,12 +2,12 @@
 
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
-uid="uid://dxbp5yx56u1bk"
+uid="uid://bjers8nb1c3wk"
 valid=false
 
 [deps]
 
-source_file="res://asesprite/dragosbad/dummy.aseprite"
+source_file="res://asesprite/ericsprite/spinningtorp.aseprite"
 
 [params]
 
