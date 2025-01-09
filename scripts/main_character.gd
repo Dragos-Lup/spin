@@ -77,8 +77,8 @@ func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
 
 func _on_body_entered(_body: Node) -> void:
-	print("YELLOW")
-	if linear_velocity.length() >= SPEED*.18:
+	#print("YELLOW")
+	if linear_velocity.length() >= SPEED*.09:
 		$Clash_SE.play()
 		$Clash_SE.set_volume_db(0+(linear_velocity.length()/450))
-		print($Clash_SE.get_volume_db())
+		#print($Clash_SE.get_volume_db())

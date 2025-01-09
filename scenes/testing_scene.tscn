@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=11 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
@@ -6,6 +6,10 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
 bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48i7k"]
+friction = 0.6
+bounce = 0.9
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
 atlas = ExtResource("3_kwmq0")
@@ -103,9 +107,13 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="RigidBody2D" parent="."]
 position = Vector2(932, 369)
-motion_mode = 1
+collision_layer = 2
+collision_mask = 7
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_48i7k")
+lock_rotation = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
