@@ -76,9 +76,17 @@ func ccw(A : Vector2,B : Vector2,C : Vector2):
 func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
 
-func _on_body_entered(_body: Node) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	#print("YELLOW")
-	if linear_velocity.length() >= SPEED*.09:
+	if linear_velocity.length() >= SPEED*.03:
 		$Clash_SE.play()
 		$Clash_SE.set_volume_db(0+(linear_velocity.length()/450))
+		var spark : GPUParticles2D = %Sparks
+		var dir = (body.position - self.position).normalized()
+		var attack =  dir * 5
+		
+		spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0))
+
+		spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0))
+		spark.restart()
 		#print($Clash_SE.get_volume_db())
