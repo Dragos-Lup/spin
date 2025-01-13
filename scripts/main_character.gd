@@ -2,8 +2,8 @@ extends RigidBody2D
 
 const SPEED = 1000.0
 const ACCELERATION = 500.0
-const DASH_SPEED = 2000.0
-const DASH_SLOW = .2
+const DASH_SPEED = 20000.0
+const DASH_SLOW = .001
 const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
 
@@ -12,8 +12,10 @@ const C_DRAG = .5
 @onready var state_machine = animation_tree.get("parameters/playback")
 const Encircle = preload("res://scenes/encirclePolygon.tscn")
 var move_array: PackedVector2Array = PackedVector2Array()
-
+var x = 0
 var dash_start_time = 0
+
+var last_vel = 0
 
 func _init() -> void:
 	pass
@@ -23,17 +25,16 @@ func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	# This is where the player wants to be moving. 
 	var target_vel = direction * SPEED
-	# print(target_vel)
-	var vel_difference = (target_vel - linear_velocity) - C_DRAG * linear_velocity * 2
-	
-	#print(vel_difference)
-	
+	var vel_difference = (target_vel)# - linear_velocity)# - C_DRAG * linear_velocity * 2
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec()
 		state_machine.travel("jump")
-	if Input.is_action_pressed("dash"):
-		vel_difference = vel_difference * DASH_SLOW
+		# apply_impulse(-linear_velocity)
+		# print(x)
+	elif Input.is_action_pressed("dash"):
+		vel_difference = (target_vel * DASH_SLOW - linear_velocity)# - C_DRAG * linear_velocity * 2
+		# print(x)
 	if Input.is_action_just_released("dash"):
 		var chargetime = Time.get_ticks_msec() - dash_start_time
 		if (chargetime) > 850:
@@ -42,9 +43,12 @@ func _physics_process(_delta: float) -> void:
 			$Dash_SE.play()
 			
 	apply_central_force(vel_difference)
-
+	# x += 1
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
+	if (linear_velocity.length() - last_vel != 0):
+		print((linear_velocity.length() - last_vel))
+	last_vel = linear_velocity.length()
 
 
 func _on_location_timer_timeout() -> void:
@@ -84,6 +88,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var spark : GPUParticles2D = %Sparks
 		var dir = (body.position - self.position).normalized()
 		var attack =  dir * 5
+		
 		
 		spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0))
 
