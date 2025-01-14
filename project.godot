@@ -59,4 +59,5 @@ dash={
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 2d/default_gravity=0.0
