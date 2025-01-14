@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	# This is where the player wants to be moving. 
 	var target_vel = direction * SPEED
-	var vel_difference = (target_vel)# - linear_velocity)# - C_DRAG * linear_velocity * 2
+	var vel_difference = (target_vel - linear_velocity)# - C_DRAG * linear_velocity * 2
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec()
@@ -58,16 +58,12 @@ func _on_location_timer_timeout() -> void:
 		var B = move_array[move_array.size() - 2]
 		for i in range(0, move_array.size() - 1):
 			if (intersect(A, B, move_array[i], move_array[i+1])):
-				#print(A,", ",B,", ",move_array[i], ", " , move_array[i+1])
-				#print("INTERSECTED")
 				var new_polygon = Encircle.instantiate()
 				
 				new_polygon.set_polygon(move_array.slice(i+1,-1))
 				new_polygon.set_color(Color(1,0,0,.5))
 				get_tree().root.add_child(new_polygon)
 				break
-			#else:
-				#print("NOPE")
 	
 
 func ccw(A : Vector2,B : Vector2,C : Vector2):
@@ -78,7 +74,6 @@ func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
 
 func _on_body_entered(body: Node2D) -> void:
-	#print("YELLOW")
 	if linear_velocity.length() >= SPEED*.03:
 		$Clash_SE.play()
 		$Clash_SE.set_volume_db(0+(linear_velocity.length()/450))
@@ -91,4 +86,3 @@ func _on_body_entered(body: Node2D) -> void:
 
 		spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0))
 		spark.restart()
-		#print($Clash_SE.get_volume_db())

@@ -6,11 +6,11 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
 friction = 0.2
-bounce = 1.0
+bounce = 0.95
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48i7k"]
-friction = 0.0
-bounce = 1.0
+friction = 0.2
+bounce = 0.95
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
 atlas = ExtResource("3_kwmq0")
@@ -111,14 +111,14 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(-552, 894)
+position = Vector2(926, 413)
 collision_layer = 2
 collision_mask = 7
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_48i7k")
 lock_rotation = true
 continuous_cd = 1
-linear_damp_mode = 1
+linear_damp = 0.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
