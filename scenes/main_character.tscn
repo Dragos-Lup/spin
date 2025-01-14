@@ -9,7 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7upm"]
-bounce = 0.9
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="Curve" id="Curve_sk41o"]
 min_value = -1.0

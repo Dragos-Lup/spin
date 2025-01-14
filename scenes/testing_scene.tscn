@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://dv7cs248crwu0" path="res://scenes/spinningtorp.png" id="3_kwmq0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48i7k"]
-friction = 0.6
-bounce = 0.9
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
 atlas = ExtResource("3_kwmq0")
@@ -45,6 +46,7 @@ radius = 15.9994
 height = 63.9626
 
 [node name="Node2D" type="Node2D"]
+physics_interpolation_mode = 1
 texture_filter = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -79,9 +81,8 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_jdkx6")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(1.5, 0)
 scale = Vector2(1.15, 1)
-polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 283.913, 423, 198.696, 481, 130.87, 511, 89.1304, 525, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -669.13, 801, 729.13, 794, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
+polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 316.522, 389, 283.913, 423, 239.13, 458, 220.87, 470, 199.13, 483, 166.956, 498, 141.739, 509, 112.174, 519, 89.1304, 525, 67.826, 529, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -669.13, 801, 729.13, 794, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 z_index = -10
@@ -109,12 +110,14 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(932, 369)
+position = Vector2(-552, 894)
 collision_layer = 2
 collision_mask = 7
-mass = 4.0
+mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_48i7k")
 lock_rotation = true
+continuous_cd = 1
+linear_damp_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
