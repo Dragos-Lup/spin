@@ -2,7 +2,7 @@ extends RigidBody2D
 
 const SPEED = 1000.0
 const ACCELERATION = 500.0
-const DASH_SPEED = 20000.0
+const DASH_SPEED = 2000.0
 const DASH_SLOW = .001
 const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
@@ -30,11 +30,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec()
 		state_machine.travel("jump")
-		# apply_impulse(-linear_velocity)
-		# print(x)
 	elif Input.is_action_pressed("dash"):
 		vel_difference = (target_vel * DASH_SLOW - linear_velocity)# - C_DRAG * linear_velocity * 2
-		# print(x)
 	if Input.is_action_just_released("dash"):
 		var chargetime = Time.get_ticks_msec() - dash_start_time
 		if (chargetime) > 850:

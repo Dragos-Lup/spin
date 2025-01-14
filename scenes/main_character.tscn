@@ -9,8 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7upm"]
-friction = 0.0
-bounce = 1.0
+friction = 0.2
+bounce = 0.9
 
 [sub_resource type="Curve" id="Curve_sk41o"]
 min_value = -1.0
@@ -172,10 +172,9 @@ texture_filter = 1
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_l7upm")
 lock_rotation = true
-continuous_cd = 1
+continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 1
-linear_damp_mode = 1
 script = ExtResource("1_72jni")
 VOLUME_CURVE = SubResource("Curve_sk41o")
 
