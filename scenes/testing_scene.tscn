@@ -1,40 +1,33 @@
-[gd_scene load_steps=11 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=10 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
-[ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
-[ext_resource type="Texture2D" uid="uid://dv7cs248crwu0" path="res://scenes/spinningtorp.png" id="3_kwmq0"]
+[ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
+[ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
+[ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
-friction = 0.2
-bounce = 0.95
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_48i7k"]
-friction = 0.2
-bounce = 0.95
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
-atlas = ExtResource("3_kwmq0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpxj5"]
+atlas = ExtResource("4_dscsb")
 region = Rect2(0, 0, 68, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efd7j"]
-atlas = ExtResource("3_kwmq0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1trg"]
+atlas = ExtResource("4_dscsb")
 region = Rect2(68, 0, 68, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sacbn"]
-atlas = ExtResource("3_kwmq0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugsl6"]
+atlas = ExtResource("4_dscsb")
 region = Rect2(0, 50, 68, 50)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6vp0c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_r05ed"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pep6y")
+"texture": SubResource("AtlasTexture_bpxj5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_efd7j")
+"texture": SubResource("AtlasTexture_a1trg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sacbn")
+"texture": SubResource("AtlasTexture_ugsl6")
 }],
 "loop": true,
 "name": &"default",
@@ -78,7 +71,7 @@ position_smoothing_enabled = true
 position = Vector2(938, 531)
 collision_layer = 4
 collision_mask = 0
-physics_material_override = SubResource("PhysicsMaterial_jdkx6")
+physics_material_override = ExtResource("2_8jgto")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 scale = Vector2(1.15, 1)
@@ -89,10 +82,10 @@ polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87
 z_index = -10
 texture_filter = 1
 scale = Vector2(4.16054, 4.16054)
-texture = ExtResource("2_cxu6o")
+texture = ExtResource("3_376d1")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
-"output_section": false,
+"output_section": true,
 "pending_changes": {},
 "slice_section": false
 }
@@ -101,41 +94,39 @@ metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layers": [],
 "o_ex_p": "",
-"o_folder": "",
+"o_folder": "res://sprites/placeholder",
 "o_name": "",
 "only_visible": false,
 "player": "",
 "slice": "",
 "source": "res://asesprite/dragosbad/arena.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
+metadata/_aseprite_wizard_source_file_hash_ = "c87152ebc52d2b2c9bbc4ca75273170d"
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
 position = Vector2(926, 413)
 collision_layer = 2
 collision_mask = 7
 mass = 2.0
-physics_material_override = SubResource("PhysicsMaterial_48i7k")
+physics_material_override = ExtResource("2_8jgto")
 lock_rotation = true
 continuous_cd = 1
 linear_damp = 0.05
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_6vp0c")
+sprite_frames = SubResource("SpriteFrames_r05ed")
 autoplay = "default"
-frame = 2
-frame_progress = 0.46851
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": true,
-"output_section": false,
+"output_section": true,
 "pending_changes": {}
 }
 metadata/_aseprite_wizard_config_ = {
 "layers": [],
 "o_ex_p": "",
-"o_folder": "",
+"o_folder": "res://sprites/placeholder",
 "o_name": "",
 "only_visible": true,
 "should_round_fps": true,
