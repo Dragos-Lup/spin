@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [aseprite]
 
 import/import_plugin/default_automatic_importer="SpriteFrames"
+animation/layers/only_include_visible_layers_by_default=true
 
 [display]
 
@@ -59,4 +60,5 @@ dash={
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 2d/default_gravity=0.0
