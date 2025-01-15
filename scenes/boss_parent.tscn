@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=3 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_yd2ff"]
+[ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
 
 [node name="Enemy_Spinner" type="RigidBody2D"]
 script = ExtResource("1_yd2ff")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
