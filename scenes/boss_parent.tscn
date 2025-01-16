@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=4 format=3 uid="uid://ba5t7qcjqpnl5"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_yd2ff"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
 
 [node name="Enemy_Spinner" type="RigidBody2D"]
+physics_material_override = ExtResource("1_sn01m")
 script = ExtResource("1_yd2ff")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]

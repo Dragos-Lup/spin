@@ -66,18 +66,18 @@ VOLUME_CURVE = null
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Area2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
 collision_layer = 4
 collision_mask = 0
 physics_material_override = ExtResource("2_8jgto")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 scale = Vector2(1.15, 1)
 build_mode = 1
 polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 316.522, 389, 283.913, 423, 239.13, 458, 220.87, 470, 199.13, 483, 166.956, 498, 141.739, 509, 112.174, 519, 89.1304, 525, 67.826, 529, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -669.13, 801, 729.13, 794, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 z_index = -10
 texture_filter = 1
 scale = Vector2(4.16054, 4.16054)

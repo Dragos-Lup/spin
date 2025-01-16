@@ -16,3 +16,5 @@ func Heal(amount: int):
 
 func Die():
 	print("This thing died!")
+
+
