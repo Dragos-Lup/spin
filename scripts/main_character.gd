@@ -64,7 +64,15 @@ func _on_location_timer_timeout() -> void:
 				new_polygon.set_color(Color(1,0,0,.5))
 				get_tree().root.add_child(new_polygon)
 				break
-	
+
+#Whenever a body touches our boy this goes
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		print("This dude an opp on god")
+	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
+		_clash_effects(body)
+
+
 # More math can ignore
 func ccw(A : Vector2,B : Vector2,C : Vector2):
 	return (C.y-A.y) * (B.x-A.x) > (B.y-A.y) * (C.x-A.x)
@@ -72,12 +80,6 @@ func ccw(A : Vector2,B : Vector2,C : Vector2):
 # Checks if two line segements intersect at all
 func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
-		_clash_effects(body)
-
 
 # Visual effects for the clashing.
 # Alex and Eric should touch this if they so desire.

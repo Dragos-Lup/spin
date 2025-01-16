@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_yd2ff"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
 
-[node name="Enemy_Spinner" type="RigidBody2D"]
+[node name="Enemy_Spinner" type="RigidBody2D" groups=["enemy"]]
 physics_material_override = ExtResource("1_sn01m")
 script = ExtResource("1_yd2ff")
 

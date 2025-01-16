@@ -31,6 +31,10 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[global_group]
+
+enemy="Something the player will be damaging"
+
 [input]
 
 left={
