@@ -1,12 +1,12 @@
 extends Node2D
 
-@export var max_health = 11
-@export var current_health = 7
+@export var max_health : int = 11
+@export var current_health : int = 7
 @export var isPlayer : bool = false
 @export var isBoss : bool = false
 # Called when the node enters the scene tree for the first time.
 
-@onready var boss_health_bar: ProgressBar = %BossHealthBar
+var boss_health_bar: ProgressBar
 
 func Damage(amount: int):
 	

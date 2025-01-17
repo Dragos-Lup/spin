@@ -73,7 +73,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["enemy"]]
+[node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["boss", "enemy"]]
 position = Vector2(-87, 34)
 collision_layer = 2
 collision_mask = 7
@@ -88,9 +88,8 @@ collision_shape = NodePath("CollisionShape2D")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
 position = Vector2(0, 1)
-max_health = null
-current_health = null
-isPlayer = null
+max_health = 50
+current_health = 50
 isBoss = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

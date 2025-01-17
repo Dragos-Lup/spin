@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=16 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scenes/world_controller.gd" id="1_va4xm"]
@@ -6,6 +6,36 @@
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
 [ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
 [ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yixm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxdgq"]
+bg_color = Color(0.64, 0, 0, 1)
+border_color = Color(0.93, 0.436325, 0.0837, 1)
+border_blend = true
+corner_radius_top_right = 1024
+corner_radius_bottom_left = 1024
+corner_detail = 2
+shadow_size = 6
+shadow_offset = Vector2(-15, 15)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47i3v"]
+bg_color = Color(0.452759, 0, 0.0825956, 0.313726)
+corner_radius_top_left = 1024
+corner_radius_bottom_right = 1024
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbv4t"]
+bg_color = Color(0.38, 0.0798, 0.0798, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1024
+corner_radius_bottom_right = 1024
+corner_detail = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpxj5"]
 atlas = ExtResource("4_dscsb")
@@ -63,14 +93,17 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
+offset_left = 86.0
 offset_top = -616.0
 offset_right = 170.0
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_6yixm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yxdgq")
 step = 1.0
-value = 30.0
+value = 73.0
 allow_greater = true
 fill_mode = 3
+show_percentage = false
 
 [node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -80,9 +113,11 @@ anchor_right = 0.5
 offset_left = -691.0
 offset_top = 29.0
 offset_right = 679.0
-offset_bottom = 162.0
+offset_bottom = 92.0
 grow_horizontal = 2
-show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_47i3v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sbv4t")
+value = 50.0
 
 [node name="Arena" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
