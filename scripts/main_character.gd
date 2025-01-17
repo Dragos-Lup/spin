@@ -46,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
 
+
 # Honestly bro ignore this shit
 # Fundamentally, tracks player positioning and checks for "encircling"
 func _on_location_timer_timeout() -> void:
