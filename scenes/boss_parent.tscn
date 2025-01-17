@@ -1,11 +1,120 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=15 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_yd2ff"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
+[ext_resource type="Texture2D" uid="uid://m55mtcoehb3c" path="res://sprites/placeholder/jesterspinner.png" id="4_fw7m7"]
 
-[node name="Enemy_Spinner" type="RigidBody2D" groups=["enemy"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yalp3"]
+radius = 21.0
+height = 74.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag7v8"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(0, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghwvg"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(112, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48yyn"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(224, 0, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r33ou"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(0, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftfh3"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(112, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3dx4"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(224, 69, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vkki"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(0, 138, 112, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an0ps"]
+atlas = ExtResource("4_fw7m7")
+region = Rect2(112, 138, 112, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saqa8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag7v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghwvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48yyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r33ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftfh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3dx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vkki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an0ps")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["enemy"]]
+position = Vector2(-87, 34)
+collision_layer = 2
+collision_mask = 7
+mass = 2.0
 physics_material_override = ExtResource("1_sn01m")
+lock_rotation = true
+continuous_cd = 1
+linear_damp = 0.05
 script = ExtResource("1_yd2ff")
+health_component = NodePath("HealthComponent")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
+position = Vector2(0, 1)
+max_health = null
+current_health = null
+isPlayer = null
+isBoss = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yalp3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_saqa8")
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://sprites/placeholder",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/alexstuff/jesterspinner.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d15c8ead35c67d08667541d6412aa63c"
