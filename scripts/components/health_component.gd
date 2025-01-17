@@ -8,11 +8,6 @@ extends Node2D
 
 @onready var boss_health_bar: ProgressBar = %BossHealthBar
 
-func _ready():
-	if isBoss:
-		boss_health_bar.max_value = max_health
-		boss_health_bar.value = current_health
-
 func Damage(amount: int):
 	
 	current_health -= amount
