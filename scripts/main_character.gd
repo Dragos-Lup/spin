@@ -68,8 +68,8 @@ func _on_location_timer_timeout() -> void:
 
 #Whenever a body touches our boy this goes
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		body.health_component.Damage(2)
+	if body.is_in_group("enemy") and linear_velocity.length() / 10 > 70:
+		body.health_component.Damage(5)
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
 
