@@ -122,8 +122,23 @@ unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCasts" type="Node2D" parent="."]
+rotation = 0.785398
+scale = Vector2(1, 1)
+
+[node name="DLray" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(0, 200)
+
+[node name="ULray" type="RayCast2D" parent="RayCasts"]
+rotation = 1.5708
+target_position = Vector2(0, 200)
+
+[node name="URray" type="RayCast2D" parent="RayCasts"]
 rotation = 3.14159
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 200)
+
+[node name="DRray" type="RayCast2D" parent="RayCasts"]
+rotation = 4.71239
+target_position = Vector2(0, 200)
 
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

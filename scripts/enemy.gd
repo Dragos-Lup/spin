@@ -25,9 +25,8 @@ func set_healthbar(node : ProgressBar):
 
 func _physics_process(delta: float) -> void:
 	var force = Vector2.ZERO
-	if ray_cast_2d.is_colliding:
-		print(ray_cast_2d.get_collider)
-		print("COLLIDING")
+	if ray_cast_2d.is_colliding():
+		print("colliding")
 	if curr_state == Move_State.TARGETING:
 		target = player.transform.origin
 	if curr_state == Move_State.CIRCLING:
