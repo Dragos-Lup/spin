@@ -77,7 +77,7 @@ height = 74.0
 [node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["boss", "enemy"]]
 collision_layer = 2
 collision_mask = 7
-mass = 2.0
+mass = 4.0
 physics_material_override = ExtResource("1_sn01m")
 lock_rotation = true
 continuous_cd = 1
@@ -116,3 +116,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yalp3")
 
 [node name="MovementComponent" parent="." instance=ExtResource("5_mtghx")]
+
+[node name="BossTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

@@ -66,6 +66,7 @@ texture_filter = 1
 script = ExtResource("1_va4xm")
 
 [node name="MainSpinner" parent="." groups=["player"] instance=ExtResource("1_3mtgv")]
+unique_name_in_owner = true
 z_index = 5
 position = Vector2(974, 632)
 
