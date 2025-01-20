@@ -10,6 +10,7 @@ var curr_state = Move_State.CIRCLING
 
 @onready var player = %MainSpinner
 @onready var follower = %follower
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 var target: Vector2 = Vector2(940,530)
 
@@ -24,7 +25,9 @@ func set_healthbar(node : ProgressBar):
 
 func _physics_process(delta: float) -> void:
 	var force = Vector2.ZERO
-
+	if ray_cast_2d.is_colliding:
+		print(ray_cast_2d.get_collider)
+		print("COLLIDING")
 	if curr_state == Move_State.TARGETING:
 		target = player.transform.origin
 	if curr_state == Move_State.CIRCLING:
@@ -42,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	encircleR += delta * 50
 	if encircleR >= 360:
 		encircleR = 0.0
-	print(encircleR)
+	# print(encircleR)
 
 func get_encircle(loc):
 	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 100

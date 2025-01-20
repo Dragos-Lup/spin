@@ -122,4 +122,8 @@ unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(0, 20)
+
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
