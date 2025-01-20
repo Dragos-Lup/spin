@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=17 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
+[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47i3v"]
 bg_color = Color(0.452759, 0, 0.0825956, 0.313726)
@@ -182,3 +183,9 @@ metadata/_aseprite_wizard_source_file_hash_ = "7baf85e7f2412965ceb3e858838d57be"
 position = Vector2(0, -3)
 rotation = 1.57952
 shape = SubResource("CapsuleShape2D_nggsj")
+
+[node name="follower" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(826, 548)
+scale = Vector2(0.106918, 0.0957838)
+texture = ExtResource("9_wtd35")
