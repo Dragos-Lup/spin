@@ -6,11 +6,15 @@ extends RigidBody2D
 
 enum Move_State {IDLE, TARGETING, CIRCLING}
 
-var curr_state = Move_State.CIRCLING
+var curr_state = Move_State.TARGETING
 
 @onready var player = %MainSpinner
 @onready var follower = %follower
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
+# @onready var ray_cast_2d: RayCast2D = $RayCast2D
+
+
+var can_collide = [true, true, true, true]
+@onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
 
 var target: Vector2 = Vector2(940,530)
 
@@ -24,30 +28,39 @@ func set_healthbar(node : ProgressBar):
 	node.value = health_component.current_health
 
 func _physics_process(delta: float) -> void:
+	# shouldn't be moving at all.
 	var force = Vector2.ZERO
-	if ray_cast_2d.is_colliding():
-		print("colliding")
+	# if ray_cast_2d.is_colliding():
+		# print("colliding")
 	if curr_state == Move_State.TARGETING:
 		target = player.transform.origin
 	if curr_state == Move_State.CIRCLING:
 		target = get_encircle(player.transform.origin)
 		follower.transform.origin = target
+		for i in range(4):
+			if ray_casts[i].is_colliding() and can_collide[i]:
+				can_collide[i] = false
+				print("COLLIDED ", i)
+				
+				
 	if target:
-		force = 10 * (target - self.transform.origin) - linear_velocity
+		force = 30 * (target - self.transform.origin) - linear_velocity
 	apply_central_force(force)
-	if checkTarget and randfn(0,1) > 2400:
+	if checkTarget and randfn(0,1) > .5:
 		print("BOOSTED")
 		checkTarget = false
-		apply_impulse(((target - self.transform.origin).orthogonal() + (target - self.transform.origin)).normalized() * 5000)
+		# apply_impulse(((target - self.transform.origin)).normalized() * 5000)
+
+	# p(target - self.transform.origin).orthogonal() + 
 	# curr_state = Move_State.IDLE
 
-	encircleR += delta * 50
+	encircleR += delta * 100
 	if encircleR >= 360:
-		encircleR = 0.0
+		encircleR = encircleR - 360
 	# print(encircleR)
 
 func get_encircle(loc):
-	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 100
+	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 250
 
 func _on_boss_timer_timeout() -> void:
 	checkTarget = true

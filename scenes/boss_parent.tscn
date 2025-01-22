@@ -89,6 +89,7 @@ collision_shape = NodePath("CollisionShape2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_saqa8")
+autoplay = "default"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "output_section": true,
