@@ -5,8 +5,9 @@ var t_check: bool = false
 var start: Vector2
 
 var MAX_SPEED: float = 800
-var MAX_FORCE: float = 400
+var MAX_FORCE: float = 4000
 var SLOW_RADIUS: float = 100
+var MASS: float
 
 var proportionalGain: float = 1.0
 var integralGain: float = 0.0
@@ -17,13 +18,13 @@ var valueLast: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	MASS = self.mass
 
 
 func _integrate_forces(_state):
 	linear_velocity = linear_velocity.limit_length(MAX_SPEED)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var force = Vector2.ZERO
 
 	#if ray_cast_2d.is_colliding():
@@ -31,24 +32,31 @@ func _physics_process(_delta: float) -> void:
 
 
 	target = get_viewport().get_mouse_position()
+	
+	var pos = self.transform.get_origin()
+	var velocity = linear_velocity
+	var direction = target - pos
 
-	var error = target - self.transform.get_origin()
+	var desired = direction.normalized() * min(direction.length() / delta, MAX_FORCE / self.mass)
+
+	var deltaVelocity = desired - velocity
+
+	force = self.mass * deltaVelocity
+
+
+	if (force.length() > MAX_FORCE):
+		force = force.normalized() * MAX_FORCE
+	apply_central_force(get_force(self.transform.get_origin(), target, linear_velocity, delta))
+	# print(linear_velocity)
+
+func get_force(p, t, v, dt):
+	var d = t - p
+	var desired = d.normalized() * min(d.length() / dt, MAX_FORCE / MASS)
+	var dtVelocity = desired - v
+	var force = MASS * dtVelocity
+	return force.limit_length(MAX_FORCE)
 	
 
-
-
-	# var P = proportionalGain * error
-	# var errorRoC = (error - errorLast)# / delta
-	# errorLast = error
-	# var valueRoC = self.transform.get_origin() - valueLast #/ delta
-	# valueLast = self.transform.get_origin()
-	# var D = derivativeGain * errorRoC
-	# print(D)	
-	# force = P + D
-	#if target:
-	#	force = seek(target)
-	apply_central_force(force)
-	# print(linear_velocity)
 
 func seek(_seek_target: Vector2) -> Vector2:
 	var force = 2

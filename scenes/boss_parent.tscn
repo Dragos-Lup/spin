@@ -71,8 +71,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yalp3"]
-radius = 21.0
-height = 74.0
+radius = 26.0
+height = 112.0
 
 [node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["boss", "enemy"]]
 collision_layer = 2
@@ -88,6 +88,7 @@ collision_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_saqa8")
 autoplay = "default"
 metadata/_aseprite_wizard_interface_config_ = {

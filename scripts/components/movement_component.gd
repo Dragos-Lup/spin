@@ -1,10 +1,15 @@
 extends Node2D
 
+var MAX_FORCE : float
+var MASS : float
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func get_force(p, t, v, dt):
+	var d = t - p
+	var desired = d.normalized() * min(d.length() / dt, MAX_FORCE / MASS)
+	var dtVelocity = desired - v
+	var force = MASS * dtVelocity
+	return force.limit_length(MAX_FORCE)
 
 
-func _physics_process(_delta: float) -> void:
-	pass
+func get_encircle(loc, encircleR):
+	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 250

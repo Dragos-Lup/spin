@@ -1,15 +1,16 @@
 extends RigidBody2D
 
-@export var health_component: Node2D
-@export var collision_shape: Node2D
+@onready var health_component: Node2D = $HealthComponent
+@onready var collision_shape: Node2D = $CollisionShape2D
+@onready var movement_component: Node2D = $MovementComponent
 # Called when the node enters the scene tree for the first time.
 
 enum Move_State {IDLE, TARGETING, CIRCLING}
 
-var curr_state = Move_State.TARGETING
+var curr_state = Move_State.CIRCLING
 
-@onready var player = %MainSpinner
-@onready var follower = %follower
+@onready var player = %MainSpinner #It's important that literally nothing else in the scene is called one of these two things
+@onready var follower = %follower #For testing
 # @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		target = player.transform.origin
 	if curr_state == Move_State.CIRCLING:
 		target = get_encircle(player.transform.origin)
-		follower.transform.origin = target
+		follower.transform.origin = target #TODO: delete this later
 		for i in range(4):
 			if ray_casts[i].is_colliding() and can_collide[i]:
 				can_collide[i] = false
@@ -46,9 +47,12 @@ func _physics_process(delta: float) -> void:
 	if target:
 		force = 30 * (target - self.transform.origin) - linear_velocity
 	apply_central_force(force)
-	if checkTarget and randfn(0,1) > .5:
-		print("BOOSTED")
-		checkTarget = false
+
+	# USELESS STUFF DONT WORRY ABOUT IT I MIGHT NEED IT LATER
+
+	# if checkTarget and randfn(0,1) > .5:
+	#	print("BOOSTED")
+	#	checkTarget = false
 		# apply_impulse(((target - self.transform.origin)).normalized() * 5000)
 
 	# p(target - self.transform.origin).orthogonal() + 
@@ -58,9 +62,6 @@ func _physics_process(delta: float) -> void:
 	if encircleR >= 360:
 		encircleR = encircleR - 360
 	# print(encircleR)
-
-func get_encircle(loc):
-	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 250
 
 func _on_boss_timer_timeout() -> void:
 	checkTarget = true
