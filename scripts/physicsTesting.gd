@@ -5,7 +5,7 @@ var t_check: bool = false
 var start: Vector2
 
 var MAX_SPEED: float = 800
-var MAX_FORCE: float = 400000
+var MAX_FORCE: float = 400
 var SLOW_RADIUS: float = 100
 
 var proportionalGain: float = 1.0
@@ -33,14 +33,18 @@ func _physics_process(_delta: float) -> void:
 	target = get_viewport().get_mouse_position()
 
 	var error = target - self.transform.get_origin()
-	var P = proportionalGain * error
-	var errorRoC = (error - errorLast)# / delta
-	errorLast = error
-	var valueRoC = self.transform.get_origin() - valueLast #/ delta
-	valueLast = self.transform.get_origin()
-	var D = derivativeGain * errorRoC
-	print(D)	
-	force = P + D
+	
+
+
+
+	# var P = proportionalGain * error
+	# var errorRoC = (error - errorLast)# / delta
+	# errorLast = error
+	# var valueRoC = self.transform.get_origin() - valueLast #/ delta
+	# valueLast = self.transform.get_origin()
+	# var D = derivativeGain * errorRoC
+	# print(D)	
+	# force = P + D
 	#if target:
 	#	force = seek(target)
 	apply_central_force(force)
