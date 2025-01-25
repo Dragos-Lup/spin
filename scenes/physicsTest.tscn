@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5poo1bxojyc5"]
+
+[ext_resource type="Texture2D" uid="uid://cbqvyy615oqnv" path="res://asesprite/alexstuff/arenaringsprite.png" id="1_iui8g"]
+[ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_j0dav"]
+[ext_resource type="Texture2D" uid="uid://dc8nr7xmyyrm6" path="res://asesprite/dragosbad/dummy.png" id="1_metgg"]
+[ext_resource type="Script" path="res://scripts/physicsTesting.gd" id="1_trdw7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43r2b"]
+radius = 28.0179
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1000, 500)
+physics_material_override = ExtResource("1_j0dav")
+script = ExtResource("1_trdw7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_43r2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+z_index = 5
+texture = ExtResource("1_metgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(500, 500)
+texture = ExtResource("1_iui8g")

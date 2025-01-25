@@ -125,7 +125,6 @@ autostart = true
 
 [node name="RayCasts" type="Node2D" parent="."]
 rotation = 0.785398
-scale = Vector2(1, 1)
 
 [node name="DLray" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(0, 200)
