@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
 [ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
+[ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
+[ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
 
 [sub_resource type="Gradient" id="Gradient_60shy"]
 offsets = PackedFloat32Array(0, 0.733051, 1)
@@ -297,3 +299,11 @@ unique_name_in_owner = true
 position = Vector2(826, 548)
 scale = Vector2(0.106918, 0.0957838)
 texture = ExtResource("9_wtd35")
+[node name="menutheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qoumr")
+volume_db = -2.0
+autoplay = true
+
+[node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tv64y")
+playback_type = 1
