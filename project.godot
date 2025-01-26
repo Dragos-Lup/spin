@@ -25,10 +25,17 @@ animation/layers/only_include_visible_layers_by_default=true
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[global_group]
+
+enemy="Something the player will be damaging"
+boss="bosses (bffr)"
+player=""
 
 [input]
 

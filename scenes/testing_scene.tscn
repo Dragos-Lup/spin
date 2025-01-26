@@ -1,9 +1,86 @@
-[gd_scene load_steps=10 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=29 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
+[ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
+[ext_resource type="PackedScene" uid="uid://ba5t7qcjqpnl5" path="res://scenes/boss_parent.tscn" id="2_7thdg"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
 [ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
 [ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
+[ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
+[ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
+[ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
+[ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
+[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
+
+[sub_resource type="Gradient" id="Gradient_60shy"]
+offsets = PackedFloat32Array(0, 0.733051, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.423729, 0, 0, 0.423729, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uu7w0"]
+gradient = SubResource("Gradient_60shy")
+fill = 2
+fill_from = Vector2(0.517241, 0.461207)
+fill_to = Vector2(0.626437, 0.357759)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_a6qjh"]
+colors = PackedColorArray(0.935333, 0.03, 1, 1, 0, 0.116667, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t8mq8"]
+gradient = SubResource("Gradient_a6qjh")
+width = 39
+fill = 1
+fill_from = Vector2(0, 0.521368)
+fill_to = Vector2(0.296547, 0.435897)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_7f55f"]
+offsets = PackedFloat32Array(0.300847, 0.588983, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h3ydi"]
+gradient = SubResource("Gradient_7f55f")
+fill_from = Vector2(0.436782, 0.363506)
+fill_to = Vector2(0.54023, 0.489943)
+
+[sub_resource type="Gradient" id="Gradient_34ivc"]
+offsets = PackedFloat32Array(0.0805085, 0.207627, 0.461864, 0.70339, 1)
+colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.296778, 0.532929, 0, 1, 0.630964, 0.319896, 2.88785e-07, 1, 0, 0.749, 0.927961, 1, 0.781876, 7.72017e-05, 0.628406, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
+gradient = SubResource("Gradient_34ivc")
+fill_from = Vector2(0.617816, 1)
+fill_to = Vector2(0.583333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47i3v"]
+bg_color = Color(0.452759, 0, 0.0825956, 0.313726)
+corner_radius_top_left = 1024
+corner_radius_bottom_right = 1024
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbv4t"]
+bg_color = Color(0.38, 0.0798, 0.0798, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1024
+corner_radius_bottom_right = 1024
+corner_detail = 2
+
+[sub_resource type="Gradient" id="Gradient_1rw2t"]
+colors = PackedColorArray(0, 1, 0.0333333, 1, 0, 1, 0.966667, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbugn"]
+gradient = SubResource("Gradient_1rw2t")
+height = 149
+fill = 2
+fill_from = Vector2(0.335, 0.484)
+fill_to = Vector2(0.460508, 0.418803)
+repeat = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpxj5"]
 atlas = ExtResource("4_dscsb")
@@ -41,43 +118,121 @@ height = 63.9626
 [node name="Node2D" type="Node2D"]
 physics_interpolation_mode = 1
 texture_filter = 1
+script = ExtResource("1_va4xm")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="SpinBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="MainSpinner" parent="." groups=["player"] instance=ExtResource("1_3mtgv")]
 unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -616.0
-offset_right = 170.0
-grow_vertical = 0
-step = 1.0
-value = 30.0
-allow_greater = true
-fill_mode = 3
-
-[node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
 z_index = 5
 position = Vector2(974, 632)
-VOLUME_CURVE = null
 
 [node name="Camera2D" type="Camera2D" parent="MainSpinner"]
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Area2D" type="StaticBody2D" parent="."]
+[node name="Enemy_Spinner" parent="." instance=ExtResource("2_7thdg")]
+position = Vector2(836, 330)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 181.0
+offset_top = -591.0
+offset_right = 359.0
+offset_bottom = -3.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 73.0
+allow_greater = true
+fill_mode = 6
+nine_patch_stretch = true
+texture_over = SubResource("GradientTexture2D_uu7w0")
+texture_progress = SubResource("GradientTexture2D_t8mq8")
+tint_under = Color(0.681285, 0.10037, 0.860477, 1)
+script = ExtResource("4_ngjhq")
+
+[node name="SpinBar2" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -3006.0
+offset_top = -677.0
+offset_right = -2922.0
+offset_bottom = -61.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+step = 1.0
+value = 73.0
+allow_greater = true
+fill_mode = 3
+show_percentage = false
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -691.0
+offset_top = 29.0
+offset_right = 679.0
+offset_bottom = 92.0
+grow_horizontal = 2
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_h3ydi")
+texture_progress = SubResource("GradientTexture2D_rhig8")
+
+[node name="BossHealthBar2" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -726.0
+offset_top = -2058.0
+offset_right = 644.0
+offset_bottom = -1995.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_47i3v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sbv4t")
+value = 50.0
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1441.0
+offset_top = -177.0
+offset_right = 1779.0
+offset_bottom = -31.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 93.9
+radial_fill_degrees = 260.9
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_rbugn")
+tint_under = Color(0.92579, 0.131978, 1, 1)
+tint_over = Color(0.816379, 0.135484, 0, 1)
+tint_progress = Color(0.784066, 0.780553, 0.814826, 1)
+
+[node name="Arena" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
 collision_layer = 4
 collision_mask = 0
 physics_material_override = ExtResource("2_8jgto")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena"]
 scale = Vector2(1.15, 1)
 build_mode = 1
 polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 316.522, 389, 283.913, 423, 239.13, 458, 220.87, 470, 199.13, 483, 166.956, 498, 141.739, 509, 112.174, 519, 89.1304, 525, 67.826, 529, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -669.13, 801, 729.13, 794, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Arena"]
 z_index = -10
 texture_filter = 1
 scale = Vector2(4.16054, 4.16054)
@@ -103,7 +258,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "c87152ebc52d2b2c9bbc4ca75273170d"
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(926, 413)
+position = Vector2(-87, 34)
 collision_layer = 2
 collision_mask = 7
 mass = 2.0
@@ -138,3 +293,18 @@ metadata/_aseprite_wizard_source_file_hash_ = "7baf85e7f2412965ceb3e858838d57be"
 position = Vector2(0, -3)
 rotation = 1.57952
 shape = SubResource("CapsuleShape2D_nggsj")
+
+[node name="follower" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(826, 548)
+scale = Vector2(0.106918, 0.0957838)
+texture = ExtResource("9_wtd35")
+
+[node name="menutheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qoumr")
+volume_db = -2.0
+autoplay = true
+
+[node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tv64y")
+playback_type = 1
