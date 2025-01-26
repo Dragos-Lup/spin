@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			go = false
 			curr_state = Move_State.TARGETING
 			TargetTimer.start()
-			apply_impulse((dash_target - pos).normalized() * 5000)
+			apply_impulse((dash_target - pos).normalized() * 50000)
 
 	encircleR += delta * CIRCLE_SPEED
 	if encircleR >= 360:
