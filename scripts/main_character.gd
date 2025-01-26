@@ -9,7 +9,6 @@ const C_DRAG = .5
 @onready var spin_bar: ProgressBar = %SpinBar
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var health_component: Node2D = $HealthComponent
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/encirclePolygon.tscn")
@@ -24,7 +23,6 @@ func _init() -> void:
 func _physics_process(_delta: float) -> void:
 	# Get the current input direction
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
-	print(direction)
 	# This is where the player wants to be moving. 
 	# This is kinda hard to understand, but this is our influence, or how we want to be moving
 	var target_vel = direction * SPEED
