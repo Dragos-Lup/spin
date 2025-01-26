@@ -12,7 +12,7 @@ const C_DRAG = .5
 @onready var state_machine = animation_tree.get("parameters/playback")
 
 # Holds the encircle shape
-const Encircle = preload("res://scenes/encirclePolygon.tscn")
+const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
 # The array of past movements
 var move_array: PackedVector2Array = PackedVector2Array()
 # Holds the dash start time
