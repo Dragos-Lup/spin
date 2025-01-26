@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx5nrjkcbv0n3"
-path="res://.godot/imported/fireanim.png-787c6f191aa6e029013c76fddd38121c.ctex"
+uid="uid://cjb64lwepycrn"
+path="res://.godot/imported/betterjesterportrait.png-42bba0e0c7485c904a2318e0559a692e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asesprite/alexstuff/fireanim.png"
-dest_files=["res://.godot/imported/fireanim.png-787c6f191aa6e029013c76fddd38121c.ctex"]
+source_file="res://asesprite/alexstuff/betterjesterportrait.png"
+dest_files=["res://.godot/imported/betterjesterportrait.png-42bba0e0c7485c904a2318e0559a692e.ctex"]
 
 [params]
 
