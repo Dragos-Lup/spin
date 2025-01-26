@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=29 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
 [ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
-[ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
-[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
 [ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
+[ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
 [ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
+[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
 
 [sub_resource type="Gradient" id="Gradient_60shy"]
 offsets = PackedFloat32Array(0, 0.733051, 1)
@@ -299,6 +299,7 @@ unique_name_in_owner = true
 position = Vector2(826, 548)
 scale = Vector2(0.106918, 0.0957838)
 texture = ExtResource("9_wtd35")
+
 [node name="menutheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoumr")
 volume_db = -2.0
