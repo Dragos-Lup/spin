@@ -7,7 +7,7 @@ const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
 
 @onready var spin_bar: TextureProgressBar = %SpinBar
-
+@onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
@@ -47,6 +47,12 @@ func _physics_process(_delta: float) -> void:
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
 
+#Should do this differently realistically but erm no
+func set_healthbar(node : TextureProgressBar):
+	health_component.boss_health_bar = node #The node we got send is the health bar, change the health_component accordingly
+	#Set the max value and value of the health bar
+	node.max_value = health_component.max_health 
+	node.value = health_component.current_health
 
 # Honestly bro ignore this shit
 # Fundamentally, tracks player positioning and checks for "encircling"
@@ -69,8 +75,12 @@ func _on_location_timer_timeout() -> void:
 
 #Whenever a body touches our boy this goes
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy") and linear_velocity.length() / 10 > 100:
-		body.health_component.Damage(5)
+	# if body.is_in_group("enemy") and linear_velocity.length() / 10 > 100:
+	if body.is_in_group("enemy"):
+		if body.linear_velocity < linear_velocity:
+			body.health_component.Damage(5)
+		if body.linear_velocity > linear_velocity:
+			self.health_component.Damage(5)
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
 

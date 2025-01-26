@@ -11,6 +11,8 @@ func Damage(amount: int):
 	#Take some damage
 	current_health -= amount
 	if isBoss or isPlayer:
+		if isPlayer:
+			print("PLAYER TOOK DAMAGE")
 		boss_health_bar.value = current_health #If this is a boss set the healthbar too
 
 	if current_health <= 0:
@@ -22,5 +24,8 @@ func Heal(amount: int):
 	Damage(-amount) # Honestly put this in for the fun of it
 
 func Die():
-	print("This thing died!")
+	if isPlayer:
+		print("PLAYER DIED")
+	else:
+		print("This thing died!")
 	#TODO: We need actual death to happen later.y
