@@ -27,7 +27,7 @@ func _ready() -> void:
 	setup()
 	pass
 
-func set_healthbar(node : ProgressBar):
+func set_healthbar(node : TextureProgressBar):
 	health_component.boss_health_bar = node #The node we got send is the health bar, change the health_component accordingly
 	#Set the max value and value of the health bar
 	node.max_value = health_component.max_health 

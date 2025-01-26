@@ -6,7 +6,8 @@ const DASH_SLOW = .001
 const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
 
-@onready var spin_bar: ProgressBar = %SpinBar
+@onready var spin_bar: TextureProgressBar = %SpinBar
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
@@ -68,7 +69,7 @@ func _on_location_timer_timeout() -> void:
 
 #Whenever a body touches our boy this goes
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy") and linear_velocity.length() / 10 > 70:
+	if body.is_in_group("enemy") and linear_velocity.length() / 10 > 100:
 		body.health_component.Damage(5)
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
@@ -88,7 +89,7 @@ func _clash_effects(body: Node2D) -> void:
 	$Clash_SE.play()
 	$Clash_SE.set_volume_db(0+(linear_velocity.length()/450)) # Volume set for the clash
 
-	var spark : GPUParticles2D = %Sparks #Grabs the sparks object and uses it
+	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate
 	var attack =  dir * 5
 	

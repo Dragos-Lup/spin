@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 var stylebox
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +10,7 @@ func _ready():
 	# _on_value_changed(value)  # Update color immediately on ready
 
 func _on_value_changed(new_value):
-	if new_value > 70:
+	if new_value > 100:
 		stylebox.bg_color = Color.RED
 	else:
 		stylebox.bg_color = Color.GREEN

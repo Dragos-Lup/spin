@@ -5,7 +5,7 @@ extends Node2D
 @export var isPlayer : bool = false #Is this a player health component. Not sure if we'll ever use this
 @export var isBoss : bool = false #Is this a boss, try to keep this on.
 
-var boss_health_bar: ProgressBar #Just a reference to the healthbar
+var boss_health_bar: TextureProgressBar #Just a reference to the healthbar
 
 func Damage(amount: int):
 	#Take some damage

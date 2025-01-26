@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=27 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -9,6 +9,47 @@
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
 [ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
+
+[sub_resource type="Gradient" id="Gradient_60shy"]
+offsets = PackedFloat32Array(0, 0.733051, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.423729, 0, 0, 0.423729, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uu7w0"]
+gradient = SubResource("Gradient_60shy")
+fill = 2
+fill_from = Vector2(0.517241, 0.461207)
+fill_to = Vector2(0.626437, 0.357759)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_a6qjh"]
+colors = PackedColorArray(0.935333, 0.03, 1, 1, 0, 0.116667, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t8mq8"]
+gradient = SubResource("Gradient_a6qjh")
+width = 39
+fill = 1
+fill_from = Vector2(0, 0.521368)
+fill_to = Vector2(0.296547, 0.435897)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_7f55f"]
+offsets = PackedFloat32Array(0.300847, 0.588983, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h3ydi"]
+gradient = SubResource("Gradient_7f55f")
+fill_from = Vector2(0.436782, 0.363506)
+fill_to = Vector2(0.54023, 0.489943)
+
+[sub_resource type="Gradient" id="Gradient_34ivc"]
+offsets = PackedFloat32Array(0.0805085, 0.207627, 0.461864, 0.70339, 1)
+colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.296778, 0.532929, 0, 1, 0.630964, 0.319896, 2.88785e-07, 1, 0, 0.749, 0.927961, 1, 0.781876, 7.72017e-05, 0.628406, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
+gradient = SubResource("Gradient_34ivc")
+fill_from = Vector2(0.617816, 1)
+fill_to = Vector2(0.583333, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47i3v"]
 bg_color = Color(0.452759, 0, 0.0825956, 0.313726)
@@ -27,6 +68,17 @@ border_blend = true
 corner_radius_top_left = 1024
 corner_radius_bottom_right = 1024
 corner_detail = 2
+
+[sub_resource type="Gradient" id="Gradient_1rw2t"]
+colors = PackedColorArray(0, 1, 0.0333333, 1, 0, 1, 0.966667, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbugn"]
+gradient = SubResource("Gradient_1rw2t")
+height = 149
+fill = 2
+fill_from = Vector2(0.335, 0.484)
+fill_to = Vector2(0.460508, 0.418803)
+repeat = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpxj5"]
 atlas = ExtResource("4_dscsb")
@@ -80,14 +132,35 @@ position = Vector2(836, 330)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SpinBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 86.0
-offset_top = -616.0
-offset_right = 170.0
+offset_left = 181.0
+offset_top = -591.0
+offset_right = 359.0
+offset_bottom = -3.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 73.0
+allow_greater = true
+fill_mode = 8
+nine_patch_stretch = true
+texture_over = SubResource("GradientTexture2D_uu7w0")
+texture_progress = SubResource("GradientTexture2D_t8mq8")
+tint_under = Color(0.681285, 0.10037, 0.860477, 1)
+script = ExtResource("4_ngjhq")
+
+[node name="SpinBar2" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -3006.0
+offset_top = -677.0
+offset_right = -2922.0
+offset_bottom = -61.0
 grow_vertical = 0
 theme = ExtResource("4_qxpu4")
 step = 1.0
@@ -95,9 +168,8 @@ value = 73.0
 allow_greater = true
 fill_mode = 3
 show_percentage = false
-script = ExtResource("4_ngjhq")
 
-[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -107,9 +179,45 @@ offset_top = 29.0
 offset_right = 679.0
 offset_bottom = 92.0
 grow_horizontal = 2
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_h3ydi")
+texture_progress = SubResource("GradientTexture2D_rhig8")
+
+[node name="BossHealthBar2" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -726.0
+offset_top = -2058.0
+offset_right = 644.0
+offset_bottom = -1995.0
+grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_47i3v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sbv4t")
 value = 50.0
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1441.0
+offset_top = -177.0
+offset_right = 1779.0
+offset_bottom = -31.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 93.9
+radial_fill_degrees = 260.9
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_rbugn")
+tint_under = Color(0.92579, 0.131978, 1, 1)
+tint_over = Color(0.816379, 0.135484, 0, 1)
+tint_progress = Color(0.784066, 0.780553, 0.814826, 1)
 
 [node name="Arena" type="StaticBody2D" parent="."]
 position = Vector2(938, 531)
