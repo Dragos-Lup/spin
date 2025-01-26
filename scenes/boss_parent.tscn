@@ -107,38 +107,44 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d15c8ead35c67d08667541d6412aa63c"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yalp3")
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
 max_health = 50
 current_health = 50
 isBoss = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_yalp3")
-
 [node name="MovementComponent" parent="." instance=ExtResource("5_mtghx")]
 
-[node name="BossTimer" type="Timer" parent="."]
-unique_name_in_owner = true
+[node name="DashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
+[node name="UnTargettingTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 5.0
-autostart = true
+one_shot = true
 
 [node name="RayCasts" type="Node2D" parent="."]
 rotation = 0.785398
 
 [node name="DLray" type="RayCast2D" parent="RayCasts"]
-target_position = Vector2(0, 200)
+target_position = Vector2(0, 300)
 
 [node name="ULray" type="RayCast2D" parent="RayCasts"]
 rotation = 1.5708
-target_position = Vector2(0, 200)
+target_position = Vector2(0, 300)
 
 [node name="URray" type="RayCast2D" parent="RayCasts"]
 rotation = 3.14159
-target_position = Vector2(0, 200)
+target_position = Vector2(0, 300)
 
 [node name="DRray" type="RayCast2D" parent="RayCasts"]
 rotation = 4.71239
-target_position = Vector2(0, 200)
+target_position = Vector2(0, 300)
 
-[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="UnTargettingTimer" to="." method="_on_un_targetting_timer_timeout"]
