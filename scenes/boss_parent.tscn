@@ -74,17 +74,16 @@ animations = [{
 radius = 26.0
 height = 112.0
 
-[node name="EnemySpinner" type="RigidBody2D" node_paths=PackedStringArray("health_component", "collision_shape") groups=["boss", "enemy"]]
+[node name="EnemySpinner" type="RigidBody2D" groups=["boss", "enemy"]]
 collision_layer = 2
 collision_mask = 7
 mass = 4.0
 physics_material_override = ExtResource("1_sn01m")
 lock_rotation = true
 continuous_cd = 1
-linear_damp = 0.05
+linear_damp = 1.0
 script = ExtResource("1_yd2ff")
-health_component = NodePath("HealthComponent")
-collision_shape = NodePath("CollisionShape2D")
+MAX_FORCE = 7000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

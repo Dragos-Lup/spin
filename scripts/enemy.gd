@@ -2,25 +2,27 @@ extends RigidBody2D
 
 @onready var health_component: Node2D = $HealthComponent
 @onready var collision_shape: Node2D = $CollisionShape2D
-@onready var movement_component: Node2D = $MovementComponent
-# Called when the node enters the scene tree for the first time.
-
-enum Move_State {IDLE, TARGETING, CIRCLING}
-
-var curr_state = Move_State.CIRCLING
-
+@onready var mc: Node2D = $MovementComponent
 @onready var player = %MainSpinner #It's important that literally nothing else in the scene is called one of these two things
 @onready var follower = %follower #For testing
-# @onready var ray_cast_2d: RayCast2D = $RayCast2D
-
-
-var can_collide = [true, true, true, true]
 @onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
 
-var target: Vector2 = Vector2(940,530)
+enum Move_State {IDLE, TARGETING, CIRCLING}
+var curr_state = Move_State.CIRCLING
 
+
+@export var MAX_FORCE: float = 10
+@export var CIRCLE_SPEED: float = 100
+
+var can_collide = [true, true, true, true]
+var target: Vector2 = Vector2(940,530)
 var checkTarget: bool = true
 var encircleR: float = 0.0
+
+
+func _ready() -> void:
+	setup()
+	pass
 
 func set_healthbar(node : ProgressBar):
 	health_component.boss_health_bar = node #The node we got send is the health bar, change the health_component accordingly
@@ -29,24 +31,22 @@ func set_healthbar(node : ProgressBar):
 	node.value = health_component.current_health
 
 func _physics_process(delta: float) -> void:
-	# shouldn't be moving at all.
-	var force = Vector2.ZERO
-	# if ray_cast_2d.is_colliding():
-		# print("colliding")
 	if curr_state == Move_State.TARGETING:
 		target = player.transform.origin
 	if curr_state == Move_State.CIRCLING:
-		target = get_encircle(player.transform.origin)
+		target = mc.get_encircle(player.transform.origin, encircleR)
 		follower.transform.origin = target #TODO: delete this later
 		for i in range(4):
 			if ray_casts[i].is_colliding() and can_collide[i]:
 				can_collide[i] = false
 				print("COLLIDED ", i)
-				
-				
+
+	encircleR += delta * CIRCLE_SPEED
+	if encircleR >= 360:
+		encircleR = encircleR - 360
+	
 	if target:
-		force = 30 * (target - self.transform.origin) - linear_velocity
-	apply_central_force(force)
+		apply_central_force(mc.get_force(self.transform.origin, target, linear_velocity, delta))
 
 	# USELESS STUFF DONT WORRY ABOUT IT I MIGHT NEED IT LATER
 
@@ -58,10 +58,9 @@ func _physics_process(delta: float) -> void:
 	# p(target - self.transform.origin).orthogonal() + 
 	# curr_state = Move_State.IDLE
 
-	encircleR += delta * 100
-	if encircleR >= 360:
-		encircleR = encircleR - 360
-	# print(encircleR)
-
 func _on_boss_timer_timeout() -> void:
 	checkTarget = true
+
+func setup() -> void:
+	mc.set_mass(self.mass)
+	mc.set_max_force(MAX_FORCE)

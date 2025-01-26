@@ -13,3 +13,11 @@ func get_force(p, t, v, dt):
 
 func get_encircle(loc, encircleR):
 	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 250
+
+
+func set_mass(m):
+	MASS = m
+
+
+func set_max_force(f):
+	MAX_FORCE = f
