@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 		follower.transform.origin = target #TODO: delete this later
 		for i in range(4):
 			if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
+				$Jestercharge.play()
 				can_collide[i] = false #Don't use the same raycast again
 				dash_target = ray_casts[i].get_collider().transform.origin #Save that player position for later
 				var vec = (dash_target - pos).normalized() * -1 #We want to go to the direction opposite of the player
@@ -58,7 +59,11 @@ func _physics_process(delta: float) -> void:
 			curr_state = Move_State.TARGETING #Set the state to targeting the player
 			TargetTimer.start() #We only wanna be targeting for a couple of seconds post dash, then go back to circling
 
-			apply_impulse((dash_target - pos).normalized() * 50000) #Apply that big boy impulse
+			apply_impulse((dash_target - pos).normalized() * 10000) #Apply that big boy impulse
+			$Jesterlaugh.play()
+			$Jestercharge.stop()
+		else:
+			set_linear_velocity((dash_target-pos).normalized()*-55 )
 
 	encircleR += delta * CIRCLE_SPEED
 	if encircleR >= 360:
