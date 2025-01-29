@@ -5,8 +5,7 @@ const DASH_SPEED = 2000.0
 const DASH_SLOW = .001
 const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
-@onready var sparks: AnimatedSprite2D = $sparks
-
+@onready var hitsparks: GPUParticles2D = $hitsparks
 @onready var spin_bar: TextureProgressBar = %SpinBar
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -106,8 +105,9 @@ func _clash_effects(body: Node2D) -> void:
 	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate
 	var attack =  dir * 5
-	$sparks.spark_play()
-	$sparks.set_offset(Vector2(attack.x, attack.y)) 
+	$hitsparks.one_shot=true
+	$hitsparks.emitting=true
+	$hitsparks.restart()
 	
 	spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0)) #Sets the offset position to where we just clashed
 	spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0)) #Sets the direction similar to what we just did.
