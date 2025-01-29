@@ -5,6 +5,7 @@ const DASH_SPEED = 2000.0
 const DASH_SLOW = .001
 const C_DRAG = .5
 @export var VOLUME_CURVE:Curve
+@onready var sparks: AnimatedSprite2D = $sparks
 
 @onready var spin_bar: TextureProgressBar = %SpinBar
 @onready var health_component: Node2D = $HealthComponent
@@ -79,8 +80,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body.linear_velocity < linear_velocity:
 			body.health_component.Damage(5)
+			$Hit_SE.play()
 		if body.linear_velocity > linear_velocity:
 			self.health_component.Damage(5)
+			$Hit_SE.play()
+			
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
 
@@ -102,7 +106,8 @@ func _clash_effects(body: Node2D) -> void:
 	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate
 	var attack =  dir * 5
-	
+	$sparks.spark_play()
+	$sparks.set_offset(Vector2(attack.x, attack.y)) 
 	
 	spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0)) #Sets the offset position to where we just clashed
 	spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0)) #Sets the direction similar to what we just did.

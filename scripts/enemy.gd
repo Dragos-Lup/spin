@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 
 			apply_impulse((dash_target - pos).normalized() * 10000) #Apply that big boy impulse
 			$Jesterlaugh.play()
+			$Jestersparkle.play()
 			$Jestercharge.stop()
 		else:
 			set_linear_velocity((dash_target-pos).normalized()*-55 )

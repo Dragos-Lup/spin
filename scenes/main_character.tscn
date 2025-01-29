@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=46 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_q0jrw"]
@@ -8,7 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://dd0fy1ovymn4b" path="res://sound_effects/clash1.ogg" id="4_qn757"]
 [ext_resource type="AudioStream" uid="uid://dgu4qxnk4s77i" path="res://sound_effects/clash2.ogg" id="5_g1lp1"]
 [ext_resource type="AudioStream" uid="uid://b470m7vxv25oi" path="res://sound_effects/dash.ogg" id="6_icwvi"]
+[ext_resource type="AudioStream" uid="uid://cq3im8xl3mlt2" path="res://sound_effects/hitland.ogg" id="7_63jd1"]
 [ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
+[ext_resource type="Texture2D" uid="uid://dys3hp23q0a4j" path="res://scenes/clasheffect1.png" id="11_dpqt3"]
+[ext_resource type="Script" path="res://scenes/sparks.gd" id="12_wjvfd"]
 
 [sub_resource type="Curve" id="Curve_sk41o"]
 min_value = -1.0
@@ -160,10 +163,72 @@ streams_count = 2
 stream_0/stream = ExtResource("4_qn757")
 stream_1/stream = ExtResource("5_g1lp1")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1oxy7"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("7_63jd1")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3aysq"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_icwvi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiskx"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(0, 0, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdi7i"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(112, 0, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hclvl"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(224, 0, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plonf"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(0, 99, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5l5u"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(112, 99, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ts5b"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(224, 99, 112, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ora6v"]
+atlas = ExtResource("11_dpqt3")
+region = Rect2(0, 198, 112, 99)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4n450"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiskx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdi7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hclvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5l5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ts5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ora6v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
 
 [node name="MainSpinner" type="RigidBody2D"]
 texture_filter = 1
@@ -238,6 +303,9 @@ volume_db = -0.465
 max_polyphony = 3
 playback_type = 2
 
+[node name="Hit_SE" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1oxy7")
+
 [node name="Dash_SE" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_3aysq")
 volume_db = 1.981
@@ -251,6 +319,27 @@ parameters/looping = true
 max_health = 80
 current_health = 80
 isPlayer = true
+
+[node name="sparks" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4n450")
+frame_progress = 0.886274
+speed_scale = 0.0
+script = ExtResource("12_wjvfd")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/ericsprite/clasheffect1.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b500dc30c131dc6bc064b4c11a4163d0"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LocationTimer" to="." method="_on_location_timer_timeout"]

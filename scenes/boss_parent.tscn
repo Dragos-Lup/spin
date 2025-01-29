@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=19 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://d2dkwnmoostis" path="res://sound_effects/JesterVoice/jestercharge.ogg" id="5_ge32r"]
 [ext_resource type="PackedScene" uid="uid://dygeouv8mk1x6" path="res://scenes/components/movement_component.tscn" id="5_mtghx"]
 [ext_resource type="Texture2D" uid="uid://8iwg7s2aa6py" path="res://sprites/placeholder/jesternewspinner.png" id="6_f5vd7"]
+[ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="6_tqy8q"]
+[ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="7_lt1ax"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
 random_pitch = 1.1
@@ -19,6 +21,12 @@ stream_1/stream = ExtResource("4_yk8hk")
 random_pitch = 1.4
 streams_count = 1
 stream_0/stream = ExtResource("5_ge32r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mps2w"]
+random_pitch = 1.14
+streams_count = 2
+stream_0/stream = ExtResource("6_tqy8q")
+stream_1/stream = ExtResource("7_lt1ax")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hm5rb"]
 atlas = ExtResource("6_f5vd7")
@@ -69,6 +77,10 @@ stream = SubResource("AudioStreamRandomizer_j716r")
 
 [node name="Jestercharge" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7mwgt")
+
+[node name="Jestersparkle" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_mps2w")
+volume_db = -10.895
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
