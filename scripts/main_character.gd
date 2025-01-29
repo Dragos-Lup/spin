@@ -81,6 +81,8 @@ func _on_body_entered(body: Node2D) -> void:
 			body.health_component.Damage(5)
 		if body.linear_velocity > linear_velocity:
 			self.health_component.Damage(5)
+		$DampTimer.start()
+		linear_damp = 20
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
 
@@ -107,3 +109,8 @@ func _clash_effects(body: Node2D) -> void:
 	spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0)) #Sets the offset position to where we just clashed
 	spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0)) #Sets the direction similar to what we just did.
 	spark.restart()
+
+
+func _on_damp_timer_timeout() -> void:
+	linear_damp = 0.05
+

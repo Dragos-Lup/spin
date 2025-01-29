@@ -15,11 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="7_8sx0s"]
 [ext_resource type="Texture2D" uid="uid://clh2qde1mal5d" path="res://asesprite/ericsprite/quitdiscplaceholder.png" id="7_fib8d"]
 [ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="8_0fjmf"]
-[ext_resource type="Texture2D" uid="uid://7l182jnktim0" path="res://asesprite/ericsprite/spinninghandleplaceholder.png" id="8_dix8f"]
 [ext_resource type="Script" path="res://scripts/window_handle.gd" id="9_xvr3i"]
 [ext_resource type="Texture2D" uid="uid://c42q10cgiihrn" path="res://asesprite/ericsprite/playgameplaceholder.png" id="10_ny245"]
 [ext_resource type="Texture2D" uid="uid://bupfok75h1fwj" path="res://asesprite/ericsprite/optionsplaceholder.png" id="11_10chc"]
 [ext_resource type="Texture2D" uid="uid://c7wg0vwwo2ku4" path="res://asesprite/ericsprite/imoutplaceholder.png" id="12_jm4yh"]
+[ext_resource type="Texture2D" uid="uid://cl36tixyeiijj" path="res://scenes/menuring.png" id="17_vcmnc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -154,22 +154,26 @@ scale = Vector2(6, 6)
 script = ExtResource("9_xvr3i")
 
 [node name="WindowHandle" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("8_dix8f")
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_vcmnc")
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": false,
-"pending_changes": {
-"i_mode": -1,
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
 "keep_anim_length": false,
 "layers": [],
 "o_ex_p": "",
 "o_folder": "",
 "o_name": "",
-"only_visible": false,
+"only_visible": true,
 "player": "",
 "slice": "",
-"source": ""
+"source": "res://asesprite/menu/menuring.aseprite"
 }
-}
+metadata/_aseprite_wizard_source_file_hash_ = "2a59b54ff6e729dab60395b63229196a"
 
 [node name="StartPic" type="Sprite2D" parent="Node2D"]
 visibility_layer = 2
@@ -192,12 +196,12 @@ texture = ExtResource("12_jm4yh")
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]
