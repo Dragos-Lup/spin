@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=23 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
 [ext_resource type="PackedScene" uid="uid://ba5t7qcjqpnl5" path="res://scenes/boss_parent.tscn" id="2_7thdg"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
 [ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
-[ext_resource type="Texture2D" uid="uid://cv20stta7nq4y" path="res://sprites/placeholder/spinningtorp.png" id="4_dscsb"]
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
@@ -81,39 +80,6 @@ fill = 2
 fill_from = Vector2(0.335, 0.484)
 fill_to = Vector2(0.460508, 0.418803)
 repeat = 1
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bpxj5"]
-atlas = ExtResource("4_dscsb")
-region = Rect2(0, 0, 68, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a1trg"]
-atlas = ExtResource("4_dscsb")
-region = Rect2(68, 0, 68, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugsl6"]
-atlas = ExtResource("4_dscsb")
-region = Rect2(0, 50, 68, 50)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r05ed"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bpxj5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a1trg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ugsl6")
-}],
-"loop": true,
-"name": &"default",
-"speed": 34.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nggsj"]
-radius = 15.9994
-height = 63.9626
 
 [node name="Node2D" type="Node2D"]
 physics_interpolation_mode = 1
@@ -257,45 +223,9 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "c87152ebc52d2b2c9bbc4ca75273170d"
 
-[node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(-87, 34)
-collision_layer = 2
-collision_mask = 7
-mass = 2.0
-physics_material_override = ExtResource("2_8jgto")
-lock_rotation = true
-continuous_cd = 1
-linear_damp = 0.05
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_r05ed")
-autoplay = "default"
-metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": false,
-"layer_section": true,
-"output_section": true,
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layers": [],
-"o_ex_p": "",
-"o_folder": "res://sprites/placeholder",
-"o_name": "",
-"only_visible": true,
-"should_round_fps": true,
-"slice": "",
-"source": "res://asesprite/ericsprite/spinningtorp.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "7baf85e7f2412965ceb3e858838d57be"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -3)
-rotation = 1.57952
-shape = SubResource("CapsuleShape2D_nggsj")
-
 [node name="follower" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(826, 548)
 scale = Vector2(0.106918, 0.0957838)
 texture = ExtResource("9_wtd35")

@@ -6,7 +6,7 @@ extends RigidBody2D
 @onready var DashTimer: Timer = $DashTimer
 @onready var TargetTimer: Timer = $UnTargettingTimer
 @onready var player = %MainSpinner #It's important that literally nothing else in the scene is called one of these two things
-@onready var follower = %follower #For testing
+# @onready var follower = %follower #For testing
 @onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
 
 enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON} #List of states, you can add a new one if you want a new behavior
@@ -14,6 +14,8 @@ var curr_state = Move_State.CIRCLING #The state the boss starts in
 
 @export var MAX_FORCE: float = 10 #Set in editor technically, but tweak it in here idc lol
 @export var CIRCLE_SPEED: float = 100
+@export var DASH_SPEED: float = 10000
+@export var CIRCLE_DISTANCE: float = 80
 
 var can_collide = [true, true, true, true]
 var target: Vector2 = Vector2(940,530)
@@ -41,14 +43,14 @@ func _physics_process(delta: float) -> void:
 		target = player.transform.origin #Our target is just the player origin
 	elif curr_state == Move_State.CIRCLING:
 		target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
-		follower.transform.origin = target #TODO: delete this later
+		# follower.transform.origin = target #TODO: delete this later
 		for i in range(4):
 			if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
 				$Jestercharge.play()
 				can_collide[i] = false #Don't use the same raycast again
 				dash_target = ray_casts[i].get_collider().transform.origin #Save that player position for later
 				var vec = (dash_target - pos).normalized() * -1 #We want to go to the direction opposite of the player
-				target = vec * 30 + pos #Move slightly away from the player
+				target = vec * CIRCLE_DISTANCE + pos #Move slightly away from the player
 				set_linear_velocity(Vector2.ZERO) #Completely stop moving
 				curr_state = Move_State.LOCKED_ON #Now we're gonna be locked on, and waiting to dash
 				go = false #Make sure go is false (this actually does nothing technicaly)
@@ -59,11 +61,12 @@ func _physics_process(delta: float) -> void:
 			curr_state = Move_State.TARGETING #Set the state to targeting the player
 			TargetTimer.start() #We only wanna be targeting for a couple of seconds post dash, then go back to circling
 
-			apply_impulse((dash_target - pos).normalized() * 10000) #Apply that big boy impulse
+			apply_impulse((dash_target - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
 			$Jesterlaugh.play()
 			$Jestercharge.stop()
 		else:
-			set_linear_velocity((dash_target-pos).normalized()*-55 )
+			pass
+			# set_linear_velocity((dash_target-pos).normalized()*-2 )
 
 	encircleR += delta * CIRCLE_SPEED
 	if encircleR >= 360:
