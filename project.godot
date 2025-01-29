@@ -14,7 +14,11 @@ config/name="Spin"
 config/version="0.0.1"
 run/main_scene="res://scenes/testing_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://sprites/placeholder/436b87bf2002990e3c2f0b9c01672414.png"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=2000
 
 [aseprite]
 
