@@ -12,7 +12,8 @@ func Damage(amount: int):
 	current_health -= amount
 	if isBoss or isPlayer:
 		if isPlayer:
-			print("PLAYER TOOK DAMAGE")
+			pass
+			#print("PLAYER TOOK DAMAGE")
 		boss_health_bar.value = current_health #If this is a boss set the healthbar too
 
 	if current_health <= 0:

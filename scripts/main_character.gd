@@ -1,15 +1,21 @@
 extends RigidBody2D
 
-const SPEED = 1000.0
-const DASH_SPEED = 2000.0
-const DASH_SLOW = .001
-const C_DRAG = .5
+@export var SPEED : float = 1000.0
+
+@export var DASH_SPEED : float = 2000.0
+@export var DASH_SLOW : float = .001
+@export var DASH_MAXTIME : float = 3000
+@export var DASH_MINSPEED : float = 2000
+@export var MOMENTUM_DIFF : float = 100
+
 @export var VOLUME_CURVE:Curve
 
 @onready var spin_bar: TextureProgressBar = %SpinBar
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+
+var dashing = false
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
@@ -29,6 +35,10 @@ func _physics_process(_delta: float) -> void:
 	var target_vel = direction * SPEED
 	# This is the difference between how we're moving now, and how we want to be moving.
 	var vel_difference = (target_vel - linear_velocity)
+	
+	if dashing and linear_velocity.length() < DASH_MINSPEED:
+		dashing = false
+
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec() #When did we start charging
@@ -39,13 +49,16 @@ func _physics_process(_delta: float) -> void:
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
 		if (chargetime) > 850:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized() #Where we going big boss
-			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000)) #Applys the dash amount
+			apply_impulse(dash_vector * (DASH_SPEED * min(chargetime, DASH_MAXTIME)/1000)) #Applys the dash amount
 			#TODO: Dashing should have a cap real talk, or scale logarithmically or something
 			$Dash_SE.play() #Plays the dash sound effect
+			dashing = true
 			
 	apply_central_force(vel_difference) # Applys regular movement effects (Or slowed from dashing)
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
+	print(linear_velocity.length())
+
 
 #Should do this differently realistically but erm no
 func set_healthbar(node : TextureProgressBar):
@@ -81,8 +94,16 @@ func _on_body_entered(body: Node2D) -> void:
 			body.health_component.Damage(5)
 		if body.linear_velocity > linear_velocity:
 			self.health_component.Damage(5)
-		$DampTimer.start()
-		linear_damp = 20
+		print("Alright on you getting hit")
+		print(linear_velocity.length())
+		print("THEY GOT HIT")
+		# var e_dash = body.is_dashing()
+		# var p_m = calc_momentum()
+		# var e_m = body.calc_momentum()
+
+
+		#$DampTimer.start()
+		#linear_damp = 20
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
 
@@ -114,3 +135,5 @@ func _clash_effects(body: Node2D) -> void:
 func _on_damp_timer_timeout() -> void:
 	linear_damp = 0.05
 
+func calc_momentum() -> float:
+	return mass * linear_velocity.length()
