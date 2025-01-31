@@ -14,9 +14,9 @@ var curr_state = Move_State.CIRCLING #The state the boss starts in
 
 @export var MAX_FORCE: float = 10 #Set in editor technically, but tweak it in here idc lol
 @export var CIRCLE_SPEED: float = 100
-@export var DASH_SPEED: float = 10000
+@export var DASH_SPEED: float = 14000
 @export var CIRCLE_DISTANCE: float = 80
-@export var DASH_MINSPEED: float = 1500
+@export var DASH_MINSPEED: float = 1000
 
 var can_collide = [true, true, true, true]
 var target: Vector2 = Vector2(940,530)
@@ -24,6 +24,7 @@ var encircleR: float = 0.0
 var go: bool = false
 var dash_target: Vector2 = Vector2.ZERO
 var dashing: bool = false
+var last_vel: float = 0
 
 func _ready() -> void:
 	setup()
@@ -39,6 +40,15 @@ func set_healthbar(node : TextureProgressBar):
 
 func _physics_process(delta: float) -> void:
 	var pos = self.transform.origin
+
+	# This should be before state targeting.
+	if dashing:
+		print("DASHING",delta)
+	print(linear_velocity.length())
+	if dashing and linear_velocity.length() < DASH_MINSPEED:
+		dashing = false
+
+
 	# It's important that this state diagram only switches who we are targeting
 	if curr_state == Move_State.TARGETING: #If we're running right at the player
 		target = player.transform.origin #Our target is just the player origin
@@ -70,9 +80,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			pass
 			# set_linear_velocity((dash_target-pos).normalized()*-2 )
-	if dashing and linear_velocity.length() < DASH_MINSPEED:
-		dashing = false
-
+	
 	encircleR += delta * CIRCLE_SPEED
 	if encircleR >= 360:
 		encircleR = encircleR - 360
@@ -81,7 +89,7 @@ func _physics_process(delta: float) -> void:
 		#Moves the rigidbody to the target location
 		#get_force takes in the rb2ds location, where we wanna go, our current velocity (should always be linear_velocity) and delta
 		apply_central_force(mc.get_force(pos, target, linear_velocity, delta))
-		
+	last_vel = linear_velocity.length()
 
 func setup() -> void: #Sets up the movement controller
 	mc.set_mass(self.mass) 
@@ -98,5 +106,8 @@ func _on_dash_timer_timeout() -> void:
 func is_dashing() -> bool:
 	return dashing
 
+#This uses last_vel instead of current vel, thats important
 func calc_momentum() -> float:
-	return mass * linear_velocity.length()
+	return mass * last_vel
+
+

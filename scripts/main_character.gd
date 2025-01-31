@@ -15,7 +15,10 @@ extends RigidBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
+#Whether or not the player is dashing (for damage purposes)
 var dashing = false
+
+var last_vel : float = 0
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
@@ -28,6 +31,7 @@ func _init() -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
+	last_vel = linear_velocity.length()
 	# Get the current input direction
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	# This is where the player wants to be moving. 
@@ -57,7 +61,6 @@ func _physics_process(_delta: float) -> void:
 	apply_central_force(vel_difference) # Applys regular movement effects (Or slowed from dashing)
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
-	print(linear_velocity.length())
 
 
 #Should do this differently realistically but erm no
@@ -90,17 +93,25 @@ func _on_location_timer_timeout() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# if body.is_in_group("enemy") and linear_velocity.length() / 10 > 100:
 	if body.is_in_group("enemy"):
-		if body.linear_velocity < linear_velocity:
-			body.health_component.Damage(5)
-		if body.linear_velocity > linear_velocity:
-			self.health_component.Damage(5)
-		print("Alright on you getting hit")
-		print(linear_velocity.length())
-		print("THEY GOT HIT")
-		# var e_dash = body.is_dashing()
-		# var p_m = calc_momentum()
-		# var e_m = body.calc_momentum()
-
+		var e_dash = body.is_dashing()
+		var p_m = calc_momentum()
+		var e_m = body.calc_momentum()
+		if (!dashing and !e_dash) or (dashing and e_dash):
+			if p_m - e_m > MOMENTUM_DIFF:
+				body.health_component.Damage(3)
+				print("Enem damage small")
+			elif e_m - p_m > MOMENTUM_DIFF:
+				self.health_component.Damage(3)
+				print("player damaged small")
+			else:
+				print("nothing change")
+		elif dashing:
+			body.health_component.Damage(12)
+			print("Enemy damage biggggggggg")
+		elif e_dash:
+			self.health_component.Damage(12)
+			print("player damage bigggggggggg")
+			
 
 		#$DampTimer.start()
 		#linear_damp = 20
@@ -126,7 +137,6 @@ func _clash_effects(body: Node2D) -> void:
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate
 	var attack =  dir * 5
 	
-	
 	spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0)) #Sets the offset position to where we just clashed
 	spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0)) #Sets the direction similar to what we just did.
 	spark.restart()
@@ -136,4 +146,4 @@ func _on_damp_timer_timeout() -> void:
 	linear_damp = 0.05
 
 func calc_momentum() -> float:
-	return mass * linear_velocity.length()
+	return mass * last_vel
