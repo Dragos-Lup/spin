@@ -10,6 +10,7 @@ const C_DRAG = .5
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var dash_effect: GPUParticles2D = $DashEffect
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
@@ -42,6 +43,11 @@ func _physics_process(_delta: float) -> void:
 			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000)) #Applys the dash amount
 			#TODO: Dashing should have a cap real talk, or scale logarithmically or something
 			$Dash_SE.play() #Plays the dash sound effect
+			#var trans = Transform2D(get_angle_to(get_global_mouse_position()), self.position)
+			#print(get_angle_to(get_global_mouse_position()))
+			#$DashEffect.emit_particle(trans, Vector2.ZERO, Color.WHITE, Color.WHITE, 2)
+			$DashEffect.set_emitting(true)
+			$DashEffect.restart()
 			
 	apply_central_force(vel_difference) # Applys regular movement effects (Or slowed from dashing)
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
@@ -80,9 +86,14 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.linear_velocity < linear_velocity:
 			body.health_component.Damage(5)
 			$Hit_SE.play()
+			$hitsparks.emitting=true
+			$hitsparks.restart()
 		if body.linear_velocity > linear_velocity:
 			self.health_component.Damage(5)
 			$Hit_SE.play()
+			$hitsparks.emitting=true
+			$hitsparks.restart()
+			$Spinnerouch_SE.play()
 			
 	if linear_velocity.length() >= SPEED*.03: #Lowkey unsure if this is neccessary
 		_clash_effects(body)
@@ -105,9 +116,6 @@ func _clash_effects(body: Node2D) -> void:
 	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate
 	var attack =  dir * 5
-	$hitsparks.one_shot=true
-	$hitsparks.emitting=true
-	$hitsparks.restart()
 	
 	spark.get_process_material().set_emission_shape_offset(Vector3(attack.x,attack.y,0)) #Sets the offset position to where we just clashed
 	spark.get_process_material().set_direction(Vector3(-dir.x,-dir.y,0)) #Sets the direction similar to what we just did.

@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 			$Jesterlaugh.play()
 			$Jestersparkle.play()
 			$Jestercharge.stop()
+			$JesterWoosh.play()
 		else:
 			set_linear_velocity((dash_target-pos).normalized()*-55 )
 
@@ -83,7 +84,9 @@ func setup() -> void: #Sets up the movement controller
 func _on_un_targetting_timer_timeout() -> void:
 	#once the timer finishes, change our current state back to circling.
 	curr_state = Move_State.CIRCLING
+	$JesterDashTrail.emitting = false
 
 func _on_dash_timer_timeout() -> void:
 	#Once the timer runs out, go dash!
 	go = true
+	$JesterDashTrail.emitting = true

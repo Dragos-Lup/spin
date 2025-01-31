@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=33 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
@@ -9,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dygeouv8mk1x6" path="res://scenes/components/movement_component.tscn" id="5_mtghx"]
 [ext_resource type="Texture2D" uid="uid://8iwg7s2aa6py" path="res://sprites/placeholder/jesternewspinner.png" id="6_f5vd7"]
 [ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="6_tqy8q"]
+[ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_wx0sq"]
 [ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="7_lt1ax"]
 [ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://scenes/explosion_no_background.png" id="11_sl5ug"]
 [ext_resource type="Script" path="res://scenes/explosion.gd" id="12_8lnbl"]
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="13_7abq4"]
+[ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://scenes/tiny_jestereffect.png" id="15_xus0f"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
 random_pitch = 1.1
@@ -24,6 +26,11 @@ stream_1/stream = ExtResource("4_yk8hk")
 random_pitch = 1.4
 streams_count = 1
 stream_0/stream = ExtResource("5_ge32r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j27fs"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_wx0sq")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mps2w"]
 random_pitch = 1.14
@@ -101,6 +108,38 @@ anim_speed_min = 1.16
 anim_speed_max = 1.2
 turbulence_noise_strength = 2.49
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f4il"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_j78a6"]
+_data = [Vector2(0, 0.143464), 0.0, 0.0, 0, 0, Vector2(0.123288, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvpsi"]
+curve = SubResource("Curve_j78a6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_asnq0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 30, 1)
+angle_min = -161.8
+angle_max = 136.8
+angular_velocity_min = -39.51
+angular_velocity_max = 32.32
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_mvpsi")
+anim_speed_min = 10.0
+anim_speed_max = 14.65
+anim_offset_min = 0.0674
+anim_offset_max = 0.0674
+turbulence_enabled = true
+
 [node name="EnemySpinner" type="RigidBody2D" groups=["boss", "enemy"]]
 collision_layer = 2
 collision_mask = 7
@@ -117,6 +156,10 @@ stream = SubResource("AudioStreamRandomizer_j716r")
 
 [node name="Jestercharge" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7mwgt")
+
+[node name="JesterWoosh" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = SubResource("AudioStreamRandomizer_j27fs")
 
 [node name="Jestersparkle" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_mps2w")
@@ -186,6 +229,7 @@ target_position = Vector2(0, 500)
 
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_p3f07")
+emitting = false
 amount = 17
 process_material = SubResource("ParticleProcessMaterial_tjcbn")
 texture = ExtResource("11_sl5ug")
@@ -210,6 +254,18 @@ speed_scale = 0.9
 stream = SubResource("AudioStreamRandomizer_8in6e")
 volume_db = 0.384
 max_polyphony = 2
+
+[node name="JesterDashTrail" type="GPUParticles2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_4f4il")
+emitting = false
+amount = 89
+process_material = SubResource("ParticleProcessMaterial_asnq0")
+texture = ExtResource("15_xus0f")
+lifetime = 1.5
+randomness = 0.02
+trail_lifetime = 0.69
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="UnTargettingTimer" to="." method="_on_un_targetting_timer_timeout"]
