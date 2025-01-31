@@ -109,7 +109,6 @@ anim_speed_max = 1.2
 turbulence_noise_strength = 2.49
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f4il"]
-blend_mode = 1
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 1
@@ -260,7 +259,7 @@ texture_filter = 1
 texture_repeat = 2
 material = SubResource("CanvasItemMaterial_4f4il")
 emitting = false
-amount = 89
+amount = 69
 process_material = SubResource("ParticleProcessMaterial_asnq0")
 texture = ExtResource("15_xus0f")
 lifetime = 1.5

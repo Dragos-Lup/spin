@@ -10,7 +10,7 @@ const C_DRAG = .5
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var dash_effect: GPUParticles2D = $DashEffect
+@onready var dash_effect: CPUParticles2D = $DashEffect
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
@@ -43,9 +43,10 @@ func _physics_process(_delta: float) -> void:
 			apply_impulse(dash_vector * (DASH_SPEED * chargetime/1000)) #Applys the dash amount
 			#TODO: Dashing should have a cap real talk, or scale logarithmically or something
 			$Dash_SE.play() #Plays the dash sound effect
-			#var trans = Transform2D(get_angle_to(get_global_mouse_position()), self.position)
-			#print(get_angle_to(get_global_mouse_position()))
+			#var trans = Transform2D(rad_to_deg(get_angle_to(dash_vector)), self.position)
+			print(get_angle_to(get_global_mouse_position()))
 			#$DashEffect.emit_particle(trans, Vector2.ZERO, Color.WHITE, Color.WHITE, 2)
+			$DashEffect.set_rotation(get_angle_to(get_global_mouse_position()))
 			$DashEffect.set_emitting(true)
 			$DashEffect.restart()
 			
@@ -111,7 +112,7 @@ func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 # Alex and Eric should touch this if they so desire.
 func _clash_effects(body: Node2D) -> void:
 	$Clash_SE.play()
-	$Clash_SE.set_volume_db(0+(linear_velocity.length()/450)) # Volume set for the clash
+	$Clash_SE.set_volume_db(-1+(linear_velocity.length()/550)) # Volume set for the clash
 
 	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate

@@ -130,7 +130,7 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Enemy_Spinner" parent="." instance=ExtResource("2_7thdg")]
-position = Vector2(-411, 219)
+position = Vector2(930, 367)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
