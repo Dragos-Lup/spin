@@ -55,11 +55,10 @@ func _physics_process(_delta: float) -> void:
 		if (chargetime) > 850:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized() #Where we going big boss
 			apply_impulse(dash_vector * (DASH_SPEED * min(chargetime, DASH_MAXTIME)/1000)) #Applys the dash amount
-			#TODO: Dashing should have a cap real talk, or scale logarithmically or something
 			$Dash_SE.play() #Plays the dash sound effect
 			dashing = true
 			#var trans = Transform2D(rad_to_deg(get_angle_to(dash_vector)), self.position)
-			print(get_angle_to(get_global_mouse_position()))
+			#print(get_angle_to(get_global_mouse_position()))
 			#$DashEffect.emit_particle(trans, Vector2.ZERO, Color.WHITE, Color.WHITE, 2)
 			$DashEffect.set_rotation(get_angle_to(get_global_mouse_position()))
 			$DashEffect.set_emitting(true)

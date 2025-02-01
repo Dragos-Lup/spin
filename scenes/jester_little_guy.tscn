@@ -4,6 +4,9 @@
 
 [node name="JesterLittleGuy" instance=ExtResource("1_urhjp")]
 
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "fade_in"
+
 [node name="HealthComponent" parent="." index="7"]
 isBoss = false
 isClone = true

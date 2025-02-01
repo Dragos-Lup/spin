@@ -28,6 +28,9 @@ var dash_target: Vector2 = Vector2.ZERO #Dash towards this guy
 var dashing: bool = false #are we currently dashing (for damage purposes)
 var last_vel: float = 0 #The last velocity (for damage purposes)
 var clone: bool = false
+var father: Node
+var children: Array[Node]
+
 
 func _ready() -> void:
 	if !clone:
@@ -139,18 +142,29 @@ func spawn_clones() -> void:
 	#Clones should differ very very slightly from parent
 	#Maybe a different animation speed?
 	if (!clone):
-		var n : float = 3
+		var dist_from_center = 250
+		var n : int = 3
+		var main_num = randi_range(0,n-1)
 		for i in range(n):
-			var lguy = baby_boy.instantiate(2)
-			lguy.player = player
-			lguy.clone = true
-			lguy.curr_state = Move_State.CIRCLING
+			if i == main_num:
+				self.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
+				self.curr_state = Move_State.CIRCLING
+				self.encircleR = 360 * (i/float(n))
+				$AnimationPlayer.play("fade_in")
+			else:
+				var lguy = baby_boy.instantiate(2)
+				lguy.player = player
+				lguy.clone = true
+				lguy.curr_state = Move_State.CIRCLING
 
-			var name_guy = "littleguy" + str(i)
-			lguy.set_name(name_guy)
-			get_tree().root.add_child(lguy)
-			lguy.health_component.max_health = 10
-			
-			lguy.health_component.current_health = 10
+				var name_guy = "littleguy" + str(i)
+				lguy.set_name(name_guy)
+				get_tree().root.add_child(lguy)
 
-			lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/n))) * 250)
+				lguy.health_component.max_health = 10
+				lguy.health_component.current_health = 10
+				lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
+				lguy.encircleR = 360 * (i/float(n))
+				lguy.find_children("AnimationPlayer", "AnimationPlayer", false)[0].play("fade_in")
+	else:
+		self.queue_free()

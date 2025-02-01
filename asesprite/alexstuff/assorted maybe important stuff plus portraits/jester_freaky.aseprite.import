@@ -1,0 +1,19 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://cnnn8jn7mgo05"
+path="res://.godot/imported/jester_freaky.aseprite-4c8f6420f4037d9721af7536aa89cc7b.res"
+
+[deps]
+
+source_file="res://asesprite/alexstuff/assorted maybe important stuff plus portraits/jester_freaky.aseprite"
+dest_files=["res://.godot/imported/jester_freaky.aseprite-4c8f6420f4037d9721af7536aa89cc7b.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"
+animation/round_fps=true
