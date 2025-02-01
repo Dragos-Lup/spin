@@ -99,18 +99,18 @@ func _on_body_entered(body: Node2D) -> void:
 		if (!dashing and !e_dash) or (dashing and e_dash):
 			if p_m - e_m > MOMENTUM_DIFF:
 				body.health_component.Damage(3)
-				print("Enem damage small")
+				#print("Enem damage small")
 			elif e_m - p_m > MOMENTUM_DIFF:
 				self.health_component.Damage(3)
-				print("player damaged small")
+				#print("player damaged small")
 			else:
 				print("nothing change")
 		elif dashing:
 			body.health_component.Damage(12)
-			print("Enemy damage biggggggggg")
+			#print("Enemy damage biggggggggg")
 		elif e_dash:
 			self.health_component.Damage(12)
-			print("player damage bigggggggggg")
+			#print("player damage bigggggggggg")
 			
 
 		#$DampTimer.start()

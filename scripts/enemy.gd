@@ -9,7 +9,7 @@ extends RigidBody2D
 # @onready var follower = %follower #For testing
 @onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
 
-enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON} #List of states, you can add a new one if you want a new behavior
+enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED} #List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
 
 @export var MAX_FORCE: float = 10 #Set in editor technically, but tweak it in here idc lol
@@ -18,17 +18,17 @@ var curr_state = Move_State.CIRCLING #The state the boss starts in
 @export var CIRCLE_DISTANCE: float = 80
 @export var DASH_MINSPEED: float = 1000
 
-var can_collide = [true, true, true, true]
-var target: Vector2 = Vector2(940,530)
-var encircleR: float = 0.0
-var go: bool = false
-var dash_target: Vector2 = Vector2.ZERO
-var dashing: bool = false
-var last_vel: float = 0
+var can_collide = [true, true, true, true] # The raycasts that can still collide
+var target: Vector2 = Vector2(940,530) #Where we're running into
+var encircleR: float = 0.0 #The radius we are encircling around currently
+var go: bool = false #dash when this is true
+var dash_target: Vector2 = Vector2.ZERO #Dash towards this guy
+var dashing: bool = false #are we currently dashing (for damage purposes)
+var last_vel: float = 0 #The last velocity (for damage purposes)
+var clone: bool = false
 
 func _ready() -> void:
 	setup()
-	pass
 
 
 func set_healthbar(node : TextureProgressBar):
@@ -42,44 +42,50 @@ func _physics_process(delta: float) -> void:
 	var pos = self.transform.origin
 
 	# This should be before state targeting.
-	if dashing:
-		print("DASHING",delta)
-	print(linear_velocity.length())
 	if dashing and linear_velocity.length() < DASH_MINSPEED:
 		dashing = false
 
 
 	# It's important that this state diagram only switches who we are targeting
-	if curr_state == Move_State.TARGETING: #If we're running right at the player
-		target = player.transform.origin #Our target is just the player origin
-	elif curr_state == Move_State.CIRCLING:
-		target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
-		# follower.transform.origin = target #TODO: delete this later
-		for i in range(4):
-			if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
-				$Jestercharge.play()
-				can_collide[i] = false #Don't use the same raycast again
-				dash_target = ray_casts[i].get_collider().transform.origin #Save that player position for later
-				var vec = (dash_target - pos).normalized() * -1 #We want to go to the direction opposite of the player
-				target = vec * CIRCLE_DISTANCE + pos #Move slightly away from the player
-				set_linear_velocity(Vector2.ZERO) #Completely stop moving
-				curr_state = Move_State.LOCKED_ON #Now we're gonna be locked on, and waiting to dash
-				go = false #Make sure go is false (this actually does nothing technicaly)
-				DashTimer.start() #Start the dash timer to dash in a couple of seconds
-	elif curr_state == Move_State.LOCKED_ON:
-		if go: #If its time to dash
-			go = false #Make sure go is false next time
-			curr_state = Move_State.TARGETING #Set the state to targeting the player
-			TargetTimer.start() #We only wanna be targeting for a couple of seconds post dash, then go back to circling
+	match curr_state:
+		Move_State.TARGETING: #If we're running right at the player
+			target = player.transform.origin #Our target is just the player origin
+		Move_State.CIRCLING:
+			target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
+			# follower.transform.origin = target #TODO: delete this later
+			for i in range(4):
+				if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
+					$Jestercharge.play()
+					can_collide[i] = false #Don't use the same raycast again
+					dash_target = ray_casts[i].get_collider().transform.origin #Save that player position for later
+					var vec = (dash_target - pos).normalized() * -1 #We want to go to the direction opposite of the player
+					target = vec * CIRCLE_DISTANCE + pos #Move slightly away from the player
+					set_linear_velocity(Vector2.ZERO) #Completely stop moving
+					curr_state = Move_State.LOCKED_ON #Now we're gonna be locked on, and waiting to dash
+					go = false #Make sure go is false (this actually does nothing technicaly)
+					DashTimer.start() #Start the dash timer to dash in a couple of seconds
+		Move_State.LOCKED_ON:
+			if go: #If its time to dash
+				go = false #Make sure go is false next time
+				curr_state = Move_State.TARGETING #Set the state to targeting the player
+				TargetTimer.start() #We only wanna be targeting for a couple of seconds post dash, then go back to circling
 
-			apply_impulse((dash_target - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
-			dashing = true
+				apply_impulse((dash_target - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
+				dashing = true
 
-			$Jesterlaugh.play()
-			$Jestercharge.stop()
-		else:
+				$Jesterlaugh.play()
+				$Jestercharge.stop()
+			else:
+				pass
+				# set_linear_velocity((dash_target-pos).normalized()*-2 )
+		Move_State.FADED:
+			#Man this shit nice
 			pass
-			# set_linear_velocity((dash_target-pos).normalized()*-2 )
+		Move_State.CLONE:
+			target = player.transform.origin #Our target is just the player origin
+
+			pass
+
 	
 	encircleR += delta * CIRCLE_SPEED
 	if encircleR >= 360:
@@ -97,7 +103,16 @@ func setup() -> void: #Sets up the movement controller
 
 func _on_un_targetting_timer_timeout() -> void:
 	#once the timer finishes, change our current state back to circling.
-	curr_state = Move_State.CIRCLING
+	for x in can_collide:
+		if x:
+			curr_state = Move_State.CIRCLING
+			return
+	fade_out()
+
+func fade_out() -> void:
+	$AnimationPlayer.play("fade_out")
+	curr_state = Move_State.FADED
+	target = self.position
 
 func _on_dash_timer_timeout() -> void:
 	#Once the timer runs out, go dash!
@@ -109,5 +124,3 @@ func is_dashing() -> bool:
 #This uses last_vel instead of current vel, thats important
 func calc_momentum() -> float:
 	return mass * last_vel
-
-

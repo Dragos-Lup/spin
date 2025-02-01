@@ -167,7 +167,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_icwvi")
 
-[node name="MainSpinner" type="RigidBody2D"]
+[node name="MainSpinner" type="RigidBody2D" groups=["player"]]
 texture_filter = 1
 collision_mask = 7
 physics_material_override = ExtResource("1_q0jrw")
