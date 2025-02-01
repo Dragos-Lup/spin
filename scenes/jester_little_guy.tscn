@@ -4,6 +4,6 @@
 
 [node name="JesterLittleGuy" instance=ExtResource("1_urhjp")]
 
-[node name="HealthComponent" parent="." index="5"]
+[node name="HealthComponent" parent="." index="7"]
 isBoss = false
 isClone = true
