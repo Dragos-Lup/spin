@@ -9,11 +9,12 @@ extends RigidBody2D
 @export var MOMENTUM_DIFF : float = 100
 
 @export var VOLUME_CURVE:Curve
-
+@onready var hitsparks: GPUParticles2D = $hitsparks
 @onready var spin_bar: TextureProgressBar = %SpinBar
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var dash_effect: CPUParticles2D = $DashEffect
 
 #Whether or not the player is dashing (for damage purposes)
 var dashing = false
@@ -57,6 +58,12 @@ func _physics_process(_delta: float) -> void:
 			#TODO: Dashing should have a cap real talk, or scale logarithmically or something
 			$Dash_SE.play() #Plays the dash sound effect
 			dashing = true
+			#var trans = Transform2D(rad_to_deg(get_angle_to(dash_vector)), self.position)
+			print(get_angle_to(get_global_mouse_position()))
+			#$DashEffect.emit_particle(trans, Vector2.ZERO, Color.WHITE, Color.WHITE, 2)
+			$DashEffect.set_rotation(get_angle_to(get_global_mouse_position()))
+			$DashEffect.set_emitting(true)
+			$DashEffect.restart()
 			
 	apply_central_force(vel_difference) # Applys regular movement effects (Or slowed from dashing)
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
@@ -111,7 +118,10 @@ func _on_body_entered(body: Node2D) -> void:
 		elif e_dash:
 			self.health_component.Damage(12)
 			#print("player damage bigggggggggg")
-			
+		$Hit_SE.play()
+		$hitsparks.emitting=true
+		$hitsparks.restart()
+		$Spinnerouch_SE.play()
 
 		#$DampTimer.start()
 		#linear_damp = 20
@@ -131,7 +141,7 @@ func intersect(A : Vector2,B : Vector2,C : Vector2,D : Vector2):
 # Alex and Eric should touch this if they so desire.
 func _clash_effects(body: Node2D) -> void:
 	$Clash_SE.play()
-	$Clash_SE.set_volume_db(0+(linear_velocity.length()/450)) # Volume set for the clash
+	$Clash_SE.set_volume_db(-1+(linear_velocity.length()/550)) # Volume set for the clash
 
 	var spark : GPUParticles2D = $Sparks #Grabs the sparks object and uses it
 	var dir = (body.position - self.position).normalized() #finds the "point" of collision, really just an estimate

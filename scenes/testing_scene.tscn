@@ -96,7 +96,7 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Enemy_Spinner" parent="." instance=ExtResource("2_7thdg")]
-position = Vector2(836, 330)
+position = Vector2(930, 367)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -233,7 +233,6 @@ texture = ExtResource("9_wtd35")
 [node name="menutheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoumr")
 volume_db = -2.0
-autoplay = true
 
 [node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tv64y")

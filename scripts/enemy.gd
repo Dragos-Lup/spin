@@ -79,7 +79,9 @@ func _physics_process(delta: float) -> void:
 				dashing = true
 
 				$Jesterlaugh.play()
+				$Jestersparkle.play()
 				$Jestercharge.stop()
+				$JesterWoosh.play()
 			else:
 				pass
 				# set_linear_velocity((dash_target-pos).normalized()*-2 )
@@ -114,6 +116,7 @@ func _on_un_targetting_timer_timeout() -> void:
 			return
 	if !clone:
 		fading_out()
+	$JesterDashTrail.emitting = false
 
 func fading_out() -> void:
 	$AnimationPlayer.play("fade_out")
@@ -123,6 +126,7 @@ func fading_out() -> void:
 func _on_dash_timer_timeout() -> void:
 	#Once the timer runs out, go dash!
 	go = true
+	$JesterDashTrail.emitting = true
 
 func is_dashing() -> bool:
 	return dashing
