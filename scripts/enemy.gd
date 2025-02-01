@@ -5,9 +5,10 @@ extends RigidBody2D
 @onready var mc: Node2D = $MovementComponent
 @onready var DashTimer: Timer = $DashTimer
 @onready var TargetTimer: Timer = $UnTargettingTimer
-@onready var player = %MainSpinner #It's important that literally nothing else in the scene is called one of these two things
+@onready var player #It's important that literally nothing else in the scene is called one of these two things
 # @onready var follower = %follower #For testing
 @onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
+@onready var baby_boy = load("res://scenes/jester_little_guy.tscn")
 
 enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED} #List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
@@ -17,8 +18,9 @@ var curr_state = Move_State.CIRCLING #The state the boss starts in
 @export var DASH_SPEED: float = 14000
 @export var CIRCLE_DISTANCE: float = 80
 @export var DASH_MINSPEED: float = 1000
+@export var MAP_CENTER : Vector2 = Vector2(938, 531)
 
-var can_collide = [true, true, true, true] # The raycasts that can still collide
+var can_collide = [false, false, true, false] # The raycasts that can still collide
 var target: Vector2 = Vector2(940,530) #Where we're running into
 var encircleR: float = 0.0 #The radius we are encircling around currently
 var go: bool = false #dash when this is true
@@ -28,6 +30,9 @@ var last_vel: float = 0 #The last velocity (for damage purposes)
 var clone: bool = false
 
 func _ready() -> void:
+	if !clone:
+		player = %MainSpinner
+		
 	setup()
 
 
@@ -107,9 +112,10 @@ func _on_un_targetting_timer_timeout() -> void:
 		if x:
 			curr_state = Move_State.CIRCLING
 			return
-	fade_out()
+	if !clone:
+		fading_out()
 
-func fade_out() -> void:
+func fading_out() -> void:
 	$AnimationPlayer.play("fade_out")
 	curr_state = Move_State.FADED
 	target = self.position
@@ -124,3 +130,23 @@ func is_dashing() -> bool:
 #This uses last_vel instead of current vel, thats important
 func calc_momentum() -> float:
 	return mass * last_vel
+
+func spawn_clones() -> void:
+	#Clones should differ very very slightly from parent
+	#Maybe a different animation speed?
+	if (!clone):
+		var n : float = 3
+		for i in range(n):
+			var lguy = baby_boy.instantiate(2)
+			lguy.player = player
+			lguy.clone = true
+			lguy.curr_state = Move_State.CIRCLING
+
+			var name_guy = "littleguy" + str(i)
+			lguy.set_name(name_guy)
+			get_tree().root.add_child(lguy)
+			lguy.health_component.max_health = 10
+			
+			lguy.health_component.current_health = 10
+
+			lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/n))) * 250)

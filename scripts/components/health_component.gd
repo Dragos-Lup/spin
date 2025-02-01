@@ -32,7 +32,7 @@ func Die():
 	if isPlayer:
 		print("PLAYER DIED")
 	if isClone:
-		print("CLONE DIED")
+		get_parent().fading_out()
 	else:
 		print("This thing died!")
 	#TODO: We need actual death to happen later.y
