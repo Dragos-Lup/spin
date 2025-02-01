@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c42q10cgiihrn" path="res://asesprite/ericsprite/playgameplaceholder.png" id="10_ny245"]
 [ext_resource type="Texture2D" uid="uid://bupfok75h1fwj" path="res://asesprite/ericsprite/optionsplaceholder.png" id="11_10chc"]
 [ext_resource type="Texture2D" uid="uid://c7wg0vwwo2ku4" path="res://asesprite/ericsprite/imoutplaceholder.png" id="12_jm4yh"]
-[ext_resource type="Texture2D" uid="uid://cl36tixyeiijj" path="res://scenes/menuring.png" id="17_vcmnc"]
+[ext_resource type="Texture2D" uid="uid://pkkmgegsytae" path="res://scenes/menuring.png" id="17_5vmdg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -155,10 +155,9 @@ script = ExtResource("9_xvr3i")
 
 [node name="WindowHandle" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("17_vcmnc")
+texture = ExtResource("17_5vmdg")
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true,
+"layer_section": false,
 "pending_changes": {}
 }
 metadata/_aseprite_wizard_config_ = {
@@ -171,7 +170,7 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "",
 "slice": "",
-"source": "res://asesprite/menu/menuring.aseprite"
+"source": "res://asesprite/alexstuff/menuring.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "2a59b54ff6e729dab60395b63229196a"
 
@@ -196,8 +195,8 @@ texture = ExtResource("12_jm4yh")
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
