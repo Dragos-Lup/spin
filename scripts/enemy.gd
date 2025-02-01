@@ -20,16 +20,21 @@ var curr_state = Move_State.CIRCLING #The state the boss starts in
 @export var DASH_MINSPEED: float = 1000
 @export var MAP_CENTER : Vector2 = Vector2(938, 531)
 
-var can_collide = [false, false, true, false] # The raycasts that can still collide
+# var can_collide = [true, true, true, true] # The raycasts that can still collide
+
+var can_collide = [true, false, false, false] # The raycasts that can still collide
 var target: Vector2 = Vector2(940,530) #Where we're running into
 var encircleR: float = 0.0 #The radius we are encircling around currently
 var go: bool = false #dash when this is true
 var dash_target: Vector2 = Vector2.ZERO #Dash towards this guy
 var dashing: bool = false #are we currently dashing (for damage purposes)
 var last_vel: float = 0 #The last velocity (for damage purposes)
-var clone: bool = false
-var father: Node
-var children: Array[Node]
+var clone: bool = false #Whether or not this is a clone
+var father: Node #Father of this node
+var children_clones: int = 0 #How many children this dude got
+var children_list: Array[Node] #These are this dudes children
+
+var damage_till_clones: float = 0
 
 
 func _ready() -> void:
@@ -91,6 +96,8 @@ func _physics_process(delta: float) -> void:
 		Move_State.FADED:
 			#Man this shit nice
 			pass
+		Move_State.IDLE:
+			target = self.position
 		Move_State.CLONE:
 			target = player.transform.origin #Our target is just the player origin
 
@@ -138,18 +145,23 @@ func is_dashing() -> bool:
 func calc_momentum() -> float:
 	return mass * last_vel
 
+#If this is a clone, this instead destroys the node
 func spawn_clones() -> void:
 	#Clones should differ very very slightly from parent
 	#Maybe a different animation speed?
 	if (!clone):
+		damage_till_clones += 8
+		print(damage_till_clones)
 		var dist_from_center = 250
 		var n : int = 3
+		children_clones += n - 1
 		var main_num = randi_range(0,n-1)
 		for i in range(n):
 			if i == main_num:
 				self.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
 				self.curr_state = Move_State.CIRCLING
 				self.encircleR = 360 * (i/float(n))
+				can_collide = [true,true,true,true]
 				$AnimationPlayer.play("fade_in")
 			else:
 				var lguy = baby_boy.instantiate(2)
@@ -160,11 +172,28 @@ func spawn_clones() -> void:
 				var name_guy = "littleguy" + str(i)
 				lguy.set_name(name_guy)
 				get_tree().root.add_child(lguy)
+				lguy.father = self
 
-				lguy.health_component.max_health = 10
-				lguy.health_component.current_health = 10
+				lguy.health_component.max_health = 20
+				lguy.health_component.current_health = 20
+				children_list.append(lguy)
 				lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
 				lguy.encircleR = 360 * (i/float(n))
 				lguy.find_children("AnimationPlayer", "AnimationPlayer", false)[0].play("fade_in")
 	else:
+		father.child_loss(self)
 		self.queue_free()
+
+func child_loss(child: Node) -> void:
+	children_list.erase(child)
+	children_clones -= 1
+
+func kill_those_kids(d: int) -> void:
+	if (!clone and children_clones > 0):
+		damage_till_clones -= d
+		if (damage_till_clones <= 0):
+			print("killing those kids")
+			damage_till_clones = 0
+			children_clones = 0
+			for c in children_list:
+				c.fading_out()

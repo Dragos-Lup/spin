@@ -12,10 +12,9 @@ func Damage(amount: int):
 	#Take some damage
 	current_health -= amount
 	if isBoss or isPlayer:
-		if isPlayer:
-			pass
-			#print("PLAYER TOOK DAMAGE")
 		boss_health_bar.value = current_health #If this is a boss set the healthbar too
+		if isBoss:
+			get_parent().kill_those_kids(amount)
 	if isClone:
 		Die()
 	if current_health <= 0:

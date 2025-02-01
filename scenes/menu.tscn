@@ -155,6 +155,7 @@ script = ExtResource("9_xvr3i")
 
 [node name="WindowHandle" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
+position = Vector2(70.6667, 10.1667)
 texture = ExtResource("17_5vmdg")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
@@ -190,8 +191,8 @@ z_index = -1
 texture = ExtResource("12_jm4yh")
 
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
@@ -200,7 +201,7 @@ texture = ExtResource("12_jm4yh")
 [connection signal="focus_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]

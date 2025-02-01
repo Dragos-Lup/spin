@@ -226,6 +226,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bkwlk")
 autoplay = "default"
 frame_progress = 0.169327
+offset = Vector2(0, -10)
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
