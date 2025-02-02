@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=57 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://ddh47xfwd2evw" path="res://asesprite/alexstuff/arenastuff/astralaudience2.png" id="32_1oufa"]
 [ext_resource type="Texture2D" uid="uid://dlrrk4wnf8wn6" path="res://asesprite/alexstuff/arenastuff/astralaudience3.png" id="33_j4gqs"]
 [ext_resource type="Texture2D" uid="uid://re23yoj5pq3h" path="res://asesprite/alexstuff/arenastuff/astralaudience4.png" id="34_uo1pf"]
+[ext_resource type="AudioStream" uid="uid://cia50u2jksf5s" path="res://music/vitcory.ogg" id="43_mthix"]
 
 [sub_resource type="Animation" id="Animation_mlb3w"]
 length = 0.001
@@ -520,6 +521,7 @@ stream = ExtResource("4_qoumr")
 volume_db = -2.0
 
 [node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("4_tv64y")
 playback_type = 1
 parameters/looping = true
@@ -1940,6 +1942,10 @@ repeat_times = 2
 [node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars3"]
 position = Vector2(198, 69.5)
 texture = ExtResource("30_3hmcg")
+
+[node name="Victory!" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("43_mthix")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

@@ -19,8 +19,10 @@ func _on_button_pressed() -> void:
 
 
 func jester_died() -> void:
+	%bossrushphase2.stop()
 	print("fight done")
 	%ProfileAnimator.play("show_won")
+	%"Victory!".play()
 
 func princely_died() -> void:
 	print("princely died")
