@@ -11,5 +11,5 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_draw() -> void:
-	$explode_SE.play() # Replace with function body.
+#func _on_draw() -> void:
+	#$explode_SE.play() # Replace with function body.

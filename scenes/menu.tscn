@@ -112,10 +112,10 @@ texture = ExtResource("8_0fjmf")
 [node name="BoxContainer" type="BoxContainer" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 275.0
-offset_top = 226.0
-offset_right = 357.0
-offset_bottom = 453.0
+offset_left = 179.0
+offset_top = 104.0
+offset_right = 299.0
+offset_bottom = 403.0
 scale = Vector2(3, 3)
 localize_numeral_system = false
 vertical = true
@@ -154,8 +154,8 @@ texture = ExtResource("15_84u3k")
 script = ExtResource("5_3lolf")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(1582, 552)
-scale = Vector2(6, 6)
+position = Vector2(1371, 530)
+scale = Vector2(3, 3)
 script = ExtResource("9_xvr3i")
 
 [node name="WindowHandle" type="Sprite2D" parent="Node2D"]
@@ -201,7 +201,7 @@ position = Vector2(61.1667, 6.5)
 texture = ExtResource("20_ufcrc")
 
 [node name="Revozerologo" type="Sprite2D" parent="."]
-position = Vector2(1318, 266)
+position = Vector2(1067, 243)
 scale = Vector2(3, 3)
 texture = ExtResource("22_bakvd")
 
