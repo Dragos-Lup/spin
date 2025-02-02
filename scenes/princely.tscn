@@ -808,7 +808,6 @@ anim_offset_min = 0.0674
 anim_offset_max = 0.0674
 turbulence_enabled = true
 
-<<<<<<< Updated upstream
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4ygst"]
 blend_mode = 1
 
@@ -863,56 +862,6 @@ radial_accel_max = -2.23517e-06
 alpha_curve = SubResource("CurveTexture_prywg")
 hue_variation_min = 0.13
 hue_variation_max = 0.13
-=======
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ogwq"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_iqvt4"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0876712, 1), 1.56492, 1.56492, 0, 0, Vector2(0.550685, 0.841126), -2.87143, -2.87143, 0, 0, Vector2(0.838356, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_bdxy7"]
-curve = SubResource("Curve_iqvt4")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xwgmc"]
-lifetime_randomness = 0.02
-particle_flag_align_y = true
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(80, 50, 1)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -64.25
-radial_accel_max = -56.5
-scale_min = 0.3
-scale_max = 1.1
-alpha_curve = SubResource("CurveTexture_bdxy7")
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqn8"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_od4nn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.526027, 0.910202), -3.90388, -3.90388, 0, 0, Vector2(0.882192, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_vypkt"]
-curve = SubResource("Curve_od4nn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8oneb"]
-particle_flag_align_y = true
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 12.1
-radial_velocity_min = 80.7
-radial_velocity_max = 139.87
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -29.93
-radial_accel_max = -7.98
-scale_min = 0.4
-scale_max = 1.4
-color = Color(1, 0.751866, 0.532817, 1)
-alpha_curve = SubResource("CurveTexture_vypkt")
->>>>>>> Stashed changes
 
 [node name="Princely" type="RigidBody2D" groups=["boss", "enemy"]]
 texture_filter = 1
