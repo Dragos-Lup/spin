@@ -682,26 +682,26 @@ height = 84.0
 offsets = PackedFloat32Array(0, 0.08, 0.968, 1)
 colors = PackedColorArray(0.86, 0, 0, 1, 0.86, 0, 0, 0.176471, 0.86, 0, 0, 0.176471, 0.86, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ia08c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtf61"]
 atlas = ExtResource("12_yt8k1")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mdag"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ma6j"]
 atlas = ExtResource("12_yt8k1")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t3sh2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b154o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ia08c")
+"texture": SubResource("AtlasTexture_gtf61")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2mdag")
+"texture": SubResource("AtlasTexture_5ma6j")
 }],
 "loop": true,
 "name": &"default",
-"speed": 4.0
+"speed": 17.0
 }]
 
 [sub_resource type="Curve" id="Curve_d5vii"]
@@ -927,7 +927,8 @@ round_precision = 3
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Laser"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_t3sh2")
+sprite_frames = SubResource("SpriteFrames_b154o")
+frame_progress = 0.895946
 script = ExtResource("13_dph4h")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
@@ -943,7 +944,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://asesprite/othersprites/laserpointerreticle.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "890615e810ee5575e4db64a9876e9340"
+metadata/_aseprite_wizard_source_file_hash_ = "2d4264d1ef3b8a0a2303681422c08714"
 
 [node name="LaserEndParticles" type="GPUParticles2D" parent="."]
 visible = false
