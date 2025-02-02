@@ -41,6 +41,7 @@ var damage_till_clones: float = 0
 var timer: float = 0
 
 func _ready() -> void:
+	$WeakSpot.disable()
 	setup()
 
 
@@ -225,3 +226,6 @@ func die() -> void:
 func fight_done() -> void:
 	get_parent().jester_died()
 	self.queue_free()
+
+func set_fiora() -> void:
+	$WeakSpot.enable()

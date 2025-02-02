@@ -58,6 +58,7 @@ var slice_next = false
 
 func _ready() -> void:
 	laser.visible = false
+	$WeakSpot.disable()
 	setup()
 
 
@@ -222,7 +223,6 @@ func fight_done() -> void:
 func switch_laser() -> void:
 	curr_state = Move_State.LASER
 	laser.visible = true
-	print("hello?")
 	$LaserLock.play()
 
 func rand_state() -> void:
@@ -235,3 +235,6 @@ func rand_state() -> void:
 		curr_state = Move_State.CRAZY
 		state_machine.travel("chains_out")
 		target = Vector2.ZERO
+
+func set_fiora() -> void:
+	$WeakSpot.enable()

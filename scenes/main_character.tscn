@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=68 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_q0jrw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cble6vp0ldqy3" path="res://sprites/placeholder/spinningtopfirstproto.png" id="4_f6rpi"]
 [ext_resource type="AudioStream" uid="uid://dd0fy1ovymn4b" path="res://sound_effects/clash1.ogg" id="4_qn757"]
 [ext_resource type="AudioStream" uid="uid://dgu4qxnk4s77i" path="res://sound_effects/clash2.ogg" id="5_g1lp1"]
+[ext_resource type="AudioStream" uid="uid://doewqhkmk87c4" path="res://sound_effects/charliespinner/youdie.wav" id="6_ery5u"]
 [ext_resource type="AudioStream" uid="uid://b470m7vxv25oi" path="res://sound_effects/dash.ogg" id="6_icwvi"]
 [ext_resource type="AudioStream" uid="uid://cq3im8xl3mlt2" path="res://sound_effects/hitland.ogg" id="7_63jd1"]
 [ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
@@ -357,6 +358,11 @@ particle_flag_disable_z = true
 angle_min = 64.4
 angle_max = 64.4
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.542073, 0.957133, 0.983983, 1)
+hue_variation_min = -0.06
+hue_variation_max = 0.04
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yhso0"]
 random_pitch = 1.1
@@ -480,6 +486,9 @@ process_material = SubResource("ParticleProcessMaterial_2lcra")
 texture = ExtResource("2_ygpbf")
 lifetime = 4.0
 trail_lifetime = 1.32
+
+[node name="deathsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ery5u")
 
 [node name="Clash_SE" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_yhso0")

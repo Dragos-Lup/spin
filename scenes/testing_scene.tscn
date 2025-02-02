@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=44 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -17,7 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bp0vydqc0x83d" path="res://asesprite/ui/uiIguess/healthwheel.png" id="9_8ytct"]
 [ext_resource type="Texture2D" uid="uid://bt2viatmbjlig" path="res://sprites/placeholder/arenaringsprite.png" id="9_vdwi0"]
 [ext_resource type="Texture2D" uid="uid://dqgdiee6c7k24" path="res://asesprite/ui/uiIguess/circle.png" id="10_bnlji"]
+[ext_resource type="Texture2D" uid="uid://crfrptmvpmygi" path="res://asesprite/ui/uiIguess/spin cooldown.png" id="13_cqup6"]
 [ext_resource type="Texture2D" uid="uid://cfmedl4fjj4gm" path="res://asesprite/alexstuff/whirly_portraits/jester_hurt.png" id="14_0nsa1"]
+[ext_resource type="Texture2D" uid="uid://cgm4qbf57m10x" path="res://asesprite/ui/uiIguess/spin_cooldown_bar.png" id="14_mg6jk"]
 [ext_resource type="Texture2D" uid="uid://bea1i4t5pqx5d" path="res://asesprite/alexstuff/whirly_portraits/jester_nervous.png" id="15_esjbj"]
 [ext_resource type="Texture2D" uid="uid://duvothjs72av8" path="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png" id="16_p5mj5"]
 [ext_resource type="AudioStream" uid="uid://bkaliudpoyof3" path="res://music/angryassgamejamsong(bossrushphase1maybe).ogg" id="21_1lqbq"]
@@ -321,6 +323,25 @@ fill_mode = 3
 texture_under = ExtResource("5_p4nwr")
 texture_over = ExtResource("5_p4nwr")
 texture_progress = ExtResource("6_7phrs")
+script = ExtResource("4_ngjhq")
+
+[node name="EncircleBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 372.0
+offset_right = 212.0
+offset_bottom = 960.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 100.0
+allow_greater = true
+texture_over = ExtResource("13_cqup6")
+texture_progress = ExtResource("14_mg6jk")
 script = ExtResource("4_ngjhq")
 
 [node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer/Control"]

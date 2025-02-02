@@ -12,6 +12,7 @@ extends RigidBody2D
 @onready var hitsparks: GPUParticles2D = $hitsparks
 @onready var spin_bar: TextureProgressBar = %SpinBar
 @onready var charge_bar: TextureProgressBar = %ChargeBar
+@onready var encircle_bar: TextureProgressBar = %EncircleBar
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -25,6 +26,9 @@ var dashing = false
 var is_encircle = false
 
 var last_vel : float = 0
+var maxEncircle : float = 4
+var encircleTime : float = maxEncircle
+var can_encircle : bool = true
 
 # Holds the encircle shape
 const Encircle = preload("res://scenes/helper_scenes/encirclePolygon.tscn")
@@ -36,7 +40,7 @@ var dash_start_time = 0
 func _init() -> void:
 	pass
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	last_vel = linear_velocity.length()
 	# Get the current input direction
 	if is_dead:
@@ -50,7 +54,15 @@ func _physics_process(_delta: float) -> void:
 	
 	if dashing and linear_velocity.length() < DASH_MINSPEED:
 		dashing = false
-		
+	if is_encircle:
+		encircleTime -= delta
+		encircle_bar.value = (encircleTime/maxEncircle) * 100
+	if !can_encircle and !is_encircle:
+		encircleTime += delta
+		encircle_bar.value = (encircleTime/maxEncircle) * 100
+		if encircleTime >= maxEncircle:
+			can_encircle = true
+			encircleTime = maxEncircle
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec() #When did we start charging
@@ -59,16 +71,14 @@ func _physics_process(_delta: float) -> void:
 		vel_difference = (target_vel * DASH_SLOW - linear_velocity) #Slows the player down by "DASH_SLOW" amount
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
 		charge_bar.value = (chargetime/DASH_MAXTIME) * 100
-	if Input.is_action_just_pressed("encircle"):
+	if Input.is_action_just_pressed("encircle") and can_encircle:
 		is_encircle = true
+		can_encircle = false
 		$GPUParticles2D.emitting = true
 		pass
 	if Input.is_action_just_released("encircle"):
 		if is_encircle:
-			is_encircle = false	
-			$GPUParticles2D.restart()
-			$GPUParticles2D.emitting = false
-			move_array = PackedVector2Array()
+			reset_encircle()
 	if Input.is_action_just_released("dash"):
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
 		charge_bar.value = 0
@@ -104,7 +114,7 @@ func _on_location_timer_timeout() -> void:
 	var p : Vector2 = self.position
 	move_array.append(p)
 	if (move_array.size() > 40):
-		move_array.remove_at(0)
+		reset_encircle()
 	if (move_array.size() > 3):
 		var A = move_array[move_array.size() - 1]
 		var B = move_array[move_array.size() - 2]
@@ -112,15 +122,18 @@ func _on_location_timer_timeout() -> void:
 			if (intersect(A, B, move_array[i], move_array[i+1])):
 				var new_polygon = Encircle.instantiate()
 				
-				new_polygon.set_polygon(move_array.slice(i+1,-1))
-				new_polygon.set_color(Color(1,0,0,0))
+				new_polygon.find_child("CollisionPolygon2D").set_polygon(move_array.slice(i+1,-1))
 				get_tree().root.add_child(new_polygon)
+				reset_encircle()
+				
 				$Sparkle.play()
-				$GPUParticles2D.emitting = false
-				$GPUParticles2D.restart()
-				move_array = PackedVector2Array()
 				break
 
+func reset_encircle():
+	$GPUParticles2D.restart()
+	$GPUParticles2D.emitting = false
+	move_array = PackedVector2Array()
+	is_encircle = false
 #Whenever a body touches our boy this goes
 func _on_body_entered(body: Node2D) -> void:
 	if is_dead:
@@ -190,5 +203,7 @@ func die() -> void:
 	dashing = false
 	state_machine.travel("die") #This is the cool little animation that plays neato!
 
+
 func bringUpMenu() -> void:
+	$deathsound.play()
 	%ProfileAnimator.play("show_lost")
