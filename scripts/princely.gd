@@ -75,10 +75,10 @@ func _physics_process(delta: float) -> void:
 	timer += delta
 	var pos = self.transform.origin
 
-	if curr_state == Move_State.DYING:
+	if $explosion.emitting == true:
 		timer += delta
 		if timer > (1.0/2.0):
-			%explode_SE.play()
+			#%explode_SE.play()
 			timer -= (1.0/2.0)
 
 	if is_dead or !player:
@@ -109,6 +109,11 @@ func _physics_process(delta: float) -> void:
 			var p = (laser_target - self.position)
 			laser.add_point(p)
 			if timer >= laser_timer:
+<<<<<<< Updated upstream
+=======
+				$LaserPew.play()
+				$shoot_particles.emitting = true
+>>>>>>> Stashed changes
 				laser_count -= 1
 				timer -= laser_timer
 				var fw : Node2D = flame_wave.instantiate()

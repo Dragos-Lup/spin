@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=87 format=3 uid="uid://hjpl2fkxarlu"]
+=======
+[gd_scene load_steps=90 format=3 uid="uid://hjpl2fkxarlu"]
+>>>>>>> Stashed changes
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
 [ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
@@ -20,7 +24,15 @@
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="14_5cbwx"]
 [ext_resource type="Texture2D" uid="uid://byavkxtngjkd0" path="res://scenes/sapphirespinner.png" id="15_ag1h6"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_j8suu"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://dpxugsk624p2c" path="res://asesprite/ericsprite/stupidball.png" id="21_1182n"]
+=======
+[ext_resource type="AudioStream" uid="uid://cctc5sg1usn08" path="res://sound_effects/smallexplosion.ogg" id="17_xdsav"]
+[ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="18_xaw85"]
+[ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="19_41xkb"]
+[ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_qchbr"]
+[ext_resource type="Texture2D" uid="uid://dpxugsk624p2c" path="res://asesprite/ericsprite/stupidball.png" id="21_5fl3j"]
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1ytd"]
 atlas = ExtResource("15_ag1h6")
@@ -351,7 +363,7 @@ states/norm/position = Vector2(394.857, 32.2857)
 states/sword_slice/node = SubResource("AnimationNodeAnimation_2e64n")
 states/sword_slice/position = Vector2(521, -75.1429)
 transitions = ["Start", "norm", SubResource("AnimationNodeStateMachineTransition_b55rr"), "norm", "chains_out", SubResource("AnimationNodeStateMachineTransition_e1rk5"), "chains_out", "chains_norm", SubResource("AnimationNodeStateMachineTransition_7wfek"), "chains_norm", "norm", SubResource("AnimationNodeStateMachineTransition_jul1d"), "norm", "sword_slice", SubResource("AnimationNodeStateMachineTransition_5ufm7"), "sword_slice", "norm", SubResource("AnimationNodeStateMachineTransition_r5a0b"), "norm", "die", SubResource("AnimationNodeStateMachineTransition_ven04"), "sword_slice", "die", SubResource("AnimationNodeStateMachineTransition_aqc7r"), "chains_norm", "die", SubResource("AnimationNodeStateMachineTransition_n1lp1"), "chains_out", "die", SubResource("AnimationNodeStateMachineTransition_hrujs")]
-graph_offset = Vector2(77, -144)
+graph_offset = Vector2(77, -124.905)
 
 [sub_resource type="Animation" id="Animation_jdhju"]
 length = 2.0
@@ -743,6 +755,12 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_wjcnx")
 color = Color(0, 0, 0, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_58lwc"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("17_xdsav")
+stream_1/stream = ExtResource("18_xaw85")
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3f07"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -763,12 +781,6 @@ hue_variation_max = 0.03
 anim_speed_min = 1.0
 anim_speed_max = 1.1
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8in6e"]
-playback_mode = 1
-random_pitch = 1.07
-streams_count = 1
-stream_0/stream = ExtResource("14_5cbwx")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1l77"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
@@ -779,6 +791,12 @@ hue_variation_max = -2.23517e-08
 anim_speed_min = 1.16
 anim_speed_max = 1.2
 turbulence_noise_strength = 2.49
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8in6e"]
+playback_mode = 1
+random_pitch = 1.07
+streams_count = 1
+stream_0/stream = ExtResource("14_5cbwx")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f4il"]
 particles_animation = true
@@ -811,6 +829,7 @@ anim_offset_min = 0.0674
 anim_offset_max = 0.0674
 turbulence_enabled = true
 
+<<<<<<< Updated upstream
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4ygst"]
 blend_mode = 1
 
@@ -865,6 +884,56 @@ radial_accel_max = -2.23517e-06
 alpha_curve = SubResource("CurveTexture_prywg")
 hue_variation_min = 0.13
 hue_variation_max = 0.13
+=======
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ogwq"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_iqvt4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0876712, 1), 1.56492, 1.56492, 0, 0, Vector2(0.550685, 0.841126), -2.87143, -2.87143, 0, 0, Vector2(0.838356, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdxy7"]
+curve = SubResource("Curve_iqvt4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xwgmc"]
+lifetime_randomness = 0.02
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(80, 50, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -64.25
+radial_accel_max = -56.5
+scale_min = 0.3
+scale_max = 1.1
+alpha_curve = SubResource("CurveTexture_bdxy7")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqn8"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_od4nn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.526027, 0.910202), -3.90388, -3.90388, 0, 0, Vector2(0.882192, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vypkt"]
+curve = SubResource("Curve_od4nn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8oneb"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.1
+radial_velocity_min = 80.7
+radial_velocity_max = 139.87
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -29.93
+radial_accel_max = -7.98
+scale_min = 0.4
+scale_max = 1.4
+color = Color(1, 0.751866, 0.532817, 1)
+alpha_curve = SubResource("CurveTexture_vypkt")
+>>>>>>> Stashed changes
 
 [node name="Princely" type="RigidBody2D" groups=["boss", "enemy"]]
 texture_filter = 1
@@ -965,6 +1034,7 @@ volume_db = -10.895
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yalp3")
+disabled = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_uptin")]
 max_health = 100
@@ -1023,6 +1093,12 @@ texture = ExtResource("12_vsdmw")
 lifetime = 2.0
 trail_lifetime = 1.32
 
+[node name="explode_SE" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_58lwc")
+volume_db = -3.05
+max_polyphony = 2
+
 [node name="explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
@@ -1031,12 +1107,6 @@ process_material = SubResource("ParticleProcessMaterial_tjcbn")
 texture = ExtResource("12_2jq5q")
 speed_scale = 1.1
 script = ExtResource("13_3qpdo")
-
-[node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_8in6e")
-volume_db = -3.05
-max_polyphony = 2
 
 [node name="big_explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_p3f07")
@@ -1080,6 +1150,26 @@ amount = 29
 process_material = SubResource("ParticleProcessMaterial_xlivl")
 texture = ExtResource("21_1182n")
 explosiveness = 1.0
+
+[node name="charge_up" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6ogwq")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_xwgmc")
+texture = ExtResource("21_5fl3j")
+speed_scale = 1.62
+fixed_fps = 60
+local_coords = true
+
+[node name="shoot_particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_wtqn8")
+emitting = false
+amount = 23
+process_material = SubResource("ParticleProcessMaterial_8oneb")
+texture = ExtResource("21_5fl3j")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
 
 [connection signal="body_entered" from="sword_slice/Area2D" to="sword_slice/Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

@@ -220,4 +220,11 @@ texture = ExtResource("22_bakvd")
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
+<<<<<<< Updated upstream
+=======
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
+[connection signal="mouse_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
+>>>>>>> Stashed changes
 [connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]
