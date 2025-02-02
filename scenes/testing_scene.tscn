@@ -1,91 +1,496 @@
-[gd_scene load_steps=10 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=56 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
-[ext_resource type="Texture2D" uid="uid://q5i8j4w2lev0" path="res://scenes/arena.png" id="2_cxu6o"]
-[ext_resource type="Texture2D" uid="uid://dv7cs248crwu0" path="res://scenes/spinningtorp.png" id="3_kwmq0"]
+[ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
+[ext_resource type="PackedScene" uid="uid://cgye685ugtv8o" path="res://scenes/settings.tscn" id="2_1x36q"]
+[ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
+[ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
+[ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
+[ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
+[ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
+[ext_resource type="Texture2D" uid="uid://b8saawvjq2rwr" path="res://asesprite/ui/uiIguess/speedbar.png" id="5_p4nwr"]
+[ext_resource type="Texture2D" uid="uid://bpnvsr5rqf20l" path="res://asesprite/alexstuff/whirly_portraits/jester_freaky.png" id="6_4aoyh"]
+[ext_resource type="Texture2D" uid="uid://d2und1w15jv8q" path="res://asesprite/ui/uiIguess/speedbarfill.png" id="6_7phrs"]
+[ext_resource type="Script" path="res://scripts/profile_animator.gd" id="6_60jdd"]
+[ext_resource type="Texture2D" uid="uid://b7spxm2v65nii" path="res://asesprite/ui/uiIguess/chargemeter.png" id="8_kxoa4"]
+[ext_resource type="FontFile" uid="uid://cyyq878n0h3gr" path="res://fonts/QTCoronation.otf" id="8_vsl84"]
+[ext_resource type="Texture2D" uid="uid://1faxpom4n52e" path="res://asesprite/ui/uiIguess/bosshealthbar.png" id="8_vsrbp"]
+[ext_resource type="Texture2D" uid="uid://bp0vydqc0x83d" path="res://asesprite/ui/uiIguess/healthwheel.png" id="9_8ytct"]
+[ext_resource type="Texture2D" uid="uid://b7yjukdhv78r0" path="res://asesprite/alexstuff/whirly_portraits/jester_freaky2(1).png" id="9_j1ffr"]
+[ext_resource type="Texture2D" uid="uid://bt2viatmbjlig" path="res://sprites/placeholder/arenaringsprite.png" id="9_vdwi0"]
+[ext_resource type="Texture2D" uid="uid://c5y2jm0rfmeqd" path="res://asesprite/ericsprite/New folder/princelyports2.png" id="10_4ad83"]
+[ext_resource type="Texture2D" uid="uid://dqgdiee6c7k24" path="res://asesprite/ui/uiIguess/circle.png" id="10_bnlji"]
+[ext_resource type="Texture2D" uid="uid://dpcypoaf3423g" path="res://asesprite/ericsprite/New folder/princelyports4.png" id="11_683q7"]
+[ext_resource type="Texture2D" uid="uid://ysmfyfsw551g" path="res://asesprite/ericsprite/New folder/princelyports3.png" id="12_lr6iq"]
+[ext_resource type="Texture2D" uid="uid://crfrptmvpmygi" path="res://asesprite/ui/uiIguess/spin cooldown.png" id="13_cqup6"]
+[ext_resource type="Texture2D" uid="uid://bsjyexeuna4ri" path="res://asesprite/ericsprite/New folder/princelyports1.png" id="13_yhe7d"]
+[ext_resource type="Texture2D" uid="uid://cfmedl4fjj4gm" path="res://asesprite/alexstuff/whirly_portraits/jester_hurt.png" id="14_0nsa1"]
+[ext_resource type="FontFile" uid="uid://0348isbhvu3f" path="res://fonts/Comic Sans MS/Comic Sans MS.ttf" id="14_8rgc6"]
+[ext_resource type="Texture2D" uid="uid://cgm4qbf57m10x" path="res://asesprite/ui/uiIguess/spin_cooldown_bar.png" id="14_mg6jk"]
+[ext_resource type="Texture2D" uid="uid://bea1i4t5pqx5d" path="res://asesprite/alexstuff/whirly_portraits/jester_nervous.png" id="15_esjbj"]
+[ext_resource type="Texture2D" uid="uid://duvothjs72av8" path="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png" id="16_p5mj5"]
+[ext_resource type="AudioStream" uid="uid://bkaliudpoyof3" path="res://music/angryassgamejamsong(bossrushphase1maybe).ogg" id="21_1lqbq"]
+[ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="23_dv5ge"]
+[ext_resource type="Texture2D" uid="uid://cv2pmuh73a0rl" path="res://asesprite/ericsprite/spaceattempt/Layer 7.png" id="24_nuq7x"]
+[ext_resource type="Texture2D" uid="uid://cvxbimhd0ud1q" path="res://asesprite/ericsprite/spaceattempt/Layer 5.png" id="25_lsamv"]
+[ext_resource type="Texture2D" uid="uid://idlylg6cdct0" path="res://asesprite/ericsprite/spaceattempt/Layer 2.png" id="26_cpe6t"]
+[ext_resource type="Texture2D" uid="uid://bjtmyi1hpmf17" path="res://asesprite/ericsprite/spaceattempt/Layer 6.png" id="27_wbgg2"]
+[ext_resource type="Texture2D" uid="uid://dewbdxhcvc0df" path="res://asesprite/ericsprite/spaceattempt/Layer 3.png" id="28_yq3gt"]
+[ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="29_u54hr"]
+[ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="30_3hmcg"]
+[ext_resource type="Texture2D" uid="uid://bcmpjl2ir2xqc" path="res://asesprite/alexstuff/arenastuff/astralaudience1.png" id="31_d77rl"]
+[ext_resource type="Texture2D" uid="uid://ddh47xfwd2evw" path="res://asesprite/alexstuff/arenastuff/astralaudience2.png" id="32_1oufa"]
+[ext_resource type="Texture2D" uid="uid://dlrrk4wnf8wn6" path="res://asesprite/alexstuff/arenastuff/astralaudience3.png" id="33_j4gqs"]
+[ext_resource type="Texture2D" uid="uid://re23yoj5pq3h" path="res://asesprite/alexstuff/arenastuff/astralaudience4.png" id="34_uo1pf"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdkx6"]
-bounce = 1.0
+[sub_resource type="Animation" id="Animation_mlb3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2007, 350)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../You Lost:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1114)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pep6y"]
-atlas = ExtResource("3_kwmq0")
-region = Rect2(0, 0, 68, 50)
+[sub_resource type="Animation" id="Animation_qa7sb"]
+resource_name = "flash profile"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.466667, 2.63333, 2.86667),
+"transitions": PackedFloat32Array(1, 0.267943, 0.203063, 0.203063, 1),
+"update": 0,
+"values": [Vector2(2007, 242), Vector2(1252, 264), Vector2(1315, 267), Vector2(1315, 267), Vector2(2007, 242)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efd7j"]
-atlas = ExtResource("3_kwmq0")
-region = Rect2(68, 0, 68, 50)
+[sub_resource type="Animation" id="Animation_13cif"]
+resource_name = "show_lost"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../You Lost:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1114), Vector2(0, 0)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sacbn"]
-atlas = ExtResource("3_kwmq0")
-region = Rect2(0, 50, 68, 50)
+[sub_resource type="Animation" id="Animation_fceb7"]
+resource_name = "show_won"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ProfilePic/../../../You Won:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1114), Vector2(0, 0)]
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6vp0c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pep6y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efd7j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sacbn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 34.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_js46g"]
+_data = {
+"RESET": SubResource("Animation_mlb3w"),
+"laughing": SubResource("Animation_qa7sb"),
+"show_lost": SubResource("Animation_13cif"),
+"show_won": SubResource("Animation_fceb7")
+}
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nggsj"]
-radius = 15.9994
-height = 63.9626
+[sub_resource type="Theme" id="Theme_jmp54"]
+default_font_size = 35
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_2rmmc"]
+offsets = PackedFloat32Array(0, 0.233051, 0.758475, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.624763, 0.0231992, 0.806195, 1, 0.569536, 0.0847949, 0.819791, 1, 0, 0.72, 0.96, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksdui"]
+gradient = SubResource("Gradient_2rmmc")
+width = 75
+height = 527
+fill_from = Vector2(0.531933, 0.770452)
+fill_to = Vector2(0.531933, 0)
+
+[sub_resource type="Gradient" id="Gradient_34ivc"]
+offsets = PackedFloat32Array(0.0805085, 1)
+colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.781876, 7.72017e-05, 0.628406, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
+gradient = SubResource("Gradient_34ivc")
+width = 1159
+fill_from = Vector2(0.617816, 1)
+fill_to = Vector2(0.478, 0)
+
+[sub_resource type="Animation" id="Animation_meddl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wakj0"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 4.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -40.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.53333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyn50"]
+_data = {
+"RESET": SubResource("Animation_meddl"),
+"fade_out": SubResource("Animation_wakj0")
+}
+
+[node name="World" type="Node2D"]
+physics_interpolation_mode = 1
 texture_filter = 1
+script = ExtResource("1_va4xm")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="SpinBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="spawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -616.0
-offset_right = 170.0
-grow_vertical = 0
-step = 1.0
-value = 30.0
-allow_greater = true
-fill_mode = 3
+position = Vector2(929, 13)
 
 [node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
+unique_name_in_owner = true
 z_index = 5
 position = Vector2(974, 632)
 
 [node name="Camera2D" type="Camera2D" parent="MainSpinner"]
-zoom = Vector2(1.5, 1.5)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Area2D" type="StaticBody2D" parent="."]
-position = Vector2(938, 531)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("2_1x36q")]
+visible = false
+z_index = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="ProfileAnimator" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+root_node = NodePath("../ProfileBox/VBoxContainer/ProfilePic")
+libraries = {
+"": SubResource("AnimationLibrary_js46g")
+}
+script = ExtResource("6_60jdd")
+jester_sprites = Array[Texture2D]([ExtResource("9_j1ffr"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5"), ExtResource("6_4aoyh")])
+princely_sprites = Array[Texture2D]([ExtResource("10_4ad83"), ExtResource("11_683q7"), ExtResource("12_lr6iq"), ExtResource("13_yhe7d")])
+fonts = Array[FontFile]([ExtResource("14_8rgc6"), ExtResource("8_vsl84")])
+
+[node name="ProfileBox" type="MarginContainer" parent="CanvasLayer"]
+z_index = 20
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = -838.0
+offset_right = 682.0
+offset_bottom = -31.73
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ProfileBox"]
+layout_direction = 2
+layout_mode = 2
+alignment = 2
+
+[node name="ProfilePic" type="TextureRect" parent="CanvasLayer/ProfileBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_4aoyh")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ProfileBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="CanvasLayer/ProfileBox/VBoxContainer/Panel"]
+unique_name_in_owner = true
+clip_contents = false
+layout_direction = 2
+layout_mode = 0
+offset_right = 593.0
+offset_bottom = 200.0
+size_flags_vertical = 3
+theme = SubResource("Theme_jmp54")
+theme_override_fonts/normal_font = ExtResource("14_8rgc6")
+text = "“Your Revo could never topple mine! It has state of the art gyroscopic technology! My Daddy says it’ll never stop spinning!!”"
+scroll_active = false
+
+[node name="You Lost" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1114.0
+offset_bottom = -1114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/You Lost"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/You Lost/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]YOU LOST BIG TIME
+[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/You Lost/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/You Lost/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Retry?"
+
+[node name="You Won" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1114.0
+offset_bottom = -1114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/You Won"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/You Won/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]YOU WON THE MATCH!!
+[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/You Won/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/You Won/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/You Won/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Retry?"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 434.0
+offset_right = 217.0
+offset_bottom = 1022.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 100.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("5_p4nwr")
+texture_over = ExtResource("5_p4nwr")
+texture_progress = ExtResource("6_7phrs")
+script = ExtResource("4_ngjhq")
+
+[node name="EncircleBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 372.0
+offset_right = 212.0
+offset_bottom = 960.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 100.0
+allow_greater = true
+texture_over = ExtResource("13_cqup6")
+texture_progress = ExtResource("14_mg6jk")
+script = ExtResource("4_ngjhq")
+
+[node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = 435.0
+offset_right = 296.0
+offset_bottom = 1023.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+allow_greater = true
+fill_mode = 3
+texture_over = ExtResource("8_kxoa4")
+texture_progress = SubResource("GradientTexture2D_ksdui")
+script = ExtResource("4_ngjhq")
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 249.0
+offset_top = 28.0
+offset_right = 1619.0
+offset_bottom = 113.0
+grow_horizontal = 2
+value = 100.0
+texture_over = ExtResource("8_vsrbp")
+texture_progress = SubResource("GradientTexture2D_rhig8")
+texture_progress_offset = Vector2(66.75, 11.365)
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1508.0
+offset_top = 813.0
+offset_right = 1846.0
+offset_bottom = 1015.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 90.0
+radial_fill_degrees = 315.5
+texture_over = ExtResource("9_8ytct")
+texture_progress = ExtResource("10_bnlji")
+tint_progress = Color(1.90116e-06, 0.509856, 0.0459657, 1)
+
+[node name="Arena" type="StaticBody2D" parent="."]
+position = Vector2(946, 577)
 collision_layer = 4
 collision_mask = 0
-physics_material_override = SubResource("PhysicsMaterial_jdkx6")
+physics_material_override = ExtResource("2_8jgto")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(1.5, 0)
-scale = Vector2(1.15, 1)
-polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 283.913, 423, 198.696, 481, 130.87, 511, 89.1304, 525, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -656.957, 631, 727.391, 631, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena"]
+build_mode = 1
+polygon = PackedVector2Array(591, -41, 590, 7, 576, 73, 562, 145, 525, 216, 472, 293, 412, 338, 325, 397, 215, 459, 124, 487, 41, 500, -50, 500, -144, 492, -212, 472, -291, 437, -348, 404, -405, 367, -464, 323, -536, 247, -575, 183, -597, 140, -612, 66, -624, 7, -626, -92, -613, -162, -594, -221, -559, -291, -521, -352, -489, -392, -437, -446, -364, -503, -303, -535, -238, -563, -176, -582, -102, -593, -61, -600, 46, -600, 125, -588, 208, -567, 283, -533, 337, -502, 383, -467, 416, -438, 436, -419, 476, -376, 511, -326, 536, -280, 558, -236, 576, -193, 590, -133)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Arena"]
 z_index = -10
 texture_filter = 1
-scale = Vector2(4.16054, 4.16054)
-texture = ExtResource("2_cxu6o")
+scale = Vector2(2, 2)
+texture = ExtResource("9_vdwi0")
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": false,
-"output_section": false,
+"layer_section": true,
+"output_section": true,
 "pending_changes": {},
 "slice_section": false
 }
@@ -94,44 +499,1449 @@ metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layers": [],
 "o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "",
-"slice": "",
-"source": "res://asesprite/dragosbad/arena.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "b084bc7ddb7e7d36b1f434aeb821e71d"
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(932, 369)
-motion_mode = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_6vp0c")
-autoplay = "default"
-frame = 2
-frame_progress = 0.46851
-metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": false,
-"layer_section": true,
-"output_section": false,
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"layers": [],
-"o_ex_p": "",
-"o_folder": "",
+"o_folder": "res://sprites/placeholder",
 "o_name": "",
 "only_visible": true,
-"should_round_fps": true,
+"player": "",
 "slice": "",
-"source": "res://asesprite/ericsprite/spinningtorp.aseprite"
+"source": "res://asesprite/alexstuff/arenaringsprite.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "7baf85e7f2412965ceb3e858838d57be"
+metadata/_aseprite_wizard_source_file_hash_ = "96e3e0f2f92f3c8ec43e42ed5fbba848"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -3)
-rotation = 1.57952
-shape = SubResource("CapsuleShape2D_nggsj")
+[node name="music_controller" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../bossrushphase1")
+libraries = {
+"": SubResource("AnimationLibrary_hyn50")
+}
+
+[node name="menutheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qoumr")
+volume_db = -2.0
+
+[node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tv64y")
+playback_type = 1
+parameters/looping = true
+
+[node name="bossrushphase1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_1lqbq")
+autoplay = true
+playback_type = 1
+parameters/looping = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(2394, -161)
+
+[node name="Astralaudience91" type="Sprite2D" parent="Node2D"]
+position = Vector2(-493, 79)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience92" type="Sprite2D" parent="Node2D"]
+position = Vector2(-256, 254)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience93" type="Sprite2D" parent="Node2D"]
+position = Vector2(-488, 358)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience94" type="Sprite2D" parent="Node2D"]
+position = Vector2(-398, 106)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience95" type="Sprite2D" parent="Node2D"]
+position = Vector2(-381, 333)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience96" type="Sprite2D" parent="Node2D"]
+position = Vector2(-451, -3)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience97" type="Sprite2D" parent="Node2D"]
+position = Vector2(-451, -3)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience98" type="Sprite2D" parent="Node2D"]
+position = Vector2(-188, 211)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience99" type="Sprite2D" parent="Node2D"]
+position = Vector2(-267, 79)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience100" type="Sprite2D" parent="Node2D"]
+position = Vector2(-532, 187)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience101" type="Sprite2D" parent="Node2D"]
+position = Vector2(-301, 373)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience102" type="Sprite2D" parent="Node2D"]
+position = Vector2(-351, 4)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience103" type="Sprite2D" parent="Node2D"]
+position = Vector2(-331, 223)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience104" type="Sprite2D" parent="Node2D"]
+position = Vector2(-221, 402)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience105" type="Sprite2D" parent="Node2D"]
+position = Vector2(-437, 239)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience106" type="Sprite2D" parent="Node2D"]
+position = Vector2(-727, 463.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience107" type="Sprite2D" parent="Node2D"]
+position = Vector2(-490, 638.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience108" type="Sprite2D" parent="Node2D"]
+position = Vector2(-722, 742.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience109" type="Sprite2D" parent="Node2D"]
+position = Vector2(-632, 490.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience110" type="Sprite2D" parent="Node2D"]
+position = Vector2(-615, 717.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience111" type="Sprite2D" parent="Node2D"]
+position = Vector2(-685, 381.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience112" type="Sprite2D" parent="Node2D"]
+position = Vector2(-685, 381.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience113" type="Sprite2D" parent="Node2D"]
+position = Vector2(-422, 595.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience114" type="Sprite2D" parent="Node2D"]
+position = Vector2(-501, 463.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience115" type="Sprite2D" parent="Node2D"]
+position = Vector2(-766, 571.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience116" type="Sprite2D" parent="Node2D"]
+position = Vector2(-535, 757.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience117" type="Sprite2D" parent="Node2D"]
+position = Vector2(-585, 388.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience118" type="Sprite2D" parent="Node2D"]
+position = Vector2(-565, 607.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience119" type="Sprite2D" parent="Node2D"]
+position = Vector2(-455, 786.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience120" type="Sprite2D" parent="Node2D"]
+position = Vector2(-671, 623.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience121" type="Sprite2D" parent="Node2D"]
+position = Vector2(-886, -43.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience122" type="Sprite2D" parent="Node2D"]
+position = Vector2(-649, 131.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience123" type="Sprite2D" parent="Node2D"]
+position = Vector2(-881, 235.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience124" type="Sprite2D" parent="Node2D"]
+position = Vector2(-791, -16.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience125" type="Sprite2D" parent="Node2D"]
+position = Vector2(-774, 210.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience126" type="Sprite2D" parent="Node2D"]
+position = Vector2(-844, -125.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience127" type="Sprite2D" parent="Node2D"]
+position = Vector2(-844, -125.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience128" type="Sprite2D" parent="Node2D"]
+position = Vector2(-581, 88.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience129" type="Sprite2D" parent="Node2D"]
+position = Vector2(-660, -43.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience130" type="Sprite2D" parent="Node2D"]
+position = Vector2(-925, 64.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience131" type="Sprite2D" parent="Node2D"]
+position = Vector2(-694, 250.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience132" type="Sprite2D" parent="Node2D"]
+position = Vector2(-744, -118.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience133" type="Sprite2D" parent="Node2D"]
+position = Vector2(-724, 100.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience134" type="Sprite2D" parent="Node2D"]
+position = Vector2(-614, 279.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience135" type="Sprite2D" parent="Node2D"]
+position = Vector2(-830, 116.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience1" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-6, 836.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience5" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(231, 1011.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience13" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-1, 1115.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience2" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(89, 863.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience11" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(106, 1090.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience6" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(36, 754.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience15" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(36, 754.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience7" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(299, 968.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience3" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(220, 836.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience8" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-45, 944.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience12" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(186, 1130.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience9" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(136, 761.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience4" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(156, 980.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience14" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(266, 1159.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience10" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(50, 996.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience16" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-240, 1221)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience17" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-3, 1396)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience18" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-235, 1500)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience19" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-145, 1248)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience20" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-128, 1475)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience21" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-198, 1139)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience22" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-198, 1139)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience23" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(65, 1353)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience24" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-14, 1221)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience25" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-279, 1329)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience26" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-48, 1515)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience27" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-98, 1146)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience28" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-78, 1365)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience29" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(32, 1544)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience30" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-184, 1381)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience41" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-207, 1008)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience44" type="Sprite2D" parent="Node2D/Astralaudience135"]
+position = Vector2(-127, 1037)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience226" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1983, 1159)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience227" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1903, 1188)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience228" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2249.5, 1400.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience229" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2012.5, 1575.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience230" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2244.5, 1679.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience231" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2154.5, 1427.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience232" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2137.5, 1654.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience233" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2207.5, 1318.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience234" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2207.5, 1318.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience235" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1944.5, 1532.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience236" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2023.5, 1400.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience237" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2057.5, 1694.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience238" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2107.5, 1325.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience239" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2087.5, 1544.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience240" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1977.5, 1723.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience241" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2193.5, 1560.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience242" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1463.5, 1655)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience243" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1368.5, 1682)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience244" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1421.5, 1573)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience245" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1421.5, 1573)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience246" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1158.5, 1787)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience247" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1237.5, 1655)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience248" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1502.5, 1763)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience249" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1321.5, 1580)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience250" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1856.5, 1532.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience251" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1619.5, 1707.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience252" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1761.5, 1559.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience253" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1744.5, 1786.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience254" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1974, 1299.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience255" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1974, 1299.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience256" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1551.5, 1664.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience257" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1630.5, 1532.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience258" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1895.5, 1640.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience259" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1874, 1306.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience260" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1694.5, 1676.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience261" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1800.5, 1692.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience262" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1439.5, 1437.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience263" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1671.5, 1541.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience264" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1564.5, 1516.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience265" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1371.5, 1394.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience266" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1875, 1219.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience267" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1484.5, 1556.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience268" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1514.5, 1406.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience269" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1404.5, 1585.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience270" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1620.5, 1422.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience271" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1283.5, 1394.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience272" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1046.5, 1569.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience273" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1278.5, 1673.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience274" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1188.5, 1421.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience275" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1171.5, 1648.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience276" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1241.5, 1312.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience277" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1241.5, 1312.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience278" type="Sprite2D" parent="Node2D"]
+position = Vector2(-978.5, 1526.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience279" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1057.5, 1394.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience280" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1322.5, 1502.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience281" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1091.5, 1688.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience282" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1141.5, 1319.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience283" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1121.5, 1538.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience284" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1011.5, 1717.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience285" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1227.5, 1554.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience286" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1826.5, -373)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience287" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1746.5, -344)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience288" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2252.5, -282.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience289" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2015.5, -107.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience290" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2247.5, -3.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience291" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2157.5, -255.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience292" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2140.5, -28.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience293" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2210.5, -364.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience294" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2210.5, -364.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience295" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1947.5, -150.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience296" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2026.5, -282.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience297" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2060.5, 11.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience298" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2110.5, -357.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience299" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2090.5, -138.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience300" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1980.5, 40.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience301" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2196.5, -122.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience302" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1466.5, -28)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience303" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1371.5, -1)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience304" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1424.5, -110)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience305" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1424.5, -110)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience306" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1161.5, 104)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience307" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1240.5, -28)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience308" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1505.5, 80)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience309" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1324.5, -103)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience310" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1859.5, -150.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience311" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1622.5, 24.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience312" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1764.5, -123.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience313" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1747.5, 103.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience314" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1817.5, -232.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience315" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1817.5, -232.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience316" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1554.5, -18.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience317" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1633.5, -150.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience318" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1898.5, -42.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience319" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1717.5, -225.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience320" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1697.5, -6.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience321" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1803.5, 9.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience322" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1442.5, -245.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience323" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1674.5, -141.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience324" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1567.5, -166.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience325" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1374.5, -288.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience326" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1718.5, -312.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience327" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1487.5, -126.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience328" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1517.5, -276.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience329" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1407.5, -97.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience330" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1623.5, -260.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience331" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1286.5, -288.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience332" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1049.5, -113.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience333" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1281.5, -9.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience334" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1191.5, -261.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience335" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1174.5, -34.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience336" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1244.5, -370.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience337" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1244.5, -370.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience338" type="Sprite2D" parent="Node2D"]
+position = Vector2(-981.5, -156.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience339" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1060.5, -288.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience340" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1325.5, -180.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience341" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1094.5, 5.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience342" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1144.5, -363.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience343" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1124.5, -144.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience344" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1014.5, 34.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience345" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1230.5, -128.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience346" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2571.5, 542)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience347" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2713.5, 394)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience348" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2696.5, 621)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience349" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2503.5, 499)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience350" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2582.5, 367)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience351" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2616.5, 661)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience352" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2666.5, 292)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience353" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2646.5, 511)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience354" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2536.5, 690)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience355" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2256.5, 1006)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience356" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2251.5, 1285)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience357" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2161.5, 1033)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience358" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2144.5, 1260)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience359" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2214.5, 924)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience360" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2214.5, 924)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience361" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2295.5, 1114)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience362" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2114.5, 931)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience363" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2094.5, 1150)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience364" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2200.5, 1166)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience365" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2490.5, 1390.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience366" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2253.5, 1565.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience367" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2485.5, 1669.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience368" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2395.5, 1417.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience369" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2378.5, 1644.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience370" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2448.5, 1308.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience371" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2448.5, 1308.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience372" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2185.5, 1522.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience373" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2264.5, 1390.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience374" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2529.5, 1498.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience375" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2298.5, 1684.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience376" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2348.5, 1315.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience377" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2328.5, 1534.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience378" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2218.5, 1713.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience379" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2434.5, 1550.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience380" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2649.5, 883.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience381" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2412.5, 1058.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience382" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2644.5, 1162.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience383" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2554.5, 910.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience384" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2537.5, 1137.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience385" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2607.5, 801.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience386" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2607.5, 801.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience387" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2344.5, 1015.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience388" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2423.5, 883.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience389" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2688.5, 991.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience390" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2457.5, 1177.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience391" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2507.5, 808.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience392" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2487.5, 1027.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience393" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2377.5, 1206.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience394" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2593.5, 1043.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience395" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2235.5, 229)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience396" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2230.5, 508)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience397" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2140.5, 256)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience398" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2123.5, 483)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience399" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2193.5, 147)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience400" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2193.5, 147)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience401" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2274.5, 337)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience402" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2093.5, 154)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience403" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2179.5, 389)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience404" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2469.5, 613.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience405" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2232.5, 788.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience406" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2464.5, 892.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience407" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2374.5, 640.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience408" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2357.5, 867.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience409" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2427.5, 531.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience410" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2427.5, 531.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience411" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2164.5, 745.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience412" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2243.5, 613.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience413" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2508.5, 721.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience414" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2277.5, 907.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience415" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2327.5, 538.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience416" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2307.5, 757.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience417" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2197.5, 936.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience418" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2413.5, 773.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience419" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2628.5, 106.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience420" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2391.5, 281.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience421" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2623.5, 385.5)
+texture = ExtResource("31_d77rl")
+flip_h = true
+
+[node name="Astralaudience422" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2533.5, 133.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience423" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2516.5, 360.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience424" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2586.5, 24.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience425" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2586.5, 24.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience426" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2323.5, 238.5)
+texture = ExtResource("32_1oufa")
+flip_h = true
+
+[node name="Astralaudience427" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2402.5, 106.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience428" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2667.5, 214.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience429" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2436.5, 400.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience430" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2486.5, 31.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience431" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2466.5, 250.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience432" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2356.5, 429.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience433" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2572.5, 266.5)
+texture = ExtResource("34_uo1pf")
+flip_h = true
+
+[node name="Astralaudience434" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2115.5, 853.5)
+texture = ExtResource("33_j4gqs")
+flip_h = true
+
+[node name="Astralaudience435" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1781, 1397.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience436" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2013, 1501.5)
+texture = ExtResource("31_d77rl")
+
+[node name="Astralaudience437" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1923, 1249.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience438" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1906, 1476.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience439" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1713, 1354.5)
+texture = ExtResource("32_1oufa")
+
+[node name="Astralaudience440" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2057, 1330.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience441" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1826, 1516.5)
+texture = ExtResource("33_j4gqs")
+
+[node name="Astralaudience442" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1856, 1366.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience443" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1746, 1545.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="Astralaudience444" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1962, 1382.5)
+texture = ExtResource("34_uo1pf")
+
+[node name="SpaceBackground" type="Node2D" parent="."]
+z_index = -20
+position = Vector2(760, 470)
+
+[node name="blackbackground" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/blackbackground"]
+position = Vector2(198, 69.5)
+texture = ExtResource("23_dv5ge")
+
+[node name="blueishspacetint" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 10)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/blueishspacetint"]
+position = Vector2(198, 69.5)
+texture = ExtResource("24_nuq7x")
+
+[node name="spaceclouds1" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 12)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds1"]
+position = Vector2(198, 69.5)
+texture = ExtResource("25_lsamv")
+
+[node name="stars1" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 14)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars1"]
+position = Vector2(198, 69.5)
+texture = ExtResource("26_cpe6t")
+
+[node name="spaceclouds2" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 24)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds2"]
+position = Vector2(198, 69.5)
+texture = ExtResource("27_wbgg2")
+
+[node name="stars2" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 50)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars2"]
+position = Vector2(198, 69.5)
+texture = ExtResource("28_yq3gt")
+
+[node name="spaceclouds3" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 40)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds3"]
+position = Vector2(198, 69.5)
+texture = ExtResource("29_u54hr")
+
+[node name="stars3" type="Parallax2D" parent="SpaceBackground"]
+scroll_offset = Vector2(281, -34)
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 120)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars3"]
+position = Vector2(198, 69.5)
+texture = ExtResource("30_3hmcg")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/You Won/VBoxContainer/HBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

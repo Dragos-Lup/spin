@@ -1,0 +1,466 @@
+[gd_scene load_steps=44 format=3 uid="uid://ba5t7qcjqpnl5"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
+[ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
+[ext_resource type="AudioStream" uid="uid://c78cny74edbqb" path="res://sound_effects/JesterVoice/laugh2.ogg" id="3_vm3i6"]
+[ext_resource type="AudioStream" uid="uid://c17uixcmuqil0" path="res://sound_effects/JesterVoice/laugh3.ogg" id="4_yk8hk"]
+[ext_resource type="AudioStream" uid="uid://d2dkwnmoostis" path="res://sound_effects/JesterVoice/jestercharge.ogg" id="5_ge32r"]
+[ext_resource type="PackedScene" uid="uid://dygeouv8mk1x6" path="res://scenes/components/movement_component.tscn" id="5_mtghx"]
+[ext_resource type="Animation" uid="uid://c4u23vjhbsbtr" path="res://die.res" id="6_c1cy3"]
+[ext_resource type="Texture2D" uid="uid://8iwg7s2aa6py" path="res://sprites/placeholder/jesternewspinner.png" id="6_f5vd7"]
+[ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="6_tqy8q"]
+[ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_wx0sq"]
+[ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="7_lt1ax"]
+[ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://asesprite/othersprites/explosion_no_background.png" id="11_sl5ug"]
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="12_8lnbl"]
+[ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="13_7abq4"]
+[ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="14_iuwuf"]
+[ext_resource type="AudioStream" uid="uid://cctc5sg1usn08" path="res://sound_effects/smallexplosion.ogg" id="15_moihm"]
+[ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_xus0f"]
+[ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_ddfms"]
+[ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_tj05g"]
+[ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="20_mjgvj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("3_vm3i6")
+stream_1/stream = ExtResource("4_yk8hk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mwgt"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("5_ge32r")
+
+[sub_resource type="Animation" id="Animation_1iemr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../explosion:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../big_explosion:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../big_explosion/bigexplode_SE:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6jj7g"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_imnxb"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_clones"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dol65"]
+_data = {
+"RESET": SubResource("Animation_1iemr"),
+"die": ExtResource("6_c1cy3"),
+"fade_in": SubResource("Animation_6jj7g"),
+"fade_out": SubResource("Animation_imnxb")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j27fs"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_wx0sq")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mps2w"]
+random_pitch = 1.14
+streams_count = 2
+stream_0/stream = ExtResource("6_tqy8q")
+stream_1/stream = ExtResource("7_lt1ax")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm5rb"]
+atlas = ExtResource("6_f5vd7")
+region = Rect2(0, 0, 126, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70256"]
+atlas = ExtResource("6_f5vd7")
+region = Rect2(126, 0, 126, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcv0h"]
+atlas = ExtResource("6_f5vd7")
+region = Rect2(0, 104, 126, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ig3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm5rb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70256")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcv0h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yalp3"]
+radius = 43.0
+height = 138.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3f07"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tjcbn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 30, 1)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.499998
+radial_accel_max = 5.48
+scale_min = 0.15
+scale_max = 0.3
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.03
+anim_speed_min = 1.0
+anim_speed_max = 1.1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_voake"]
+playback_mode = 1
+random_pitch = 1.07
+streams_count = 2
+stream_0/stream = ExtResource("14_iuwuf")
+stream_1/stream = ExtResource("15_moihm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1l77"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_min = 1.16
+anim_speed_max = 1.2
+turbulence_noise_strength = 2.49
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8in6e"]
+playback_mode = 1
+random_pitch = 1.07
+streams_count = 1
+stream_0/stream = ExtResource("13_7abq4")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f4il"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_j78a6"]
+_data = [Vector2(0, 0.143464), 0.0, 0.0, 0, 0, Vector2(0.123288, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvpsi"]
+curve = SubResource("Curve_j78a6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_asnq0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 30, 1)
+angle_min = -161.8
+angle_max = 136.8
+angular_velocity_min = -39.51
+angular_velocity_max = 32.32
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_mvpsi")
+anim_speed_min = 10.0
+anim_speed_max = 14.65
+anim_offset_min = 0.0674
+anim_offset_max = 0.0674
+turbulence_enabled = true
+
+[node name="Jester" type="RigidBody2D" groups=["boss", "enemy"]]
+collision_layer = 2
+collision_mask = 7
+mass = 4.0
+physics_material_override = ExtResource("1_sn01m")
+lock_rotation = true
+continuous_cd = 1
+linear_damp = 1.0
+script = ExtResource("1_yd2ff")
+MAX_FORCE = 7000.0
+
+[node name="Jesterlaugh" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_j716r")
+
+[node name="Jestercharge" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7mwgt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_dol65")
+}
+
+[node name="JesterWoosh" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = SubResource("AudioStreamRandomizer_j27fs")
+
+[node name="Jestersparkle" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_mps2w")
+volume_db = -10.895
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3ig3x")
+autoplay = "default"
+frame_progress = 0.0857613
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://sprites/placeholder",
+"o_name": "",
+"only_visible": true,
+"should_round_fps": true,
+"slice": "",
+"source": "res://asesprite/ericsprite/jesternewspinner.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "fc5fbe81e10463488523c1f8a0f4b956"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yalp3")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
+max_health = 100
+current_health = 100
+isBoss = true
+
+[node name="MovementComponent" parent="." instance=ExtResource("5_mtghx")]
+
+[node name="DashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.75
+one_shot = true
+
+[node name="UnTargettingTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.3
+one_shot = true
+
+[node name="RayCasts" type="Node2D" parent="."]
+rotation = 0.785398
+
+[node name="DLray" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(0, 500)
+
+[node name="ULray" type="RayCast2D" parent="RayCasts"]
+rotation = 1.5708
+target_position = Vector2(0, 500)
+
+[node name="URray" type="RayCast2D" parent="RayCasts"]
+rotation = 3.14159
+target_position = Vector2(0, 500)
+
+[node name="DRray" type="RayCast2D" parent="RayCasts"]
+rotation = 4.71239
+target_position = Vector2(0, 500)
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_p3f07")
+emitting = false
+amount = 17
+process_material = SubResource("ParticleProcessMaterial_tjcbn")
+texture = ExtResource("11_sl5ug")
+speed_scale = 1.1
+script = ExtResource("12_8lnbl")
+
+[node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_voake")
+volume_db = -3.05
+max_polyphony = 2
+
+[node name="big_explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_p3f07")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_f1l77")
+texture = ExtResource("11_sl5ug")
+one_shot = true
+speed_scale = 0.9
+
+[node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
+stream = SubResource("AudioStreamRandomizer_8in6e")
+volume_db = 0.384
+max_polyphony = 2
+
+[node name="JesterDashTrail" type="GPUParticles2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_4f4il")
+emitting = false
+amount = 69
+process_material = SubResource("ParticleProcessMaterial_asnq0")
+texture = ExtResource("15_xus0f")
+lifetime = 1.5
+randomness = 0.02
+trail_lifetime = 0.69
+
+[node name="Drill" type="AudioStreamPlayer2D" parent="."]
+rotation = 0.827286
+scale = Vector2(1.5, 1.5)
+stream = ExtResource("19_ddfms")
+volume_db = -2.0
+
+[node name="WeakSpot" type="Area2D" parent="."]
+rotation = 0.827286
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+script = ExtResource("19_tj05g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WeakSpot"]
+polygon = PackedVector2Array(-30, -45, -43, -33, -46, -16, -40.5479, -4.56779, -1, 0, -0.0164566, -42.5441, -8, -45)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeakSpot"]
+texture_filter = 1
+texture = ExtResource("20_mjgvj")
+offset = Vector2(0, -23)
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://asesprite/mc/revoweakpoint.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "42154c691b8b0c6e4b03ae17553281f2"
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="UnTargettingTimer" to="." method="_on_un_targetting_timer_timeout"]
+[connection signal="body_entered" from="WeakSpot" to="WeakSpot" method="_on_body_entered"]

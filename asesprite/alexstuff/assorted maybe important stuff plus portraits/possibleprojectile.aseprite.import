@@ -1,0 +1,19 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://4q1ysj4qhmmm"
+path="res://.godot/imported/possibleprojectile.aseprite-970224171b9076da7275d6ae97806808.res"
+
+[deps]
+
+source_file="res://asesprite/alexstuff/assorted maybe important stuff plus portraits/possibleprojectile.aseprite"
+dest_files=["res://.godot/imported/possibleprojectile.aseprite-970224171b9076da7275d6ae97806808.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"
+animation/round_fps=true

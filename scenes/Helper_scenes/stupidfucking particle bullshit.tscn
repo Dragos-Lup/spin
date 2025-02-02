@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://rrymtvqke41p"]
+
+[ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="1_ydhys"]
+
+[sub_resource type="Gradient" id="Gradient_132ej"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5mvys"]
+gradient = SubResource("Gradient_132ej")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_irphy"]
+gradient = SubResource("Gradient_132ej")
+
+[sub_resource type="Curve" id="Curve_3xi45"]
+max_value = 3.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ppddp"]
+curve = SubResource("Curve_3xi45")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kfmuf"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 28.6
+angle_min = -271.4
+angle_max = 423.3
+inherit_velocity_ratio = 0.715
+direction = Vector3(0, -1, 0)
+spread = 35.336
+initial_velocity_min = 70.29
+initial_velocity_max = 70.29
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 33.87
+linear_accel_max = 33.87
+scale_over_velocity_max = 143.77
+scale_over_velocity_curve = SubResource("CurveTexture_ppddp")
+color_ramp = SubResource("GradientTexture1D_irphy")
+color_initial_ramp = SubResource("GradientTexture1D_5mvys")
+turbulence_noise_speed = Vector3(0, 17.865, 0)
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.118
+turbulence_influence_max = 0.118
+turbulence_initial_displacement_min = -100.0
+turbulence_initial_displacement_max = 100.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_kfmuf")
+texture = ExtResource("1_ydhys")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvaxmtk6tvf6q"]
+
+[ext_resource type="PackedScene" uid="uid://ba5t7qcjqpnl5" path="res://scenes/boss_parent.tscn" id="1_urhjp"]
+
+[node name="JesterLittleGuy" instance=ExtResource("1_urhjp")]
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "fade_in"
+
+[node name="AnimatedSprite2D" parent="." index="5"]
+self_modulate = Color(0.841497, 0, 0.213791, 1)
+
+[node name="HealthComponent" parent="." index="7"]
+isBoss = false
+isClone = true
