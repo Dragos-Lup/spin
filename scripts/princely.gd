@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+# THIS IS PRINCELY
+
 @onready var health_component: Node2D = $HealthComponent
 @onready var collision_shape: Node2D = $CollisionShape2D
 @onready var mc: Node2D = $MovementComponent
@@ -23,24 +25,16 @@ var is_dead: bool = false
 
 # var can_collide = [true, true, true, true] # The raycasts that can still collide
 
-var can_collide = [true, false, false, false] # The raycasts that can still collide
-var target: Vector2 = Vector2(940,530) #Where we're running into
+var target: Vector2 = MAP_CENTER #Where we're running into
 var encircleR: float = 0.0 #The radius we are encircling around currently
 var go: bool = false #dash when this is true
 var dash_target: Vector2 = Vector2.ZERO #Dash towards this guy
 var dashing: bool = false #are we currently dashing (for damage purposes)
 var last_vel: float = 0 #The last velocity (for damage purposes)
-var clone: bool = false #Whether or not this is a clone
-var father: Node #Father of this node
-var children_clones: int = 0 #How many children this dude got
-var children_list: Array[Node] #These are this dudes children
-
-var damage_till_clones: float = 0
 
 
 func _ready() -> void:
-	if !clone:
-		player = %MainSpinner
+	player = %MainSpinner
 		
 	setup()
 
@@ -71,18 +65,6 @@ func _physics_process(delta: float) -> void:
 			target = player.transform.origin #Our target is just the player origin
 		Move_State.CIRCLING:
 			target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
-			# follower.transform.origin = target #TODO: delete this later
-			for i in range(4):
-				if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
-					$Jestercharge.play()
-					can_collide[i] = false #Don't use the same raycast again
-					dash_target = ray_casts[i].get_collider().transform.origin #Save that player position for later
-					var vec = (dash_target - pos).normalized() * -1 #We want to go to the direction opposite of the player
-					target = vec * CIRCLE_DISTANCE + pos #Move slightly away from the player
-					set_linear_velocity(Vector2.ZERO) #Completely stop moving
-					curr_state = Move_State.LOCKED_ON #Now we're gonna be locked on, and waiting to dash
-					go = false #Make sure go is false (this actually does nothing technicaly)
-					DashTimer.start() #Start the dash timer to dash in a couple of seconds
 		Move_State.LOCKED_ON:
 			if go: #If its time to dash
 				go = false #Make sure go is false next time
@@ -124,16 +106,6 @@ func setup() -> void: #Sets up the movement controller
 	mc.set_mass(self.mass) 
 	mc.set_max_force(MAX_FORCE)
 
-func _on_un_targetting_timer_timeout() -> void:
-	#once the timer finishes, change our current state back to circling.
-	for x in can_collide:
-		if x:
-			curr_state = Move_State.CIRCLING
-			return
-	if !clone:
-		fading_out()
-	$JesterDashTrail.emitting = false
-
 func fading_out() -> void:
 	$AnimationPlayer.play("fade_out")
 	curr_state = Move_State.FADED
@@ -151,63 +123,9 @@ func is_dashing() -> bool:
 func calc_momentum() -> float:
 	return mass * last_vel
 
-#If this is a clone, this instead destroys the node
-func spawn_clones() -> void:
-	#Clones should differ very very slightly from parent
-	#Maybe a different animation speed?
-	if (!clone and !is_dead):
-		damage_till_clones += 8
-		# print(damage_till_clones)
-		var dist_from_center = 250
-		var n : int = 3
-		children_clones += n - 1
-		var main_num = randi_range(0,n-1)
-		for i in range(n):
-			if i == main_num:
-				self.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
-				self.curr_state = Move_State.CIRCLING
-				self.encircleR = 360 * (i/float(n))
-				can_collide = [true,true,true,true]
-				$AnimationPlayer.play("fade_in")
-			else:
-				var lguy = baby_boy.instantiate(2)
-				lguy.player = player
-				lguy.clone = true
-				lguy.curr_state = Move_State.CIRCLING
-
-				var name_guy = "littleguy" + str(i)
-				lguy.set_name(name_guy)
-				self.add_sibling(lguy)
-				lguy.father = self
-
-				lguy.health_component.max_health = 20
-				lguy.health_component.current_health = 20
-				children_list.append(lguy)
-				lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
-				lguy.encircleR = 360 * (i/float(n))
-				lguy.find_children("AnimationPlayer", "AnimationPlayer", false)[0].play("fade_in")
-	elif clone:
-		father.child_loss(self)
-		self.queue_free()
-	elif is_dead:
-		pass
-
-func child_loss(child: Node) -> void:
-	children_list.erase(child)
-	children_clones -= 1
-
-func kill_those_kids(d: int) -> void:
-	if (!clone and children_clones > 0):
-		damage_till_clones -= d
-		if (damage_till_clones <= 0):
-			# print("killing those kids")
-			damage_till_clones = 0
-			children_clones = 0
-			for c in children_list:
-				c.fading_out()
-
+func kill_those_kids(_x):
+	pass
 func die() -> void:
-	kill_those_kids(int(damage_till_clones))
 	curr_state = Move_State.IDLE
 	is_dead = true
 	$AnimationPlayer.play("die")

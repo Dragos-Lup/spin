@@ -1,8 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=38 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
-[ext_resource type="PackedScene" uid="uid://ba5t7qcjqpnl5" path="res://scenes/boss_parent.tscn" id="2_7thdg"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
@@ -126,6 +125,14 @@ physics_interpolation_mode = 1
 texture_filter = 1
 script = ExtResource("1_va4xm")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="spawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(929, 13)
+
 [node name="MainSpinner" parent="." instance=ExtResource("1_3mtgv")]
 unique_name_in_owner = true
 z_index = 5
@@ -134,9 +141,6 @@ position = Vector2(974, 632)
 [node name="Camera2D" type="Camera2D" parent="MainSpinner"]
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="Jester" parent="." instance=ExtResource("2_7thdg")]
-position = Vector2(930, 367)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -434,4 +438,5 @@ repeat_times = 2
 position = Vector2(198, 69.5)
 texture = ExtResource("30_3hmcg")
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

@@ -41,9 +41,6 @@ var damage_till_clones: float = 0
 
 
 func _ready() -> void:
-	if !clone:
-		player = %MainSpinner
-		
 	setup()
 
 
@@ -211,6 +208,7 @@ func kill_those_kids(d: int) -> void:
 
 func die() -> void:
 	kill_those_kids(int(damage_till_clones))
+	linear_velocity = Vector2.ZERO
 	curr_state = Move_State.IDLE
 	is_dead = true
 	$AnimationPlayer.play("die")

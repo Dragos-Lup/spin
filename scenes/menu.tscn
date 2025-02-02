@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bvm26wh34waub"]
+[gd_scene load_steps=23 format=3 uid="uid://bvm26wh34waub"]
 
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="1_4b7mc"]
 [ext_resource type="Script" path="res://scripts/buttons.gd" id="1_ioaic"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b6acwosmqtup3" path="res://scenes/menuring.png" id="17_5vmdg"]
 [ext_resource type="Texture2D" uid="uid://c6ypia71u3h16" path="res://asesprite/alexstuff/menustuff/jestersettingspicture.png" id="19_6vlih"]
 [ext_resource type="Texture2D" uid="uid://bp8aq6wbdm0tt" path="res://asesprite/alexstuff/menustuff/exitsprite.png" id="20_ufcrc"]
+[ext_resource type="Texture2D" uid="uid://iq1yt834fdvu" path="res://asesprite/menu/revozerologo.png" id="22_bakvd"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -198,6 +199,11 @@ visibility_layer = 2
 z_index = -1
 position = Vector2(61.1667, 6.5)
 texture = ExtResource("20_ufcrc")
+
+[node name="Revozerologo" type="Sprite2D" parent="."]
+position = Vector2(1318, 266)
+scale = Vector2(3, 3)
+texture = ExtResource("22_bakvd")
 
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]

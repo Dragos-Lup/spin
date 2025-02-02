@@ -184,8 +184,8 @@ stream_0/stream = ExtResource("7_03ikg")
 stream_1/stream = ExtResource("8_ly1kp")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yalp3"]
-radius = 43.0
-height = 138.0
+radius = 27.0
+height = 84.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3f07"]
 particles_animation = true
@@ -534,7 +534,9 @@ lock_rotation = true
 continuous_cd = 1
 linear_damp = 1.0
 script = ExtResource("2_s4v8x")
-MAX_FORCE = 7000.0
+MAX_FORCE = 3000.0
+CIRCLE_SPEED = 70.0
+CIRCLE_DISTANCE = 60.0
 
 [node name="Jesterlaugh" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_j716r")
