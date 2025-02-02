@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvm26wh34waub"]
+[gd_scene load_steps=25 format=3 uid="uid://bvm26wh34waub"]
 
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="1_4b7mc"]
 [ext_resource type="Script" path="res://scripts/buttons.gd" id="1_ioaic"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/window_handle.gd" id="9_xvr3i"]
 [ext_resource type="Texture2D" uid="uid://c42q10cgiihrn" path="res://asesprite/ericsprite/playgameplaceholder.png" id="10_ny245"]
 [ext_resource type="Texture2D" uid="uid://mv2vqj0lh7we" path="res://asesprite/alexstuff/menustuff/startbutton.png" id="11_drgf6"]
+[ext_resource type="Script" path="res://scenes/texture_button.gd" id="11_rl8md"]
 [ext_resource type="Texture2D" uid="uid://dc4iw5du02lm5" path="res://asesprite/alexstuff/menustuff/settingsbutton.png" id="14_357se"]
 [ext_resource type="Texture2D" uid="uid://ctlku08uplssv" path="res://asesprite/alexstuff/menustuff/exitbutton.png" id="15_84u3k"]
 [ext_resource type="Texture2D" uid="uid://b6acwosmqtup3" path="res://scenes/menuring.png" id="17_5vmdg"]
@@ -124,7 +125,7 @@ vertical = true
 [node name="TextureButton" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("9_bfnlt")
-script = ExtResource("1_ioaic")
+script = ExtResource("11_rl8md")
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer/TextureButton"]
 position = Vector2(41, 33)
@@ -137,12 +138,15 @@ stream = ExtResource("5_2f4ar")
 [node name="TextureButton2" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("9_bfnlt")
-script = ExtResource("1_ioaic")
+script = ExtResource("11_rl8md")
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer/TextureButton2"]
 position = Vector2(43, 37.5)
 texture = ExtResource("14_357se")
 script = ExtResource("5_3lolf")
+
+[node name="blip_sound" type="AudioStreamPlayer2D" parent="BoxContainer/TextureButton2"]
+stream = ExtResource("5_2f4ar")
 
 [node name="TextureButton3" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
@@ -153,6 +157,9 @@ script = ExtResource("1_ioaic")
 position = Vector2(42.5, 37)
 texture = ExtResource("15_84u3k")
 script = ExtResource("5_3lolf")
+
+[node name="blip_sound" type="AudioStreamPlayer2D" parent="BoxContainer/TextureButton3"]
+stream = ExtResource("5_2f4ar")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1371, 530)
@@ -237,4 +244,4 @@ layout_mode = 1
 [connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="mouse_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
-[connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3" method="_on_pressed"]

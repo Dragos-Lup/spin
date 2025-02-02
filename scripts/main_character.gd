@@ -201,6 +201,7 @@ func calc_momentum() -> float:
 func die() -> void:
 	is_dead = true
 	dashing = false
+	get_parent().play_death()
 	state_machine.travel("die") #This is the cool little animation that plays neato!
 
 

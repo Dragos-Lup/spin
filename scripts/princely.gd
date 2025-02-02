@@ -203,11 +203,17 @@ func is_dashing() -> bool:
 func calc_momentum() -> float:
 	return mass * last_vel
 
-func kill_those_kids(_x):
+var damage_taken = 40
+func kill_those_kids(x):
+	damage_taken -= x
+	if damage_taken <= 0:
+		get_parent().play_anim(1,"Stop!!! You’re scratching the gold off!! That’s going to cost a fortune to remold!")
 	pass
 
 func die() -> void:
 	curr_state = Move_State.DYING
+
+	get_parent().play_anim(1,"You- you obviously cheated! I'm out of here!")
 	is_dead = true
 	timer = 0
 	laser.visible = false
@@ -233,8 +239,12 @@ func rand_state() -> void:
 		curr_state = Move_State.SLICE
 	if i == 2:
 		curr_state = Move_State.CRAZY
+
+		get_parent().play_anim(0,"Heh! Good luck surviving this one!")
 		state_machine.travel("chains_out")
 		target = Vector2.ZERO
 
 func set_fiora() -> void:
+	get_parent().play_anim(2,"Wha- what???? that's- that's not possible!")
+	$Drill.play()
 	$WeakSpot.enable()

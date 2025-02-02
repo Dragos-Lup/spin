@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=44 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="14_iuwuf"]
 [ext_resource type="AudioStream" uid="uid://cctc5sg1usn08" path="res://sound_effects/smallexplosion.ogg" id="15_moihm"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_xus0f"]
+[ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_ddfms"]
 [ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_tj05g"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="20_mjgvj"]
 
@@ -423,6 +424,12 @@ texture = ExtResource("15_xus0f")
 lifetime = 1.5
 randomness = 0.02
 trail_lifetime = 0.69
+
+[node name="Drill" type="AudioStreamPlayer2D" parent="."]
+rotation = 0.827286
+scale = Vector2(1.5, 1.5)
+stream = ExtResource("19_ddfms")
+volume_db = -2.0
 
 [node name="WeakSpot" type="Area2D" parent="."]
 rotation = 0.827286

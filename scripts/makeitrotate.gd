@@ -28,3 +28,12 @@ func _on_texture_button_focus_exited() -> void:
 	spinning = false
 	print("Ohhh im unfocused")
 	print(rotatatronjr)
+
+
+
+func _on_texture_button_2_focus_exited() -> void:
+	pass # Replace with function body.
+
+func _on_texture_button_2_mouse_exited() -> void:
+	pass # Replace with function body.
+

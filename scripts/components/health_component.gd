@@ -15,7 +15,6 @@ func Damage(amount: int):
 		boss_health_bar.value = current_health #If this is a boss set the healthbar too
 		if isBoss:
 			get_parent().kill_those_kids(amount)
-			get_parent().profile_anim.laughing()
 	if isClone:
 		Die()
 	if current_health <= 0:
@@ -35,4 +34,3 @@ func Die():
 		get_parent().fading_out()
 	if isBoss:
 		get_parent().die()
-	#TODO: We need actual death to happen later.y

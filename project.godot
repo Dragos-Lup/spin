@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Spin"
 config/version="0.0.1"
-run/main_scene="res://scenes/testing_scene.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://sprites/menu/gobgames.png"

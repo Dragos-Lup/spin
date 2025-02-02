@@ -160,6 +160,8 @@ func calc_momentum() -> float:
 
 #If this is a clone, this instead destroys the node
 func spawn_clones() -> void:
+	
+	get_parent().play_anim(0,"Spin and spin, split to three, I have 2 twins, which one is me?!")
 	#Clones should differ very very slightly from parent
 	#Maybe a different animation speed?
 	if (!clone and !is_dead):
@@ -209,6 +211,8 @@ func kill_those_kids(d: int) -> void:
 		damage_till_clones -= d
 		if (damage_till_clones <= 0):
 			# print("killing those kids")
+
+			get_parent().play_anim(1,"MY CLONES!!!! NOOOO!!!!")
 			damage_till_clones = 0
 			children_clones = 0
 			for c in children_list:
@@ -216,6 +220,8 @@ func kill_those_kids(d: int) -> void:
 
 func die() -> void:
 	kill_those_kids(int(damage_till_clones))
+
+	get_parent().play_anim(1,"NOOOOOO THE JOKES ON ME!!!!!")
 	linear_velocity = Vector2.ZERO
 	curr_state = Move_State.IDLE
 	is_dead = true
@@ -228,4 +234,6 @@ func fight_done() -> void:
 	self.queue_free()
 
 func set_fiora() -> void:
+	get_parent().play_anim(2,"wait what.")
+	$Drill.play()
 	$WeakSpot.enable()

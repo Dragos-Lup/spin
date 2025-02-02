@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://hjpl2fkxarlu"]
+[gd_scene load_steps=79 format=3 uid="uid://hjpl2fkxarlu"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
 [ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://byavkxtngjkd0" path="res://scenes/sapphirespinner.png" id="15_ag1h6"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_j8suu"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="19_41xkb"]
+[ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_admal"]
 [ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_qchbr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1ytd"]
@@ -909,7 +910,7 @@ shape = SubResource("CapsuleShape2D_yalp3")
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_uptin")]
 max_health = 100
-current_health = 100
+current_health = 1
 isBoss = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("11_6ecof")]
@@ -1005,6 +1006,12 @@ texture = ExtResource("15_j8suu")
 lifetime = 1.5
 randomness = 0.02
 trail_lifetime = 0.69
+
+[node name="Drill" type="AudioStreamPlayer2D" parent="."]
+rotation = 1.65457
+scale = Vector2(1.5, 1.5)
+stream = ExtResource("19_admal")
+volume_db = -2.0
 
 [node name="WeakSpot" type="Area2D" parent="."]
 rotation = 0.827286
