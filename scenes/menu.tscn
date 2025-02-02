@@ -225,12 +225,12 @@ autoplay = true
 playback_type = 1
 
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="mouse_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="mouse_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="mouse_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="mouse_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="." method="_on_start_button"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]

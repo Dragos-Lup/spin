@@ -899,7 +899,7 @@ shape = SubResource("CapsuleShape2D_yalp3")
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_uptin")]
 max_health = 100
-current_health = 1
+current_health = 100
 isBoss = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("11_6ecof")]
