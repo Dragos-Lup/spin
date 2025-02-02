@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvm26wh34waub"]
+[gd_scene load_steps=24 format=3 uid="uid://bvm26wh34waub"]
 
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="1_4b7mc"]
 [ext_resource type="Script" path="res://scripts/buttons.gd" id="1_ioaic"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ypia71u3h16" path="res://asesprite/alexstuff/menustuff/jestersettingspicture.png" id="19_6vlih"]
 [ext_resource type="Texture2D" uid="uid://bp8aq6wbdm0tt" path="res://asesprite/alexstuff/menustuff/exitsprite.png" id="20_ufcrc"]
 [ext_resource type="Texture2D" uid="uid://iq1yt834fdvu" path="res://asesprite/menu/revozerologo.png" id="22_bakvd"]
+[ext_resource type="PackedScene" uid="uid://cgye685ugtv8o" path="res://scenes/settings.tscn" id="23_1c7rx"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -205,19 +206,35 @@ position = Vector2(1067, 243)
 scale = Vector2(3, 3)
 texture = ExtResource("22_bakvd")
 
+[node name="Settings" parent="." instance=ExtResource("23_1c7rx")]
+visible = false
+layout_mode = 1
+
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
+[connection signal="mouse_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="." method="_on_start_button"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
-[connection signal="pressed" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
+[connection signal="mouse_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
+[connection signal="pressed" from="BoxContainer/TextureButton2" to="Settings" method="_on_pause_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
+[connection signal="mouse_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
+[connection signal="mouse_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]

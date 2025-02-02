@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgye685ugtv8o"]
+
+[ext_resource type="Script" path="res://scenes/settings.gd" id="1_nt1ml"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt1ml")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 169.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 2089.0
+offset_bottom = 1230.0
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "VOLUME"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+min_value = -50.0
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "MUTE
+"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 14.35
+text = "CLOSE SETTINGS
+"
+
+[node name="Button2" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 14.35
+text = "EXIT GAME
+"
+
+[connection signal="value_changed" from="MarginContainer/Panel/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/Panel/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
