@@ -4,6 +4,8 @@ enum main_state {IDLE, JESTER, CHILD}
 
 var curr_state = main_state.JESTER
 
+@export var jester : Node2D
+@export var princely : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=39 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://1faxpom4n52e" path="res://asesprite/ui/uiIguess/bosshealthbar.png" id="8_vsrbp"]
 [ext_resource type="Texture2D" uid="uid://bp0vydqc0x83d" path="res://asesprite/ui/uiIguess/healthwheel.png" id="9_8ytct"]
 [ext_resource type="Texture2D" uid="uid://bt2viatmbjlig" path="res://sprites/placeholder/arenaringsprite.png" id="9_vdwi0"]
-[ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
 [ext_resource type="Texture2D" uid="uid://dqgdiee6c7k24" path="res://asesprite/ui/uiIguess/circle.png" id="10_bnlji"]
 [ext_resource type="Texture2D" uid="uid://cfmedl4fjj4gm" path="res://asesprite/alexstuff/whirly_portraits/jester_hurt.png" id="14_0nsa1"]
 [ext_resource type="Texture2D" uid="uid://bea1i4t5pqx5d" path="res://asesprite/alexstuff/whirly_portraits/jester_nervous.png" id="15_esjbj"]
@@ -30,28 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://dewbdxhcvc0df" path="res://asesprite/ericsprite/spaceattempt/Layer 3.png" id="28_yq3gt"]
 [ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="29_u54hr"]
 [ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="30_3hmcg"]
-
-[sub_resource type="Gradient" id="Gradient_2rmmc"]
-offsets = PackedFloat32Array(0, 0.233051, 0.758475, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.624763, 0.0231992, 0.806195, 1, 0.569536, 0.0847949, 0.819791, 1, 0, 0.72, 0.96, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksdui"]
-gradient = SubResource("Gradient_2rmmc")
-width = 75
-height = 527
-fill_from = Vector2(0.531933, 0.770452)
-fill_to = Vector2(0.531933, 0)
-
-[sub_resource type="Gradient" id="Gradient_34ivc"]
-offsets = PackedFloat32Array(0.0805085, 1)
-colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.781876, 7.72017e-05, 0.628406, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
-gradient = SubResource("Gradient_34ivc")
-width = 1159
-fill_from = Vector2(0.617816, 1)
-fill_to = Vector2(0.478, 0)
 
 [sub_resource type="Animation" id="Animation_mlb3w"]
 length = 0.001
@@ -122,6 +99,28 @@ _data = {
 [sub_resource type="Theme" id="Theme_jmp54"]
 default_font_size = 50
 
+[sub_resource type="Gradient" id="Gradient_2rmmc"]
+offsets = PackedFloat32Array(0, 0.233051, 0.758475, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.624763, 0.0231992, 0.806195, 1, 0.569536, 0.0847949, 0.819791, 1, 0, 0.72, 0.96, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksdui"]
+gradient = SubResource("Gradient_2rmmc")
+width = 75
+height = 527
+fill_from = Vector2(0.531933, 0.770452)
+fill_to = Vector2(0.531933, 0)
+
+[sub_resource type="Gradient" id="Gradient_34ivc"]
+offsets = PackedFloat32Array(0.0805085, 1)
+colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.781876, 7.72017e-05, 0.628406, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
+gradient = SubResource("Gradient_34ivc")
+width = 1159
+fill_from = Vector2(0.617816, 1)
+fill_to = Vector2(0.478, 0)
+
 [node name="World" type="Node2D"]
 physics_interpolation_mode = 1
 texture_filter = 1
@@ -140,82 +139,6 @@ position_smoothing_enabled = true
 position = Vector2(930, 367)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 39.0
-offset_top = -606.0
-offset_right = 217.0
-offset_bottom = -18.0
-grow_vertical = 0
-theme = ExtResource("4_qxpu4")
-value = 100.0
-allow_greater = true
-fill_mode = 3
-texture_under = ExtResource("5_p4nwr")
-texture_over = ExtResource("5_p4nwr")
-texture_progress = ExtResource("6_7phrs")
-script = ExtResource("4_ngjhq")
-
-[node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 118.0
-offset_top = -605.0
-offset_right = 296.0
-offset_bottom = -17.0
-grow_vertical = 0
-theme = ExtResource("4_qxpu4")
-allow_greater = true
-fill_mode = 3
-texture_over = ExtResource("8_kxoa4")
-texture_progress = SubResource("GradientTexture2D_ksdui")
-script = ExtResource("4_ngjhq")
-
-[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -691.0
-offset_top = 28.0
-offset_right = 679.0
-offset_bottom = 113.0
-grow_horizontal = 2
-value = 100.0
-texture_over = ExtResource("8_vsrbp")
-texture_progress = SubResource("GradientTexture2D_rhig8")
-texture_progress_offset = Vector2(66.75, 11.365)
-
-[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -372.0
-offset_top = -227.0
-offset_right = -34.0
-offset_bottom = -25.0
-grow_horizontal = 0
-grow_vertical = 0
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 90.0
-radial_fill_degrees = 315.5
-texture_over = ExtResource("9_8ytct")
-texture_progress = ExtResource("10_bnlji")
-tint_progress = Color(1.90116e-06, 0.509856, 0.0459657, 1)
 
 [node name="ProfileAnimator" type="AnimationPlayer" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -306,6 +229,92 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "Retry?"
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 434.0
+offset_right = 217.0
+offset_bottom = 1022.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+value = 100.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("5_p4nwr")
+texture_over = ExtResource("5_p4nwr")
+texture_progress = ExtResource("6_7phrs")
+script = ExtResource("4_ngjhq")
+
+[node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = 435.0
+offset_right = 296.0
+offset_bottom = 1023.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+allow_greater = true
+fill_mode = 3
+texture_over = ExtResource("8_kxoa4")
+texture_progress = SubResource("GradientTexture2D_ksdui")
+script = ExtResource("4_ngjhq")
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 249.0
+offset_top = 28.0
+offset_right = 1619.0
+offset_bottom = 113.0
+grow_horizontal = 2
+value = 100.0
+texture_over = ExtResource("8_vsrbp")
+texture_progress = SubResource("GradientTexture2D_rhig8")
+texture_progress_offset = Vector2(66.75, 11.365)
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1508.0
+offset_top = 813.0
+offset_right = 1846.0
+offset_bottom = 1015.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 90.0
+radial_fill_degrees = 315.5
+texture_over = ExtResource("9_8ytct")
+texture_progress = ExtResource("10_bnlji")
+tint_progress = Color(1.90116e-06, 0.509856, 0.0459657, 1)
+
 [node name="Arena" type="StaticBody2D" parent="."]
 position = Vector2(946, 577)
 collision_layer = 4
@@ -340,19 +349,6 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://asesprite/alexstuff/arenaringsprite.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "96e3e0f2f92f3c8ec43e42ed5fbba848"
-
-[node name="follower" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(826, 548)
-scale = Vector2(0.106918, 0.0957838)
-texture = ExtResource("9_wtd35")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="menutheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoumr")
