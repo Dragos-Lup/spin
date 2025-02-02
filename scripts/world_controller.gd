@@ -26,7 +26,11 @@ func princely_died() -> void:
 	print("princely died")
 	start_jester()
 
+func princely_lost() -> void:
+	%music_controller.play("fade_out")
+
 func start_jester() -> void:
+	$bossrushphase2.play()
 	var j :Node2D= jester.instantiate()
 	add_child(j)
 	j.position = %spawn.position
@@ -35,6 +39,7 @@ func start_jester() -> void:
 	j.set_profile_animator(%ProfileAnimator)
 	
 func start_princely() -> void:
+	$bossrushphase1.play()
 	var p :Node2D= princely.instantiate()
 	add_child(p)
 	p.position = %spawn.position

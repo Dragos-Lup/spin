@@ -42,13 +42,13 @@ var laser_target: Vector2 = Vector2.ZERO
 
 var timer: float = 0
 
-var circle_timer : float = 2
+var circle_timer : float = 3
 var laser_timer : float = 2
 var max_lasers = 3
 
 var laser_count = max_lasers
 
-var max_dashes = 3
+var max_dashes = 2
 var dash_count = max_dashes
 
 var max_slices = 4
@@ -96,12 +96,8 @@ func _physics_process(delta: float) -> void:
 			if timer >= circle_timer:
 				
 				timer-= circle_timer
-				if slice_next:
-					rand_state()
-					slice_next = false
-				else:
-					switch_laser()
-					slice_next = true
+				switch_laser()
+
 		Move_State.LASER:
 			target = mc.get_encircle(player.transform.origin, encircleR, 250) #Target the mc's surrounding to circle them
 			laser.remove_point(1)
@@ -109,6 +105,7 @@ func _physics_process(delta: float) -> void:
 			var p = (laser_target - self.position)
 			laser.add_point(p)
 			if timer >= laser_timer:
+				$LaserPew.play()
 				laser_count -= 1
 				timer -= laser_timer
 				var fw : Node2D = flame_wave.instantiate()
@@ -126,6 +123,7 @@ func _physics_process(delta: float) -> void:
 		Move_State.CRAZY:
 			if timer >= 2:
 				timer -= 2
+				$MetalSwish.play()
 				TargetTimer.start()
 				dashing = true
 				apply_impulse((player.position - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
@@ -139,6 +137,7 @@ func _physics_process(delta: float) -> void:
 			target = mc.get_encircle(player.transform.origin, encircleR, 100) #Target the mc's surrounding to circle them
 			if timer >= 2:
 				timer -= 2
+				$IMGONNACRASH.play()
 				$sword_slice.rotation = self.position.angle_to_point(player.position)
 				state_machine.travel("sword_slice")
 				slice_count -= 1
@@ -158,8 +157,6 @@ func _physics_process(delta: float) -> void:
 				apply_impulse((dash_target - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
 				dashing = true
 
-				$Jesterlaugh.play()
-				$Jestersparkle.play()
 				$Jestercharge.stop()
 				$JesterWoosh.play()
 			else:
@@ -215,6 +212,8 @@ func die() -> void:
 	laser.visible = false
 	linear_velocity = Vector2(0,0)
 	state_machine.travel("die")
+	get_parent().princely_lost()
+	
 
 func fight_done() -> void:
 	get_parent().princely_died()
@@ -224,6 +223,7 @@ func switch_laser() -> void:
 	curr_state = Move_State.LASER
 	laser.visible = true
 	print("hello?")
+	$LaserLock.play()
 
 func rand_state() -> void:
 	var i = randi_range(0,2)

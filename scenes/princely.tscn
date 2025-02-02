@@ -1,15 +1,13 @@
-[gd_scene load_steps=78 format=3 uid="uid://hjpl2fkxarlu"]
+[gd_scene load_steps=76 format=3 uid="uid://hjpl2fkxarlu"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
 [ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
-[ext_resource type="AudioStream" uid="uid://c78cny74edbqb" path="res://sound_effects/JesterVoice/laugh2.ogg" id="3_f7l3r"]
-[ext_resource type="AudioStream" uid="uid://c17uixcmuqil0" path="res://sound_effects/JesterVoice/laugh3.ogg" id="4_h81mb"]
 [ext_resource type="Script" path="res://scenes/sword.gd" id="5_0hm2k"]
-[ext_resource type="AudioStream" uid="uid://d2dkwnmoostis" path="res://sound_effects/JesterVoice/jestercharge.ogg" id="5_akhrl"]
 [ext_resource type="Texture2D" uid="uid://c8q1w4pmja2dj" path="res://scenes/sapphirespinnersword.png" id="5_v7rd0"]
-[ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_csual"]
-[ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="7_03ikg"]
-[ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="8_ly1kp"]
+[ext_resource type="AudioStream" uid="uid://d25kdwqx70thf" path="res://sound_effects/princely/emergencyprincleysounds/laserlockon.wav" id="6_e0a6y"]
+[ext_resource type="AudioStream" uid="uid://dto61keghasyp" path="res://sound_effects/princely/emergencyprincleysounds/lazerpew.wav" id="7_kn30c"]
+[ext_resource type="AudioStream" uid="uid://dpe860v6w3v2q" path="res://sound_effects/princely/emergencyprincleysounds/IMGONNACRASHOOOUT.wav" id="8_f5ber"]
+[ext_resource type="AudioStream" uid="uid://dnwqucplklk5q" path="res://sound_effects/princely/emergencyprincleysounds/metal_swish.wav" id="9_v73jo"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="10_uptin"]
 [ext_resource type="PackedScene" uid="uid://dygeouv8mk1x6" path="res://scenes/components/movement_component.tscn" id="11_6ecof"]
 [ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://asesprite/othersprites/explosion_no_background.png" id="12_2jq5q"]
@@ -352,22 +350,6 @@ states/sword_slice/position = Vector2(521, -75.1429)
 transitions = ["Start", "norm", SubResource("AnimationNodeStateMachineTransition_b55rr"), "norm", "chains_out", SubResource("AnimationNodeStateMachineTransition_e1rk5"), "chains_out", "chains_norm", SubResource("AnimationNodeStateMachineTransition_7wfek"), "chains_norm", "norm", SubResource("AnimationNodeStateMachineTransition_jul1d"), "norm", "sword_slice", SubResource("AnimationNodeStateMachineTransition_5ufm7"), "sword_slice", "norm", SubResource("AnimationNodeStateMachineTransition_r5a0b"), "norm", "die", SubResource("AnimationNodeStateMachineTransition_ven04"), "sword_slice", "die", SubResource("AnimationNodeStateMachineTransition_aqc7r"), "chains_norm", "die", SubResource("AnimationNodeStateMachineTransition_n1lp1"), "chains_out", "die", SubResource("AnimationNodeStateMachineTransition_hrujs")]
 graph_offset = Vector2(77, -144)
 
-[sub_resource type="Animation" id="Animation_265gc"]
-resource_name = "chains_out"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0605),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"chainstart"]
-}
-
 [sub_resource type="Animation" id="Animation_jdhju"]
 length = 2.0
 tracks/0/type = "value"
@@ -485,25 +467,10 @@ tracks/9/path = NodePath("big_explosion/bigexplode_SE:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_6o2xj"]
-resource_name = "norm"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"normalspin"]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_h7qfg"]
@@ -521,68 +488,20 @@ tracks/0/keys = {
 "values": [&"Chainsawspin"]
 }
 
-[sub_resource type="Animation" id="Animation_0c7u4"]
-resource_name = "sword"
-length = 1.12
+[sub_resource type="Animation" id="Animation_265gc"]
+resource_name = "chains_out"
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword_slice:frame")
-tracks/0/interp = 0
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.0605),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sword_slice/Area2D/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.266667, 0.733333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sword_slice/Area2D/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-5.5, -41.5), Vector2(8.5, -39), Vector2(24.5, -41.5), Vector2(48, -39), Vector2(52.5, 19.5), Vector2(11.5, 38.5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("sword_slice/Area2D/CollisionShape2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [-0.818866, -1.14266, -0.313036, 0.735681, 2.20956, 2.9087, 3.47279]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("sword_slice/Area2D/CollisionShape2D:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n")]
+"values": [&"chainstart"]
 }
 
 [sub_resource type="Animation" id="Animation_pv6q2"]
@@ -662,6 +581,85 @@ tracks/5/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_6o2xj"]
+resource_name = "norm"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"normalspin"]
+}
+
+[sub_resource type="Animation" id="Animation_0c7u4"]
+resource_name = "sword"
+length = 1.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sword_slice:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sword_slice/Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sword_slice/Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.5, -41.5), Vector2(8.5, -39), Vector2(24.5, -41.5), Vector2(48, -39), Vector2(52.5, 19.5), Vector2(11.5, 38.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sword_slice/Area2D/CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.818866, -1.14266, -0.313036, 0.735681, 2.20956, 2.9087, 3.47279]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sword_slice/Area2D/CollisionShape2D:shape")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.533333, 0.6, 0.7, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n"), SubResource("CapsuleShape2D_su43n")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eujig"]
 _data = {
 "RESET": SubResource("Animation_jdhju"),
@@ -672,27 +670,25 @@ _data = {
 "sword_slice": SubResource("Animation_0c7u4")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ivwym"]
 random_pitch = 1.1
-streams_count = 2
-stream_0/stream = ExtResource("3_f7l3r")
-stream_1/stream = ExtResource("4_h81mb")
+streams_count = 1
+stream_0/stream = ExtResource("6_e0a6y")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mwgt"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kmxe8"]
 random_pitch = 1.4
 streams_count = 1
-stream_0/stream = ExtResource("5_akhrl")
+stream_0/stream = ExtResource("7_kn30c")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j27fs"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bi3q8"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("6_csual")
+stream_0/stream = ExtResource("8_f5ber")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mps2w"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gkun4"]
 random_pitch = 1.14
-streams_count = 2
-stream_0/stream = ExtResource("7_03ikg")
-stream_1/stream = ExtResource("8_ly1kp")
+streams_count = 1
+stream_0/stream = ExtResource("9_v73jo")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yalp3"]
 radius = 27.0
@@ -825,7 +821,6 @@ CIRCLE_SPEED = 70.0
 CIRCLE_DISTANCE = 60.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_aobbo")
 animation = &"normalspin"
@@ -893,28 +888,26 @@ libraries = {
 }
 autoplay = "norm"
 
-[node name="Jesterlaugh" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_j716r")
+[node name="LaserLock" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ivwym")
 
-[node name="Jestercharge" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_7mwgt")
+[node name="LaserPew" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kmxe8")
 
-[node name="JesterWoosh" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = SubResource("AudioStreamRandomizer_j27fs")
+[node name="IMGONNACRASH" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bi3q8")
 
-[node name="Jestersparkle" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_mps2w")
+[node name="MetalSwish" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gkun4")
 volume_db = -10.895
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yalp3")
-disabled = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_uptin")]
 max_health = 100
-current_health = 100
+current_health = 1
 isBoss = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("11_6ecof")]

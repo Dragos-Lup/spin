@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cotlpgucmbbhy"]
+[gd_scene load_steps=67 format=3 uid="uid://cotlpgucmbbhy"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_q0jrw"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://b470m7vxv25oi" path="res://sound_effects/dash.ogg" id="6_icwvi"]
 [ext_resource type="AudioStream" uid="uid://cq3im8xl3mlt2" path="res://sound_effects/hitland.ogg" id="7_63jd1"]
 [ext_resource type="AudioStream" uid="uid://dl20dfxu1n1q7" path="res://sound_effects/spinning.ogg" id="7_oqu8g"]
+[ext_resource type="AudioStream" uid="uid://bi6tdu1gy3jyo" path="res://sound_effects/princely/sparkle.wav" id="8_5t4ic"]
 [ext_resource type="AudioStream" uid="uid://wokre5lh5tu2" path="res://sound_effects/charliespinner/ouch_03.wav" id="8_cspgv"]
 [ext_resource type="AudioStream" uid="uid://c7857aag6aepi" path="res://sound_effects/charliespinner/ouch_05.wav" id="9_2i7x1"]
 [ext_resource type="AudioStream" uid="uid://dxr5b7kqdop6f" path="res://sound_effects/charliespinner/ouch_07.wav" id="10_re6f7"]
@@ -363,6 +364,11 @@ streams_count = 2
 stream_0/stream = ExtResource("4_qn757")
 stream_1/stream = ExtResource("5_g1lp1")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wbm8i"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_5t4ic")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1oxy7"]
 random_pitch = 1.3
 streams_count = 1
@@ -468,10 +474,11 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 30
+emitting = false
+amount = 40
 process_material = SubResource("ParticleProcessMaterial_2lcra")
 texture = ExtResource("2_ygpbf")
-lifetime = 3.0
+lifetime = 4.0
 trail_lifetime = 1.32
 
 [node name="Clash_SE" type="AudioStreamPlayer2D" parent="."]
@@ -479,6 +486,9 @@ stream = SubResource("AudioStreamRandomizer_yhso0")
 volume_db = -5.295
 max_polyphony = 3
 playback_type = 2
+
+[node name="Sparkle" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_wbm8i")
 
 [node name="Hit_SE" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1oxy7")

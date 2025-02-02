@@ -22,6 +22,8 @@ var is_dead = false
 #Whether or not the player is dashing (for damage purposes)
 var dashing = false
 
+var is_encircle = false
+
 var last_vel : float = 0
 
 # Holds the encircle shape
@@ -57,6 +59,16 @@ func _physics_process(_delta: float) -> void:
 		vel_difference = (target_vel * DASH_SLOW - linear_velocity) #Slows the player down by "DASH_SLOW" amount
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
 		charge_bar.value = (chargetime/DASH_MAXTIME) * 100
+	if Input.is_action_just_pressed("encircle"):
+		is_encircle = true
+		$GPUParticles2D.emitting = true
+		pass
+	if Input.is_action_just_released("encircle"):
+		if is_encircle:
+			is_encircle = false	
+			$GPUParticles2D.restart()
+			$GPUParticles2D.emitting = false
+			move_array = PackedVector2Array()
 	if Input.is_action_just_released("dash"):
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
 		charge_bar.value = 0
@@ -87,9 +99,11 @@ func set_healthbar(node : TextureProgressBar):
 # Honestly bro ignore this shit
 # Fundamentally, tracks player positioning and checks for "encircling"
 func _on_location_timer_timeout() -> void:
+	if !is_encircle:
+		return
 	var p : Vector2 = self.position
 	move_array.append(p)
-	if (move_array.size() > 30):
+	if (move_array.size() > 40):
 		move_array.remove_at(0)
 	if (move_array.size() > 3):
 		var A = move_array[move_array.size() - 1]
@@ -99,8 +113,12 @@ func _on_location_timer_timeout() -> void:
 				var new_polygon = Encircle.instantiate()
 				
 				new_polygon.set_polygon(move_array.slice(i+1,-1))
-				new_polygon.set_color(Color(1,0,0,.5))
+				new_polygon.set_color(Color(1,0,0,0))
 				get_tree().root.add_child(new_polygon)
+				$Sparkle.play()
+				$GPUParticles2D.emitting = false
+				$GPUParticles2D.restart()
+				move_array = PackedVector2Array()
 				break
 
 #Whenever a body touches our boy this goes
