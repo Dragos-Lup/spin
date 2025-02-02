@@ -247,6 +247,8 @@ stream_1/stream = ExtResource("15_moihm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1l77"]
 particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(70, 90, 1)
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = -2.23517e-06
 tangential_accel_max = -2.23517e-06
@@ -403,11 +405,12 @@ max_polyphony = 2
 [node name="big_explosion" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
-amount = 1
+amount = 11
 process_material = SubResource("ParticleProcessMaterial_f1l77")
 texture = ExtResource("11_sl5ug")
 one_shot = true
 speed_scale = 0.9
+explosiveness = 1.0
 
 [node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
 stream = SubResource("AudioStreamRandomizer_8in6e")
