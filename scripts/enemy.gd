@@ -58,9 +58,9 @@ func _physics_process(delta: float) -> void:
 	var pos = self.transform.origin
 	if curr_state == Move_State.DYING:
 		timer += delta
-		if timer > (1.0/17.0):
+		if timer > (1.0/2.0):
 			%explode_SE.play()
-			timer -= (1.0/17.0)
+			timer -= (1.0/2.0)
 
 	if is_dead:
 		return
