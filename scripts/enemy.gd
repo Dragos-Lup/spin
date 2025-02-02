@@ -98,7 +98,11 @@ func _physics_process(delta: float) -> void:
 
 				apply_impulse((dash_target - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
 				dashing = true
+				
 
+				$LightningDash.set_rotation(get_angle_to(dash_target) - deg_to_rad(90))
+				$LightningDash.set_emitting(true)
+				$LightningDash.restart()
 				$Jesterlaugh.play()
 				$Jestersparkle.play()
 				$Jestercharge.stop()

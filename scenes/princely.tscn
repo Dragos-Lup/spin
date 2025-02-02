@@ -1075,6 +1075,7 @@ script = ExtResource("19_qchbr")
 polygon = PackedVector2Array(-30, -45, -43, -33, -46, -16, -40.5479, -4.56779, -1, 0, -0.0164566, -42.5441, -8, -45)
 
 [node name="Sprite2D" type="Sprite2D" parent="WeakSpot"]
+self_modulate = Color(1, 0.231373, 0.231373, 1)
 texture_filter = 1
 texture = ExtResource("19_41xkb")
 offset = Vector2(0, -23)

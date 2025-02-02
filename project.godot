@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://sprites/menu/gobgames.png"
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+config/icon="res://sprites/icon2.png"
 boot_splash/minimum_display_time=2000
 
 [aseprite]

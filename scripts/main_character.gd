@@ -145,23 +145,23 @@ func _on_body_entered(body: Node2D) -> void:
 		var e_m = body.calc_momentum()
 		if (!dashing and !e_dash) or (dashing and e_dash):
 			if p_m - e_m > MOMENTUM_DIFF:
-				body.health_component.Damage(3)
+				body.health_component.Damage(2)
 				#print("Enem damage small")
 			elif e_m - p_m > MOMENTUM_DIFF:
-				self.health_component.Damage(3)
+				self.health_component.Damage(2)
 				#print("player damaged small")
 			else:
 				print("nothing change")
 		elif dashing:
-			body.health_component.Damage(10)
+			body.health_component.Damage(5)
 			#print("Enemy damage biggggggggg")
 		elif e_dash:
-			self.health_component.Damage(10)
+			self.health_component.Damage(5)
+
 			#print("player damage bigggggggggg")
 		$Hit_SE.play()
 		$hitsparks.emitting=true
 		$hitsparks.restart()
-		$Spinnerouch_SE.play()
 
 		#$DampTimer.start()
 		#linear_damp = 20
@@ -209,3 +209,6 @@ func bringUpMenu() -> void:
 	$deathsound.play()
 	%ProfileAnimator.play_player_death()
 	get_parent().player_dead = true
+
+func took_damage() -> void:
+	$Spinnerouch_SE.play()

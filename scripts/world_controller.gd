@@ -34,6 +34,7 @@ func princely_lost() -> void:
 func start_jester() -> void:
 	$bossrushphase2.play()
 	%ProfileAnimator.boss = 1
+	%ProfileAnimator.switch_icon()
 	%ProfileAnimator.play_anim(3, "Your lame parlor tricks could never compare to my carnival spectacles!!")
 	var j :Node2D= jester.instantiate()
 	add_child(j)
@@ -44,6 +45,7 @@ func start_jester() -> void:
 	
 func start_princely() -> void:
 	%ProfileAnimator.boss = 0
+	%ProfileAnimator.switch_icon()
 	%ProfileAnimator.play_anim(3, "Your Revo could never topple mine!")
 	$bossrushphase1.play()
 	var p :Node2D= princely.instantiate()
