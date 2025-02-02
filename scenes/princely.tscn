@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://hjpl2fkxarlu"]
+[gd_scene load_steps=80 format=3 uid="uid://hjpl2fkxarlu"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
 [ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
@@ -463,18 +463,6 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("big_explosion/bigexplode_SE:playing")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_h7qfg"]
 resource_name = "chains_norm"
@@ -552,33 +540,24 @@ tracks/3/path = NodePath("big_explosion:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(4.33333, 4.63333),
+"times": PackedFloat32Array(4.33333, 4.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("big_explosion/bigexplode_SE:playing")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(4.56667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(6.73333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(4.3, 6.73333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"big_explode"
+}, {
 "args": [],
 "method": &"fight_done"
 }]
@@ -761,7 +740,7 @@ hue_variation_max = 0.03
 anim_speed_min = 1.0
 anim_speed_max = 1.1
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8in6e"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k32d7"]
 playback_mode = 1
 random_pitch = 1.07
 streams_count = 1
@@ -777,6 +756,12 @@ hue_variation_max = -2.23517e-08
 anim_speed_min = 1.16
 anim_speed_max = 1.2
 turbulence_noise_strength = 2.49
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8in6e"]
+playback_mode = 1
+random_pitch = 1.07
+streams_count = 1
+stream_0/stream = ExtResource("14_5cbwx")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4f4il"]
 particles_animation = true
@@ -976,8 +961,8 @@ script = ExtResource("13_3qpdo")
 
 [node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
 unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_8in6e")
-volume_db = -3.05
+stream = SubResource("AudioStreamRandomizer_k32d7")
+volume_db = -2.0
 max_polyphony = 2
 
 [node name="big_explosion" type="GPUParticles2D" parent="."]
@@ -990,8 +975,9 @@ one_shot = true
 speed_scale = 0.9
 
 [node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_8in6e")
-volume_db = 0.384
+volume_db = -2.0
 max_polyphony = 2
 
 [node name="JesterDashTrail" type="GPUParticles2D" parent="."]

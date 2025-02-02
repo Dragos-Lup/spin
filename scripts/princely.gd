@@ -248,3 +248,7 @@ func set_fiora() -> void:
 	get_parent().play_anim(2,"Wha- what???? that's- that's not possible!")
 	$Drill.play()
 	$WeakSpot.enable()
+
+func big_explode() -> void:
+	curr_state = Move_State.FADED
+	%bigexplode_SE.play()
