@@ -179,7 +179,7 @@ func spawn_clones() -> void:
 				can_collide = [true,true,true,true]
 				$AnimationPlayer.play("fade_in")
 			else:
-				var lguy = baby_boy.instantiate(2)
+				var lguy = baby_boy.instantiate()
 				lguy.player = player
 				lguy.clone = true
 				lguy.curr_state = Move_State.CIRCLING

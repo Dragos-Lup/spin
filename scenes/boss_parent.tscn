@@ -315,7 +315,6 @@ libraries = {
 }
 
 [node name="JesterWoosh" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = SubResource("AudioStreamRandomizer_j27fs")
 
 [node name="Jestersparkle" type="AudioStreamPlayer2D" parent="."]

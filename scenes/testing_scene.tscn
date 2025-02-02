@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dewbdxhcvc0df" path="res://asesprite/ericsprite/spaceattempt/Layer 3.png" id="28_yq3gt"]
 [ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="29_u54hr"]
 [ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="30_3hmcg"]
-[ext_resource type="Texture2D" uid="uid://bcmpjl2ir2xqc" path="res://asesprite/alexstuff/arenastuff/astralaudience1.png" id="31_d77rl"]
+[ext_resource type="Texture2D" uid="uid://co6piivte7m5p" path="res://asesprite/alexstuff/arenastuff/astralaudience1.png" id="31_d77rl"]
 [ext_resource type="Texture2D" uid="uid://ddh47xfwd2evw" path="res://asesprite/alexstuff/arenastuff/astralaudience2.png" id="32_1oufa"]
 [ext_resource type="Texture2D" uid="uid://dlrrk4wnf8wn6" path="res://asesprite/alexstuff/arenastuff/astralaudience3.png" id="33_j4gqs"]
 [ext_resource type="Texture2D" uid="uid://re23yoj5pq3h" path="res://asesprite/alexstuff/arenastuff/astralaudience4.png" id="34_uo1pf"]
