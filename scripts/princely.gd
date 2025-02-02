@@ -78,9 +78,9 @@ func _physics_process(delta: float) -> void:
 
 	if curr_state == Move_State.DYING:
 		timer += delta
-		if timer > (1.0/2.0):
+		if timer > (1.0/4.0):
 			%explode_SE.play()
-			timer -= (1.0/2.0)
+			timer -= (1.0/4.0)
 
 	if is_dead or !player:
 		return
@@ -248,3 +248,7 @@ func set_fiora() -> void:
 	get_parent().play_anim(2,"Wha- what???? that's- that's not possible!")
 	$Drill.play()
 	$WeakSpot.enable()
+
+func big_explode() -> void:
+	curr_state = Move_State.FADED
+	%bigexplode_SE.play()
