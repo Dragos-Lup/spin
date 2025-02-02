@@ -41,6 +41,7 @@ var damage_till_clones: float = 0
 var timer: float = 0
 
 func _ready() -> void:
+	$JesterSpawn.play()
 	$WeakSpot.disable()
 	setup()
 
@@ -59,9 +60,9 @@ func _physics_process(delta: float) -> void:
 	var pos = self.transform.origin
 	if curr_state == Move_State.DYING:
 		timer += delta
-		if timer > (1.0/2.0):
+		if timer > (1.0/4.0):
 			%explode_SE.play()
-			timer -= (1.0/2.0)
+			timer -= (1.0/4.0)
 
 	if is_dead:
 		return
@@ -222,6 +223,7 @@ func die() -> void:
 	kill_those_kids(int(damage_till_clones))
 
 	get_parent().play_anim(1,"NOOOOOO THE JOKES ON ME!!!!!")
+	$JesterDie.play()
 	linear_velocity = Vector2.ZERO
 	curr_state = Move_State.IDLE
 	is_dead = true

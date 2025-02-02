@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=46 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_ddfms"]
 [ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_tj05g"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="20_mjgvj"]
+[ext_resource type="AudioStream" uid="uid://cxqm32ra76cqn" path="res://sound_effects/JesterVoice/jesterdie.ogg" id="22_jlpii"]
+[ext_resource type="AudioStream" uid="uid://big6oog0x3j3p" path="res://sound_effects/JesterVoice/spawn.ogg" id="23_2qm2p"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
 random_pitch = 1.1
@@ -459,6 +461,14 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://asesprite/mc/revoweakpoint.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "42154c691b8b0c6e4b03ae17553281f2"
+
+[node name="JesterDie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_jlpii")
+volume_db = 8.587
+
+[node name="JesterSpawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_2qm2p")
+volume_db = 4.305
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="UnTargettingTimer" to="." method="_on_un_targetting_timer_timeout"]

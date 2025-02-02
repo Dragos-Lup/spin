@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://hjpl2fkxarlu"]
+[gd_scene load_steps=82 format=3 uid="uid://hjpl2fkxarlu"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
 [ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
@@ -18,6 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="14_5cbwx"]
 [ext_resource type="Texture2D" uid="uid://byavkxtngjkd0" path="res://scenes/sapphirespinner.png" id="15_ag1h6"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_j8suu"]
+[ext_resource type="AudioStream" uid="uid://cctc5sg1usn08" path="res://sound_effects/smallexplosion.ogg" id="17_232qb"]
+[ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="18_4a8di"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="19_41xkb"]
 [ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_admal"]
 [ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_qchbr"]
@@ -740,11 +742,11 @@ hue_variation_max = 0.03
 anim_speed_min = 1.0
 anim_speed_max = 1.1
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k32d7"]
-playback_mode = 1
-random_pitch = 1.07
-streams_count = 1
-stream_0/stream = ExtResource("14_5cbwx")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m4u5b"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("17_232qb")
+stream_1/stream = ExtResource("18_4a8di")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1l77"]
 particle_flag_disable_z = true
@@ -961,8 +963,8 @@ script = ExtResource("13_3qpdo")
 
 [node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
 unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_k32d7")
-volume_db = -2.0
+stream = SubResource("AudioStreamRandomizer_m4u5b")
+volume_db = 3.397
 max_polyphony = 2
 
 [node name="big_explosion" type="GPUParticles2D" parent="."]
@@ -977,7 +979,7 @@ speed_scale = 0.9
 [node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_8in6e")
-volume_db = -2.0
+volume_db = 7.811
 max_polyphony = 2
 
 [node name="JesterDashTrail" type="GPUParticles2D" parent="."]
