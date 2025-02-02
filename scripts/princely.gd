@@ -7,8 +7,6 @@ extends RigidBody2D
 @onready var TargetTimer: Timer = $UnTargettingTimer
 @onready var player #It's important that literally nothing else in the scene is called one of these two things
 # @onready var follower = %follower #For testing
-@onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
-@onready var baby_boy = load("res://scenes/jester_little_guy.tscn")
 
 enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED} #List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
@@ -189,8 +187,7 @@ func spawn_clones() -> void:
 				lguy.encircleR = 360 * (i/float(n))
 				lguy.find_children("AnimationPlayer", "AnimationPlayer", false)[0].play("fade_in")
 	elif clone:
-		if father:
-			father.child_loss(self)
+		father.child_loss(self)
 		self.queue_free()
 	elif is_dead:
 		pass

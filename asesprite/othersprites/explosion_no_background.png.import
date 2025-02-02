@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6acwosmqtup3"
-path="res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"
+uid="uid://bp3dfip6sxo3n"
+path="res://.godot/imported/explosion_no_background.png-b716eea092d8f2b425ec7c8e70a5bafc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menuring.png"
-dest_files=["res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"]
+source_file="res://asesprite/othersprites/explosion_no_background.png"
+dest_files=["res://.godot/imported/explosion_no_background.png-b716eea092d8f2b425ec7c8e70a5bafc.ctex"]
 
 [params]
 

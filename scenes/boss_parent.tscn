@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ba5t7qcjqpnl5"]
+[gd_scene load_steps=38 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
@@ -11,10 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="6_tqy8q"]
 [ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_wx0sq"]
 [ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="7_lt1ax"]
-[ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://scenes/explosion_no_background.png" id="11_sl5ug"]
-[ext_resource type="Script" path="res://scenes/explosion.gd" id="12_8lnbl"]
+[ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://asesprite/othersprites/explosion_no_background.png" id="11_sl5ug"]
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="12_8lnbl"]
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="13_7abq4"]
-[ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://scenes/tiny_jestereffect.png" id="15_xus0f"]
+[ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_xus0f"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j716r"]
 random_pitch = 1.1
@@ -49,6 +49,75 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5rcfm"]
+resource_name = "die"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.53333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fight_done"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6jj7g"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -95,36 +164,10 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_6jj7g"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.166667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dol65"]
 _data = {
 "RESET": SubResource("Animation_1iemr"),
+"die": SubResource("Animation_5rcfm"),
 "fade_in": SubResource("Animation_6jj7g"),
 "fade_out": SubResource("Animation_imnxb")
 }
@@ -241,7 +284,7 @@ anim_offset_min = 0.0674
 anim_offset_max = 0.0674
 turbulence_enabled = true
 
-[node name="EnemySpinner" type="RigidBody2D" groups=["boss", "enemy"]]
+[node name="Jester" type="RigidBody2D" groups=["boss", "enemy"]]
 collision_layer = 2
 collision_mask = 7
 mass = 4.0
@@ -300,8 +343,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yalp3")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
-max_health = 50
-current_health = 50
+max_health = 10
+current_health = 10
 isBoss = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("5_mtghx")]

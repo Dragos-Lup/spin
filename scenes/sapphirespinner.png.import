@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6acwosmqtup3"
-path="res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"
+uid="uid://byavkxtngjkd0"
+path="res://.godot/imported/sapphirespinner.png-c785598923e9fee05bc4ba03c761ba20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menuring.png"
-dest_files=["res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"]
+source_file="res://scenes/sapphirespinner.png"
+dest_files=["res://.godot/imported/sapphirespinner.png-c785598923e9fee05bc4ba03c761ba20.ctex"]
 
 [params]
 

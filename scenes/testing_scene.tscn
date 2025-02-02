@@ -1,87 +1,128 @@
-[gd_scene load_steps=23 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=40 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
 [ext_resource type="PackedScene" uid="uid://ba5t7qcjqpnl5" path="res://scenes/boss_parent.tscn" id="2_7thdg"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
-[ext_resource type="Texture2D" uid="uid://bx2h1brpe27a6" path="res://sprites/placeholder/arena.png" id="3_376d1"]
 [ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
 [ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
+[ext_resource type="Texture2D" uid="uid://b8saawvjq2rwr" path="res://asesprite/ui/uiIguess/speedbar.png" id="5_p4nwr"]
+[ext_resource type="Texture2D" uid="uid://bpnvsr5rqf20l" path="res://asesprite/alexstuff/whirly_portraits/jester_freaky.png" id="6_4aoyh"]
+[ext_resource type="Texture2D" uid="uid://d2und1w15jv8q" path="res://asesprite/ui/uiIguess/speedbarfill.png" id="6_7phrs"]
+[ext_resource type="Script" path="res://scripts/profile_animator.gd" id="6_60jdd"]
+[ext_resource type="Texture2D" uid="uid://b7spxm2v65nii" path="res://asesprite/ui/uiIguess/chargemeter.png" id="8_kxoa4"]
+[ext_resource type="FontFile" uid="uid://cyyq878n0h3gr" path="res://fonts/QTCoronation.otf" id="8_vsl84"]
+[ext_resource type="Texture2D" uid="uid://1faxpom4n52e" path="res://asesprite/ui/uiIguess/bosshealthbar.png" id="8_vsrbp"]
+[ext_resource type="Texture2D" uid="uid://bp0vydqc0x83d" path="res://asesprite/ui/uiIguess/healthwheel.png" id="9_8ytct"]
+[ext_resource type="Texture2D" uid="uid://bt2viatmbjlig" path="res://sprites/placeholder/arenaringsprite.png" id="9_vdwi0"]
 [ext_resource type="Texture2D" uid="uid://b5as06xyhrvyc" path="res://icon.svg" id="9_wtd35"]
+[ext_resource type="Texture2D" uid="uid://dqgdiee6c7k24" path="res://asesprite/ui/uiIguess/circle.png" id="10_bnlji"]
+[ext_resource type="Texture2D" uid="uid://cfmedl4fjj4gm" path="res://asesprite/alexstuff/whirly_portraits/jester_hurt.png" id="14_0nsa1"]
+[ext_resource type="Texture2D" uid="uid://bea1i4t5pqx5d" path="res://asesprite/alexstuff/whirly_portraits/jester_nervous.png" id="15_esjbj"]
+[ext_resource type="Texture2D" uid="uid://duvothjs72av8" path="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png" id="16_p5mj5"]
+[ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="23_dv5ge"]
+[ext_resource type="Texture2D" uid="uid://cv2pmuh73a0rl" path="res://asesprite/ericsprite/spaceattempt/Layer 7.png" id="24_nuq7x"]
+[ext_resource type="Texture2D" uid="uid://cvxbimhd0ud1q" path="res://asesprite/ericsprite/spaceattempt/Layer 5.png" id="25_lsamv"]
+[ext_resource type="Texture2D" uid="uid://idlylg6cdct0" path="res://asesprite/ericsprite/spaceattempt/Layer 2.png" id="26_cpe6t"]
+[ext_resource type="Texture2D" uid="uid://bjtmyi1hpmf17" path="res://asesprite/ericsprite/spaceattempt/Layer 6.png" id="27_wbgg2"]
+[ext_resource type="Texture2D" uid="uid://dewbdxhcvc0df" path="res://asesprite/ericsprite/spaceattempt/Layer 3.png" id="28_yq3gt"]
+[ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="29_u54hr"]
+[ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="30_3hmcg"]
 
-[sub_resource type="Gradient" id="Gradient_60shy"]
-offsets = PackedFloat32Array(0, 0.733051, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.423729, 0, 0, 0.423729, 1, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_2rmmc"]
+offsets = PackedFloat32Array(0, 0.233051, 0.758475, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.624763, 0.0231992, 0.806195, 1, 0.569536, 0.0847949, 0.819791, 1, 0, 0.72, 0.96, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uu7w0"]
-gradient = SubResource("Gradient_60shy")
-fill = 2
-fill_from = Vector2(0.517241, 0.461207)
-fill_to = Vector2(0.626437, 0.357759)
-repeat = 1
-
-[sub_resource type="Gradient" id="Gradient_a6qjh"]
-colors = PackedColorArray(0.935333, 0.03, 1, 1, 0, 0.116667, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_t8mq8"]
-gradient = SubResource("Gradient_a6qjh")
-width = 39
-fill = 1
-fill_from = Vector2(0, 0.521368)
-fill_to = Vector2(0.296547, 0.435897)
-repeat = 1
-
-[sub_resource type="Gradient" id="Gradient_7f55f"]
-offsets = PackedFloat32Array(0.300847, 0.588983, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h3ydi"]
-gradient = SubResource("Gradient_7f55f")
-fill_from = Vector2(0.436782, 0.363506)
-fill_to = Vector2(0.54023, 0.489943)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksdui"]
+gradient = SubResource("Gradient_2rmmc")
+width = 75
+height = 527
+fill_from = Vector2(0.531933, 0.770452)
+fill_to = Vector2(0.531933, 0)
 
 [sub_resource type="Gradient" id="Gradient_34ivc"]
-offsets = PackedFloat32Array(0.0805085, 0.207627, 0.461864, 0.70339, 1)
-colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.296778, 0.532929, 0, 1, 0.630964, 0.319896, 2.88785e-07, 1, 0, 0.749, 0.927961, 1, 0.781876, 7.72017e-05, 0.628406, 1)
+offsets = PackedFloat32Array(0.0805085, 1)
+colors = PackedColorArray(0.84365, 0, 0.237601, 1, 0.781876, 7.72017e-05, 0.628406, 1)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rhig8"]
 gradient = SubResource("Gradient_34ivc")
+width = 1159
 fill_from = Vector2(0.617816, 1)
-fill_to = Vector2(0.583333, 0)
+fill_to = Vector2(0.478, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47i3v"]
-bg_color = Color(0.452759, 0, 0.0825956, 0.313726)
-corner_radius_top_left = 1024
-corner_radius_bottom_right = 1024
-corner_detail = 2
+[sub_resource type="Animation" id="Animation_mlb3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2007, 350)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../You Lost:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1114)]
+}
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbv4t"]
-bg_color = Color(0.38, 0.0798, 0.0798, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 1024
-corner_radius_bottom_right = 1024
-corner_detail = 2
+[sub_resource type="Animation" id="Animation_qa7sb"]
+resource_name = "flash profile"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.433333, 1.06667, 1.83333, 2.43333),
+"transitions": PackedFloat32Array(1, 3.03143, 0.0103087, 1, 1),
+"update": 0,
+"values": [Vector2(2007, 350), Vector2(1283, 347), Vector2(1250, 347), Vector2(1283, 347), Vector2(2007, 350)]
+}
 
-[sub_resource type="Gradient" id="Gradient_1rw2t"]
-colors = PackedColorArray(0, 1, 0.0333333, 1, 0, 1, 0.966667, 1)
+[sub_resource type="Animation" id="Animation_13cif"]
+resource_name = "show_lost"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../You Lost:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1114), Vector2(0, 0)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbugn"]
-gradient = SubResource("Gradient_1rw2t")
-height = 149
-fill = 2
-fill_from = Vector2(0.335, 0.484)
-fill_to = Vector2(0.460508, 0.418803)
-repeat = 1
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_js46g"]
+_data = {
+"RESET": SubResource("Animation_mlb3w"),
+"laughing": SubResource("Animation_qa7sb"),
+"show_lost": SubResource("Animation_13cif")
+}
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Theme" id="Theme_jmp54"]
+default_font_size = 50
+
+[node name="World" type="Node2D"]
 physics_interpolation_mode = 1
 texture_filter = 1
 script = ExtResource("1_va4xm")
@@ -95,116 +136,193 @@ position = Vector2(974, 632)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Enemy_Spinner" parent="." instance=ExtResource("2_7thdg")]
+[node name="Jester" parent="." instance=ExtResource("2_7thdg")]
 position = Vector2(930, 367)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SpinBar" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
+texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 181.0
-offset_top = -591.0
-offset_right = 359.0
-offset_bottom = -3.0
+offset_left = 39.0
+offset_top = -606.0
+offset_right = 217.0
+offset_bottom = -18.0
 grow_vertical = 0
 theme = ExtResource("4_qxpu4")
-value = 73.0
-allow_greater = true
-fill_mode = 6
-nine_patch_stretch = true
-texture_over = SubResource("GradientTexture2D_uu7w0")
-texture_progress = SubResource("GradientTexture2D_t8mq8")
-tint_under = Color(0.681285, 0.10037, 0.860477, 1)
-script = ExtResource("4_ngjhq")
-
-[node name="SpinBar2" type="ProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -3006.0
-offset_top = -677.0
-offset_right = -2922.0
-offset_bottom = -61.0
-grow_vertical = 0
-theme = ExtResource("4_qxpu4")
-step = 1.0
-value = 73.0
+value = 100.0
 allow_greater = true
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("5_p4nwr")
+texture_over = ExtResource("5_p4nwr")
+texture_progress = ExtResource("6_7phrs")
+script = ExtResource("4_ngjhq")
+
+[node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = -605.0
+offset_right = 296.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme = ExtResource("4_qxpu4")
+allow_greater = true
+fill_mode = 3
+texture_over = ExtResource("8_kxoa4")
+texture_progress = SubResource("GradientTexture2D_ksdui")
+script = ExtResource("4_ngjhq")
 
 [node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -691.0
-offset_top = 29.0
+offset_top = 28.0
 offset_right = 679.0
-offset_bottom = 92.0
+offset_bottom = 113.0
 grow_horizontal = 2
-value = 50.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_under = SubResource("GradientTexture2D_h3ydi")
+value = 100.0
+texture_over = ExtResource("8_vsrbp")
 texture_progress = SubResource("GradientTexture2D_rhig8")
-
-[node name="BossHealthBar2" type="ProgressBar" parent="CanvasLayer"]
-unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -726.0
-offset_top = -2058.0
-offset_right = 644.0
-offset_bottom = -1995.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_47i3v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sbv4t")
-value = 50.0
+texture_progress_offset = Vector2(66.75, 11.365)
 
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 2
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1441.0
-offset_top = -177.0
-offset_right = 1779.0
-offset_bottom = -31.0
+offset_left = -372.0
+offset_top = -227.0
+offset_right = -34.0
+offset_bottom = -25.0
+grow_horizontal = 0
 grow_vertical = 0
 value = 100.0
 fill_mode = 4
-radial_initial_angle = 93.9
-radial_fill_degrees = 260.9
-nine_patch_stretch = true
-texture_progress = SubResource("GradientTexture2D_rbugn")
-tint_under = Color(0.92579, 0.131978, 1, 1)
-tint_over = Color(0.816379, 0.135484, 0, 1)
-tint_progress = Color(0.784066, 0.780553, 0.814826, 1)
+radial_initial_angle = 90.0
+radial_fill_degrees = 315.5
+texture_over = ExtResource("9_8ytct")
+texture_progress = ExtResource("10_bnlji")
+tint_progress = Color(1.90116e-06, 0.509856, 0.0459657, 1)
+
+[node name="ProfileAnimator" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+root_node = NodePath("../ProfileBox/VBoxContainer/ProfilePic")
+libraries = {
+"": SubResource("AnimationLibrary_js46g")
+}
+script = ExtResource("6_60jdd")
+jester_sprites = Array[Texture2D]([ExtResource("6_4aoyh"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5")])
+
+[node name="ProfileBox" type="MarginContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = -730.0
+offset_right = 682.0
+offset_bottom = 7.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ProfileBox"]
+clip_contents = true
+layout_direction = 2
+layout_mode = 2
+alignment = 2
+
+[node name="ProfilePic" type="TextureRect" parent="CanvasLayer/ProfileBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_4aoyh")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ProfileBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="CanvasLayer/ProfileBox/VBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 4.0
+offset_right = 595.0
+offset_bottom = 142.0
+size_flags_vertical = 3
+theme = SubResource("Theme_jmp54")
+theme_override_fonts/normal_font = ExtResource("8_vsl84")
+text = "OOOHHOHOHOHHOHOHOHOHOHO"
+fit_content = true
+scroll_active = false
+
+[node name="You Lost" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1114.0
+offset_bottom = -1114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/You Lost"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/You Lost/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]YOU LOST BIG TIME
+[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/You Lost/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/You Lost/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Retry?"
 
 [node name="Arena" type="StaticBody2D" parent="."]
-position = Vector2(938, 531)
+position = Vector2(946, 577)
 collision_layer = 4
 collision_mask = 0
 physics_material_override = ExtResource("2_8jgto")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena"]
-scale = Vector2(1.15, 1)
 build_mode = 1
-polygon = PackedVector2Array(385.652, -295, 420.435, -227, 438.696, -172, 450.87, -118, 464.783, -44, 461.304, 45, 443.043, 158, 403.913, 264, 350, 350, 316.522, 389, 283.913, 423, 239.13, 458, 220.87, 470, 199.13, 483, 166.956, 498, 141.739, 509, 112.174, 519, 89.1304, 525, 67.826, 529, 39.5652, 533, -39.5652, 533, -120.435, 516, -199.565, 484, -272.609, 432, -337.826, 365, -390.87, 293, -438.696, 189, -457.826, 105, -466.522, 0, -457.826, -95, -445.652, -155, -412.609, -249, -376.957, -308, -323.913, -385, -269.13, -437, -210.87, -476, -136.087, -513, -55.2174, -530, 43.913, -530, 90.8696, -524, 154.348, -503, 221.304, -468, 270, -432, 315.217, -389, 351.739, -344, 385.652, -295, 421.304, -279, 460.435, -439, 466.522, -865, -674.348, -869, -669.13, 801, 729.13, 794, 730, -867, 466.522, -865, 460.435, -439, 421.304, -279)
+polygon = PackedVector2Array(591, -41, 590, 7, 576, 73, 562, 145, 525, 216, 472, 293, 412, 338, 325, 397, 215, 459, 124, 487, 41, 500, -50, 500, -144, 492, -212, 472, -291, 437, -348, 404, -405, 367, -464, 323, -536, 247, -575, 183, -597, 140, -612, 66, -624, 7, -626, -92, -613, -162, -594, -221, -559, -291, -521, -352, -489, -392, -437, -446, -364, -503, -303, -535, -238, -563, -176, -582, -102, -593, -61, -600, 46, -600, 125, -588, 208, -567, 283, -533, 337, -502, 383, -467, 416, -438, 436, -419, 476, -376, 511, -326, 536, -280, 558, -236, 576, -193, 590, -133)
 
 [node name="Sprite2D" type="Sprite2D" parent="Arena"]
 z_index = -10
 texture_filter = 1
-scale = Vector2(4.16054, 4.16054)
-texture = ExtResource("3_376d1")
+scale = Vector2(2, 2)
+texture = ExtResource("9_vdwi0")
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": false,
+"layer_section": true,
 "output_section": true,
 "pending_changes": {},
 "slice_section": false
@@ -216,12 +334,12 @@ metadata/_aseprite_wizard_config_ = {
 "o_ex_p": "",
 "o_folder": "res://sprites/placeholder",
 "o_name": "",
-"only_visible": false,
+"only_visible": true,
 "player": "",
 "slice": "",
-"source": "res://asesprite/dragosbad/arena.aseprite"
+"source": "res://asesprite/alexstuff/arenaringsprite.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "c87152ebc52d2b2c9bbc4ca75273170d"
+metadata/_aseprite_wizard_source_file_hash_ = "96e3e0f2f92f3c8ec43e42ed5fbba848"
 
 [node name="follower" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -230,6 +348,12 @@ position = Vector2(826, 548)
 scale = Vector2(0.106918, 0.0957838)
 texture = ExtResource("9_wtd35")
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="menutheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qoumr")
 volume_db = -2.0
@@ -237,3 +361,81 @@ volume_db = -2.0
 [node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tv64y")
 playback_type = 1
+
+[node name="SpaceBackground" type="Node2D" parent="."]
+z_index = -20
+position = Vector2(760, 470)
+
+[node name="blackbackground" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/blackbackground"]
+position = Vector2(198, 69.5)
+texture = ExtResource("23_dv5ge")
+
+[node name="blueishspacetint" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 10)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/blueishspacetint"]
+position = Vector2(198, 69.5)
+texture = ExtResource("24_nuq7x")
+
+[node name="spaceclouds1" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 12)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds1"]
+position = Vector2(198, 69.5)
+texture = ExtResource("25_lsamv")
+
+[node name="stars1" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 14)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars1"]
+position = Vector2(198, 69.5)
+texture = ExtResource("26_cpe6t")
+
+[node name="spaceclouds2" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 24)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds2"]
+position = Vector2(198, 69.5)
+texture = ExtResource("27_wbgg2")
+
+[node name="stars2" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 50)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars2"]
+position = Vector2(198, 69.5)
+texture = ExtResource("28_yq3gt")
+
+[node name="spaceclouds3" type="Parallax2D" parent="SpaceBackground"]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 40)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/spaceclouds3"]
+position = Vector2(198, 69.5)
+texture = ExtResource("29_u54hr")
+
+[node name="stars3" type="Parallax2D" parent="SpaceBackground"]
+scroll_offset = Vector2(281, -34)
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(0, 120)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceBackground/stars3"]
+position = Vector2(198, 69.5)
+texture = ExtResource("30_3hmcg")
+
+[connection signal="pressed" from="CanvasLayer/You Lost/VBoxContainer/HBoxContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

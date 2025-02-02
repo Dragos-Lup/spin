@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6acwosmqtup3"
-path="res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"
+uid="uid://dqgdiee6c7k24"
+path="res://.godot/imported/circle.png-41c144d74c4668eb7da6305c664d0e74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menuring.png"
-dest_files=["res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"]
+source_file="res://asesprite/ui/uiIguess/circle.png"
+dest_files=["res://.godot/imported/circle.png-41c144d74c4668eb7da6305c664d0e74.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6acwosmqtup3"
-path="res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"
+uid="uid://duvothjs72av8"
+path="res://.godot/imported/jester_neutral.png-9042fbc0857b32c946cbebe780bdf5a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menuring.png"
-dest_files=["res://.godot/imported/menuring.png-f575364fe2d1232d2440581addd13cb3.ctex"]
+source_file="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png"
+dest_files=["res://.godot/imported/jester_neutral.png-9042fbc0857b32c946cbebe780bdf5a4.ctex"]
 
 [params]
 

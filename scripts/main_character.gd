@@ -11,10 +11,13 @@ extends RigidBody2D
 @export var VOLUME_CURVE:Curve
 @onready var hitsparks: GPUParticles2D = $hitsparks
 @onready var spin_bar: TextureProgressBar = %SpinBar
+@onready var charge_bar: TextureProgressBar = %ChargeBar
 @onready var health_component: Node2D = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var dash_effect: CPUParticles2D = $DashEffect
+
+var is_dead = false
 
 #Whether or not the player is dashing (for damage purposes)
 var dashing = false
@@ -34,6 +37,8 @@ func _init() -> void:
 func _physics_process(_delta: float) -> void:
 	last_vel = linear_velocity.length()
 	# Get the current input direction
+	if is_dead:
+		return
 	var direction := Input.get_vector("left", "right", "up", "down").normalized()
 	# This is where the player wants to be moving. 
 	# This is kinda hard to understand, but this is our influence, or how we want to be moving
@@ -43,16 +48,19 @@ func _physics_process(_delta: float) -> void:
 	
 	if dashing and linear_velocity.length() < DASH_MINSPEED:
 		dashing = false
-
+		
 	# Dash Mechanics
 	if Input.is_action_just_pressed("dash"): 
 		dash_start_time = Time.get_ticks_msec() #When did we start charging
 		state_machine.travel("jump") #This is the cool little animation that plays neato!
 	elif Input.is_action_pressed("dash"):
 		vel_difference = (target_vel * DASH_SLOW - linear_velocity) #Slows the player down by "DASH_SLOW" amount
+		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
+		charge_bar.value = (chargetime/DASH_MAXTIME) * 100
 	if Input.is_action_just_released("dash"):
 		var chargetime = Time.get_ticks_msec() - dash_start_time #How long did we charge for?
-		if (chargetime) > 850:
+		charge_bar.value = 0
+		if (chargetime) > 850 and !is_dead:
 			var dash_vector = (get_global_mouse_position() - global_position).normalized() #Where we going big boss
 			apply_impulse(dash_vector * (DASH_SPEED * min(chargetime, DASH_MAXTIME)/1000)) #Applys the dash amount
 			$Dash_SE.play() #Plays the dash sound effect
@@ -63,7 +71,7 @@ func _physics_process(_delta: float) -> void:
 			$DashEffect.set_rotation(get_angle_to(get_global_mouse_position()))
 			$DashEffect.set_emitting(true)
 			$DashEffect.restart()
-			
+	
 	apply_central_force(vel_difference) # Applys regular movement effects (Or slowed from dashing)
 	$Spinning_SE.set_pitch_scale(linear_velocity.length()/950 + 1)
 	spin_bar.value = linear_velocity.length() / 10
@@ -97,6 +105,8 @@ func _on_location_timer_timeout() -> void:
 
 #Whenever a body touches our boy this goes
 func _on_body_entered(body: Node2D) -> void:
+	if is_dead:
+		return
 	# if body.is_in_group("enemy") and linear_velocity.length() / 10 > 100:
 	if body.is_in_group("enemy"):
 		var e_dash = body.is_dashing()
@@ -156,3 +166,11 @@ func _on_damp_timer_timeout() -> void:
 
 func calc_momentum() -> float:
 	return mass * last_vel
+
+func die() -> void:
+	is_dead = true
+	dashing = false
+	state_machine.travel("die") #This is the cool little animation that plays neato!
+
+func bringUpMenu() -> void:
+	%ProfileAnimator.play("show_lost")

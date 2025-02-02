@@ -1,33 +1,36 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvm26wh34waub"]
+[gd_scene load_steps=22 format=3 uid="uid://bvm26wh34waub"]
 
-[ext_resource type="Texture2D" uid="uid://swkxghg3kxoq" path="res://asesprite/ericsprite/holderplaceholder.png" id="1_3w05c"]
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="1_4b7mc"]
 [ext_resource type="Script" path="res://scripts/buttons.gd" id="1_ioaic"]
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_nxher"]
 [ext_resource type="Texture2D" uid="uid://cv2pmuh73a0rl" path="res://asesprite/ericsprite/spaceattempt/Layer 7.png" id="2_jcd70"]
 [ext_resource type="Texture2D" uid="uid://cvxbimhd0ud1q" path="res://asesprite/ericsprite/spaceattempt/Layer 5.png" id="3_0mx85"]
-[ext_resource type="Texture2D" uid="uid://b4crryg3fq62r" path="res://asesprite/ericsprite/startdiscplaceholder.png" id="3_iojkw"]
 [ext_resource type="Texture2D" uid="uid://idlylg6cdct0" path="res://asesprite/ericsprite/spaceattempt/Layer 2.png" id="4_v6hmt"]
 [ext_resource type="AudioStream" uid="uid://dtqyvrxob15eh" path="res://sound_effects/blipSelect.wav" id="5_2f4ar"]
 [ext_resource type="Script" path="res://scripts/makeitrotate.gd" id="5_3lolf"]
 [ext_resource type="Texture2D" uid="uid://bjtmyi1hpmf17" path="res://asesprite/ericsprite/spaceattempt/Layer 6.png" id="5_04lwm"]
 [ext_resource type="Texture2D" uid="uid://dewbdxhcvc0df" path="res://asesprite/ericsprite/spaceattempt/Layer 3.png" id="6_gre8q"]
-[ext_resource type="Texture2D" uid="uid://iaf3snpn2442" path="res://asesprite/ericsprite/optionsdiscplaceholder.png" id="6_n04sq"]
 [ext_resource type="Texture2D" uid="uid://cjloqjti6gx5b" path="res://asesprite/ericsprite/spaceattempt/Layer 8.png" id="7_8sx0s"]
-[ext_resource type="Texture2D" uid="uid://clh2qde1mal5d" path="res://asesprite/ericsprite/quitdiscplaceholder.png" id="7_fib8d"]
 [ext_resource type="Texture2D" uid="uid://dp34bj8ncu1i6" path="res://asesprite/ericsprite/spaceattempt/Layer 4.png" id="8_0fjmf"]
+[ext_resource type="Texture2D" uid="uid://btghmdxcd74je" path="res://asesprite/alexstuff/menustuff/buttonbase.png" id="9_bfnlt"]
 [ext_resource type="Script" path="res://scripts/window_handle.gd" id="9_xvr3i"]
 [ext_resource type="Texture2D" uid="uid://c42q10cgiihrn" path="res://asesprite/ericsprite/playgameplaceholder.png" id="10_ny245"]
-[ext_resource type="Texture2D" uid="uid://bupfok75h1fwj" path="res://asesprite/ericsprite/optionsplaceholder.png" id="11_10chc"]
-[ext_resource type="Texture2D" uid="uid://c7wg0vwwo2ku4" path="res://asesprite/ericsprite/imoutplaceholder.png" id="12_jm4yh"]
-[ext_resource type="Texture2D" uid="uid://pkkmgegsytae" path="res://scenes/menuring.png" id="17_5vmdg"]
+[ext_resource type="Texture2D" uid="uid://mv2vqj0lh7we" path="res://asesprite/alexstuff/menustuff/startbutton.png" id="11_drgf6"]
+[ext_resource type="Texture2D" uid="uid://dc4iw5du02lm5" path="res://asesprite/alexstuff/menustuff/settingsbutton.png" id="14_357se"]
+[ext_resource type="Texture2D" uid="uid://ctlku08uplssv" path="res://asesprite/alexstuff/menustuff/exitbutton.png" id="15_84u3k"]
+[ext_resource type="Texture2D" uid="uid://b6acwosmqtup3" path="res://scenes/menuring.png" id="17_5vmdg"]
+[ext_resource type="Texture2D" uid="uid://c6ypia71u3h16" path="res://asesprite/alexstuff/menustuff/jestersettingspicture.png" id="19_6vlih"]
+[ext_resource type="Texture2D" uid="uid://bp8aq6wbdm0tt" path="res://asesprite/alexstuff/menustuff/exitsprite.png" id="20_ufcrc"]
 
 [node name="Control" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nxher")
 
 [node name="SpaceBackground" type="Node2D" parent="."]
 z_index = -8
@@ -106,6 +109,7 @@ position = Vector2(198, 69.5)
 texture = ExtResource("8_0fjmf")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 275.0
 offset_top = 226.0
@@ -117,12 +121,12 @@ vertical = true
 
 [node name="TextureButton" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_3w05c")
+texture_normal = ExtResource("9_bfnlt")
 script = ExtResource("1_ioaic")
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer/TextureButton"]
 position = Vector2(41, 33)
-texture = ExtResource("3_iojkw")
+texture = ExtResource("11_drgf6")
 script = ExtResource("5_3lolf")
 
 [node name="blip_sound" type="AudioStreamPlayer2D" parent="BoxContainer/TextureButton"]
@@ -130,22 +134,22 @@ stream = ExtResource("5_2f4ar")
 
 [node name="TextureButton2" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_3w05c")
+texture_normal = ExtResource("9_bfnlt")
 script = ExtResource("1_ioaic")
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer/TextureButton2"]
 position = Vector2(43, 37.5)
-texture = ExtResource("6_n04sq")
+texture = ExtResource("14_357se")
 script = ExtResource("5_3lolf")
 
 [node name="TextureButton3" type="TextureButton" parent="BoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_3w05c")
+texture_normal = ExtResource("9_bfnlt")
 script = ExtResource("1_ioaic")
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer/TextureButton3"]
 position = Vector2(42.5, 37)
-texture = ExtResource("7_fib8d")
+texture = ExtResource("15_84u3k")
 script = ExtResource("5_3lolf")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -158,8 +162,10 @@ texture_filter = 1
 position = Vector2(70.6667, 10.1667)
 texture = ExtResource("17_5vmdg")
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": false,
-"pending_changes": {}
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": true
 }
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,
@@ -171,37 +177,41 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "",
 "slice": "",
-"source": "res://asesprite/alexstuff/menuring.aseprite"
+"source": "res://asesprite/alexstuff/menustuff/menuring.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "2a59b54ff6e729dab60395b63229196a"
 
 [node name="StartPic" type="Sprite2D" parent="Node2D"]
 visibility_layer = 2
 z_index = -1
+position = Vector2(71.8333, 5.16667)
 texture = ExtResource("10_ny245")
 
 [node name="OptionsPic" type="Sprite2D" parent="Node2D"]
 visibility_layer = 2
 z_index = -1
-texture = ExtResource("11_10chc")
+position = Vector2(73, 4)
+texture = ExtResource("19_6vlih")
 
 [node name="QuitPic" type="Sprite2D" parent="Node2D"]
 visibility_layer = 2
 z_index = -1
-texture = ExtResource("12_jm4yh")
+position = Vector2(61.1667, 6.5)
+texture = ExtResource("20_ufcrc")
 
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_on_texture_button_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton" to="Node2D" method="_throwitback"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton/Sprite2D" method="_on_texture_button_focus_exited"]
+[connection signal="pressed" from="BoxContainer/TextureButton" to="." method="_on_start_button"]
 [connection signal="pressed" from="BoxContainer/TextureButton" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_throwitback"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton2" to="Node2D" method="_on_texture_button_2_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton2/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton2" to="BoxContainer/TextureButton" method="_on_pressed"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_entered"]
-[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_throwitback"]
+[connection signal="focus_entered" from="BoxContainer/TextureButton3" to="Node2D" method="_on_texture_button_3_focus_entered"]
 [connection signal="focus_exited" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton3/Sprite2D" method="_on_texture_button_focus_exited"]
 [connection signal="pressed" from="BoxContainer/TextureButton3" to="BoxContainer/TextureButton" method="_on_pressed"]
