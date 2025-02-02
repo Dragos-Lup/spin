@@ -13,7 +13,7 @@ extends RigidBody2D
 @onready var player #It's important that literally nothing else in the scene is called one of these two things
 # @onready var follower = %follower #For testing
 
-enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, LASER, FADED, CRAZY, SLICE}
+enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, LASER, FADED, CRAZY, SLICE, DYING}
 #List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
 var profile_anim : AnimationPlayer
@@ -42,16 +42,16 @@ var laser_target: Vector2 = Vector2.ZERO
 
 var timer: float = 0
 
-var circle_timer : float = 1
-var laser_timer : float = 1
-var max_lasers = 1
+var circle_timer : float = 2
+var laser_timer : float = 2
+var max_lasers = 3
 
 var laser_count = max_lasers
 
-var max_dashes = 1
+var max_dashes = 3
 var dash_count = max_dashes
 
-var max_slices = 2
+var max_slices = 4
 var slice_count = max_slices
 
 var slice_next = false
@@ -74,6 +74,13 @@ func set_profile_animator(node : AnimationPlayer):
 func _physics_process(delta: float) -> void:
 	timer += delta
 	var pos = self.transform.origin
+
+	if curr_state == Move_State.DYING:
+		timer += delta
+		if timer > (1.0/17.0):
+			%explode_SE.play()
+			timer -= (1.0/17.0)
+
 	if is_dead or !player:
 		return
 	# This should be before state targeting.
@@ -134,6 +141,12 @@ func _physics_process(delta: float) -> void:
 				timer -= 2
 				$sword_slice.rotation = self.position.angle_to_point(player.position)
 				state_machine.travel("sword_slice")
+				slice_count -= 1
+				if slice_count <= 1:
+					slice_count = max_slices
+					rand_state()
+				else:
+					pass
 
 
 		Move_State.LOCKED_ON:
@@ -194,13 +207,17 @@ func calc_momentum() -> float:
 
 func kill_those_kids(_x):
 	pass
+
 func die() -> void:
-	curr_state = Move_State.IDLE
+	curr_state = Move_State.DYING
 	is_dead = true
-	# $AnimationPlayer.play("die")
+	timer = 0
+	laser.visible = false
+	linear_velocity = Vector2(0,0)
+	state_machine.travel("die")
 
 func fight_done() -> void:
-	get_parent().jester_died()
+	get_parent().princely_died()
 	self.queue_free()
 
 func switch_laser() -> void:

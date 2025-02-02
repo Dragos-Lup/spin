@@ -22,6 +22,10 @@ func jester_died() -> void:
 	print("fight done")
 	start_princely()
 
+func princely_died() -> void:
+	print("princely died")
+	start_jester()
+
 func start_jester() -> void:
 	var j :Node2D= jester.instantiate()
 	add_child(j)

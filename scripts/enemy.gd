@@ -22,10 +22,9 @@ var profile_anim : AnimationPlayer
 @export var MAP_CENTER : Vector2 = Vector2(938, 531)
 
 var is_dead: bool = false
+var can_collide = [true, true, true, true] # The raycasts that can still collide
 
-# var can_collide = [true, true, true, true] # The raycasts that can still collide
-
-var can_collide = [true, false, false, false] # The raycasts that can still collide
+# var can_collide = [true, false, false, false] # The raycasts that can still collide
 var target: Vector2 = Vector2(940,530) #Where we're running into
 var encircleR: float = 0.0 #The radius we are encircling around currently
 var go: bool = false #dash when this is true
@@ -163,7 +162,7 @@ func spawn_clones() -> void:
 	#Clones should differ very very slightly from parent
 	#Maybe a different animation speed?
 	if (!clone and !is_dead):
-		damage_till_clones += 8
+		damage_till_clones += 15
 		# print(damage_till_clones)
 		var dist_from_center = 250
 		var n : int = 3
@@ -187,8 +186,8 @@ func spawn_clones() -> void:
 				self.add_sibling(lguy)
 				lguy.father = self
 
-				lguy.health_component.max_health = 20
-				lguy.health_component.current_health = 20
+				lguy.health_component.max_health = 30
+				lguy.health_component.current_health = 30
 				children_list.append(lguy)
 				lguy.set_position((MAP_CENTER) + Vector2.UP.rotated(deg_to_rad(360 * (i/float(n)))) * dist_from_center)
 				lguy.encircleR = 360 * (i/float(n))

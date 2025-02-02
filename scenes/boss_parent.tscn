@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c17uixcmuqil0" path="res://sound_effects/JesterVoice/laugh3.ogg" id="4_yk8hk"]
 [ext_resource type="AudioStream" uid="uid://d2dkwnmoostis" path="res://sound_effects/JesterVoice/jestercharge.ogg" id="5_ge32r"]
 [ext_resource type="PackedScene" uid="uid://dygeouv8mk1x6" path="res://scenes/components/movement_component.tscn" id="5_mtghx"]
+[ext_resource type="Animation" uid="uid://c4u23vjhbsbtr" path="res://die.res" id="6_c1cy3"]
 [ext_resource type="Texture2D" uid="uid://8iwg7s2aa6py" path="res://sprites/placeholder/jesternewspinner.png" id="6_f5vd7"]
 [ext_resource type="AudioStream" uid="uid://cm3b5t4anyy4c" path="res://sound_effects/JesterVoice/jestersparkle.ogg" id="6_tqy8q"]
 [ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_wx0sq"]
@@ -92,84 +93,6 @@ tracks/4/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_5rcfm"]
-resource_name = "die"
-length = 7.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333334, 4.63333, 4.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.566667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(7.33333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"fight_done"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../explosion:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.26667, 4.53333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../big_explosion:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(4.53333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../big_explosion/bigexplode_SE:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(4.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_6jj7g"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -241,7 +164,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dol65"]
 _data = {
 "RESET": SubResource("Animation_1iemr"),
-"die": SubResource("Animation_5rcfm"),
+"die": ExtResource("6_c1cy3"),
 "fade_in": SubResource("Animation_6jj7g"),
 "fade_out": SubResource("Animation_imnxb")
 }
@@ -424,8 +347,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yalp3")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_is18t")]
-max_health = 10
-current_health = 10
+max_health = 100
+current_health = 100
 isBoss = true
 
 [node name="MovementComponent" parent="." instance=ExtResource("5_mtghx")]
