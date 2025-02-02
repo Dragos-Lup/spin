@@ -20,14 +20,14 @@ func _process(delta: float) -> void:
 func _on_texture_button_focus_entered() -> void:
 	rotatatron = 1
 	spinning = true
-	print("Ohhh im focused")
+	#print("Ohhh im focused")
 
 
 func _on_texture_button_focus_exited() -> void:
 	rotatatron = -1
 	spinning = false
-	print("Ohhh im unfocused")
-	print(rotatatronjr)
+	#print("Ohhh im unfocused")
+	#print(rotatatronjr)
 
 
 

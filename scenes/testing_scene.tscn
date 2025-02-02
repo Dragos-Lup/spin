@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=63 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -25,10 +25,14 @@
 [ext_resource type="Texture2D" uid="uid://crfrptmvpmygi" path="res://asesprite/ui/uiIguess/spin cooldown.png" id="13_cqup6"]
 [ext_resource type="Texture2D" uid="uid://bsjyexeuna4ri" path="res://asesprite/ericsprite/New folder/princelyports1.png" id="13_yhe7d"]
 [ext_resource type="Texture2D" uid="uid://cfmedl4fjj4gm" path="res://asesprite/alexstuff/whirly_portraits/jester_hurt.png" id="14_0nsa1"]
+[ext_resource type="Texture2D" uid="uid://lbvt1eqddaom" path="res://asesprite/mc/sunnyportsprites1.png" id="14_4tpvi"]
 [ext_resource type="FontFile" uid="uid://0348isbhvu3f" path="res://fonts/Comic Sans MS/Comic Sans MS.ttf" id="14_8rgc6"]
 [ext_resource type="Texture2D" uid="uid://cgm4qbf57m10x" path="res://asesprite/ui/uiIguess/spin_cooldown_bar.png" id="14_mg6jk"]
+[ext_resource type="Texture2D" uid="uid://cd588y1vwvhpm" path="res://asesprite/mc/sunnyportsprites2.png" id="15_7tw1i"]
 [ext_resource type="Texture2D" uid="uid://bea1i4t5pqx5d" path="res://asesprite/alexstuff/whirly_portraits/jester_nervous.png" id="15_esjbj"]
+[ext_resource type="Texture2D" uid="uid://mi13xahohrtl" path="res://asesprite/mc/sunnyportsprites3.png" id="16_1hmhw"]
 [ext_resource type="Texture2D" uid="uid://duvothjs72av8" path="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png" id="16_p5mj5"]
+[ext_resource type="Texture2D" uid="uid://vcye5rc0cmdf" path="res://asesprite/mc/sunnyportsprites4.png" id="17_xql4n"]
 [ext_resource type="AudioStream" uid="uid://bkaliudpoyof3" path="res://music/angryassgamejamsong(bossrushphase1maybe).ogg" id="21_1lqbq"]
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="23_dv5ge"]
 [ext_resource type="Texture2D" uid="uid://cv2pmuh73a0rl" path="res://asesprite/ericsprite/spaceattempt/Layer 7.png" id="24_nuq7x"]
@@ -43,6 +47,108 @@
 [ext_resource type="Texture2D" uid="uid://dlrrk4wnf8wn6" path="res://asesprite/alexstuff/arenastuff/astralaudience3.png" id="33_j4gqs"]
 [ext_resource type="Texture2D" uid="uid://re23yoj5pq3h" path="res://asesprite/alexstuff/arenastuff/astralaudience4.png" id="34_uo1pf"]
 [ext_resource type="AudioStream" uid="uid://cia50u2jksf5s" path="res://music/vitcory.ogg" id="43_mthix"]
+
+[sub_resource type="Animation" id="Animation_lj542"]
+resource_name = "show_lost"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ProfileAnimator/../You Lost:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 0.833333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1114), Vector2(0, -1114), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ProfileAnimator/../CharlieBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.766667, 3.26667, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-600, 454), Vector2(-600, 454), Vector2(40, 454)]
+}
+
+[sub_resource type="Animation" id="Animation_wi0wc"]
+resource_name = "show_won"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ProfileAnimator/../You Won:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.566667, 0.8, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1114), Vector2(0, -1114), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ProfileAnimator/../CharlieBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.733333, 3.23333, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-600, 454), Vector2(-600, 454), Vector2(40, 454)]
+}
+
+[sub_resource type="Animation" id="Animation_7ofq7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ProfileAnimator/../CharlieBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-600, 454)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ProfileAnimator/../You Lost:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1114)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%ProfileAnimator/../You Won:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1114)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_juofl"]
+_data = {
+"RESET": SubResource("Animation_7ofq7"),
+"show_lost": SubResource("Animation_lj542"),
+"show_won": SubResource("Animation_wi0wc")
+}
 
 [sub_resource type="Animation" id="Animation_mlb3w"]
 length = 0.001
@@ -70,6 +176,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, -1114)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%ProfilePic/../../../CharlieBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-600, 454)]
+}
 
 [sub_resource type="Animation" id="Animation_qa7sb"]
 resource_name = "flash profile"
@@ -87,44 +205,10 @@ tracks/0/keys = {
 "values": [Vector2(2007, 242), Vector2(1252, 264), Vector2(1315, 267), Vector2(1315, 267), Vector2(2007, 242)]
 }
 
-[sub_resource type="Animation" id="Animation_13cif"]
-resource_name = "show_lost"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../You Lost:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.06667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -1114), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_fceb7"]
-resource_name = "show_won"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%ProfilePic/../../../You Won:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.06667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -1114), Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_js46g"]
 _data = {
 "RESET": SubResource("Animation_mlb3w"),
-"laughing": SubResource("Animation_qa7sb"),
-"show_lost": SubResource("Animation_13cif"),
-"show_won": SubResource("Animation_fceb7")
+"laughing": SubResource("Animation_qa7sb")
 }
 
 [sub_resource type="Theme" id="Theme_jmp54"]
@@ -242,6 +326,13 @@ visible = false
 z_index = 50
 metadata/_edit_use_anchors_ = true
 
+[node name="LostChecker" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+root_node = NodePath("../ProfileAnimator")
+libraries = {
+"": SubResource("AnimationLibrary_juofl")
+}
+
 [node name="ProfileAnimator" type="AnimationPlayer" parent="CanvasLayer"]
 unique_name_in_owner = true
 root_node = NodePath("../ProfileBox/VBoxContainer/ProfilePic")
@@ -251,6 +342,7 @@ libraries = {
 script = ExtResource("6_60jdd")
 jester_sprites = Array[Texture2D]([ExtResource("9_j1ffr"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5"), ExtResource("6_4aoyh")])
 princely_sprites = Array[Texture2D]([ExtResource("10_4ad83"), ExtResource("11_683q7"), ExtResource("12_lr6iq"), ExtResource("13_yhe7d")])
+charlie_sprites = Array[Texture2D]([ExtResource("14_4tpvi"), ExtResource("15_7tw1i"), ExtResource("16_1hmhw"), ExtResource("17_xql4n")])
 fonts = Array[FontFile]([ExtResource("14_8rgc6"), ExtResource("8_vsl84")])
 
 [node name="ProfileBox" type="MarginContainer" parent="CanvasLayer"]
@@ -295,6 +387,51 @@ size_flags_vertical = 3
 theme = SubResource("Theme_jmp54")
 theme_override_fonts/normal_font = ExtResource("14_8rgc6")
 text = "“Your Revo could never topple mine! It has state of the art gyroscopic technology! My Daddy says it’ll never stop spinning!!”"
+scroll_active = false
+
+[node name="CharlieBox" type="MarginContainer" parent="CanvasLayer"]
+z_index = 20
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2520.0
+offset_top = -626.0
+offset_right = -1940.0
+offset_bottom = 74.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CharlieBox"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="CharliePic" type="TextureRect" parent="CanvasLayer/CharlieBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("16_1hmhw")
+expand_mode = 5
+stretch_mode = 5
+flip_h = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/CharlieBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.9
+
+[node name="CharlieDialogue" type="RichTextLabel" parent="CanvasLayer/CharlieBox/VBoxContainer/Panel"]
+unique_name_in_owner = true
+clip_contents = false
+layout_direction = 2
+layout_mode = 0
+offset_right = 593.0
+offset_bottom = 200.0
+size_flags_vertical = 3
+theme = SubResource("Theme_jmp54")
+theme_override_fonts/normal_font = ExtResource("14_8rgc6")
+text = "OH NO!!! MY THEY/THEM ASS GOT FOLDED"
 scroll_active = false
 
 [node name="You Lost" type="MarginContainer" parent="CanvasLayer"]
@@ -367,7 +504,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "Retry?"
+text = "Go Again?"
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3

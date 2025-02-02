@@ -153,10 +153,10 @@ func _on_body_entered(body: Node2D) -> void:
 			else:
 				print("nothing change")
 		elif dashing:
-			body.health_component.Damage(12)
+			body.health_component.Damage(10)
 			#print("Enemy damage biggggggggg")
 		elif e_dash:
-			self.health_component.Damage(12)
+			self.health_component.Damage(10)
 			#print("player damage bigggggggggg")
 		$Hit_SE.play()
 		$hitsparks.emitting=true
@@ -207,4 +207,5 @@ func die() -> void:
 
 func bringUpMenu() -> void:
 	$deathsound.play()
-	%ProfileAnimator.play("show_lost")
+	%ProfileAnimator.play_player_death()
+	get_parent().player_dead = true

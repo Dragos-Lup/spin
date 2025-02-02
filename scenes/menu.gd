@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 func _on_start_button() -> void:
-	get_tree().change_scene_to_file("res://scenes/testing_scene.tscn")
+	get_tree().change_scene_to_file("res://scenes/tut.tscn")
 
 
 
