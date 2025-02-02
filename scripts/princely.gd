@@ -42,16 +42,16 @@ var laser_target: Vector2 = Vector2.ZERO
 
 var timer: float = 0
 
-var circle_timer : float = 3
+var circle_timer : float = 2
 var laser_timer : float = 2
-var max_lasers = 3
+var max_lasers = 2
 
 var laser_count = max_lasers
 
 var max_dashes = 2
 var dash_count = max_dashes
 
-var max_slices = 4
+var max_slices = 3
 var slice_count = max_slices
 
 var slice_next = false
@@ -76,11 +76,11 @@ func _physics_process(delta: float) -> void:
 	timer += delta
 	var pos = self.transform.origin
 
-	if curr_state == Move_State.DYING:
+	if $explosion.emitting == true:
 		timer += delta
-		if timer > (1.0/4.0):
+		if timer > (1.0/2.0):
 			%explode_SE.play()
-			timer -= (1.0/4.0)
+			timer -= (1.0/2.0)
 
 	if is_dead or !player:
 		return
@@ -97,6 +97,7 @@ func _physics_process(delta: float) -> void:
 			if timer >= circle_timer:
 				
 				timer-= circle_timer
+				$charge_up.emitting = true
 				switch_laser()
 
 		Move_State.LASER:
@@ -107,6 +108,8 @@ func _physics_process(delta: float) -> void:
 			laser.add_point(p)
 			if timer >= laser_timer:
 				$LaserPew.play()
+				$charge_up.emitting = false
+				$shoot_particles.emitting = true
 				laser_count -= 1
 				timer -= laser_timer
 				var fw : Node2D = flame_wave.instantiate()
@@ -120,6 +123,7 @@ func _physics_process(delta: float) -> void:
 					rand_state()
 					laser_count = max_lasers
 				else:
+
 					curr_state = Move_State.CIRCLING
 		Move_State.CRAZY:
 			if timer >= 2:

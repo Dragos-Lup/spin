@@ -5,8 +5,8 @@ var enabled = true
 func _on_body_entered(body:Node2D) -> void:
 	if enabled and body.is_in_group("player"):
 		print("HEALING DONE")
-		body.health_component.Heal(10)
-		get_parent().health_component.Damage(15)
+		body.health_component.Heal(20)
+		get_parent().health_component.Damage(30)
 		disable()
 
 

@@ -1,7 +1,7 @@
 extends Area2D
 
 var direction = Vector2.ZERO
-var speed = 600
+var speed = 800
 var time_alive = 2
 
 func _physics_process(delta: float) -> void:
