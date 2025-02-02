@@ -11,8 +11,8 @@ func get_force(p, t, v, dt):
 	return force.limit_length(MAX_FORCE)
 
 
-func get_encircle(loc, encircleR):
-	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * 250
+func get_encircle(loc, encircleR, R):
+	return (loc) + Vector2.UP.rotated(deg_to_rad(encircleR)) * R
 
 
 func set_mass(m):

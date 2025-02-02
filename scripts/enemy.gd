@@ -10,7 +10,7 @@ extends RigidBody2D
 @onready var ray_casts = [$RayCasts/DLray, $RayCasts/ULray, $RayCasts/URray, $RayCasts/DRray]
 @onready var baby_boy = load("res://scenes/jester_little_guy.tscn")
 
-enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED} #List of states, you can add a new one if you want a new behavior
+enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED, DYING} #List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
 var profile_anim : AnimationPlayer
 
@@ -39,6 +39,7 @@ var children_list: Array[Node] #These are this dudes children
 
 var damage_till_clones: float = 0
 
+var timer: float = 0
 
 func _ready() -> void:
 	setup()
@@ -56,6 +57,12 @@ func set_profile_animator(node : AnimationPlayer):
 
 func _physics_process(delta: float) -> void:
 	var pos = self.transform.origin
+	if curr_state == Move_State.DYING:
+		timer += delta
+		if timer > (1.0/17.0):
+			%explode_SE.play()
+			timer -= (1.0/17.0)
+
 	if is_dead:
 		return
 	# This should be before state targeting.
@@ -69,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		Move_State.TARGETING: #If we're running right at the player
 			target = player.transform.origin #Our target is just the player origin
 		Move_State.CIRCLING:
-			target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
+			target = mc.get_encircle(player.transform.origin, encircleR, 250)#Target the mc's surrounding to circle them
 			# follower.transform.origin = target #TODO: delete this later
 			for i in range(4):
 				if ray_casts[i].is_colliding() and can_collide[i]: #If one of the ray casts hit
@@ -140,8 +147,9 @@ func fading_out() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	#Once the timer runs out, go dash!
-	go = true
-	$JesterDashTrail.emitting = true
+	if !is_dead:
+		go = true
+		$JesterDashTrail.emitting = true
 
 func is_dashing() -> bool:
 	return dashing
@@ -211,6 +219,8 @@ func die() -> void:
 	linear_velocity = Vector2.ZERO
 	curr_state = Move_State.IDLE
 	is_dead = true
+	$JesterDashTrail.restart()
+	$JesterDashTrail.set_emitting(false)
 	$AnimationPlayer.play("die")
 
 func fight_done() -> void:

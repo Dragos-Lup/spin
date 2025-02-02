@@ -154,6 +154,7 @@ script = ExtResource("6_60jdd")
 jester_sprites = Array[Texture2D]([ExtResource("6_4aoyh"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5")])
 
 [node name="ProfileBox" type="MarginContainer" parent="CanvasLayer"]
+z_index = 20
 texture_filter = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -360,6 +361,7 @@ volume_db = -2.0
 
 [node name="bossrushphase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tv64y")
+autoplay = true
 playback_type = 1
 
 [node name="SpaceBackground" type="Node2D" parent="."]

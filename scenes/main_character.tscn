@@ -197,7 +197,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t2dfo"]
 states/Start/position = Vector2(231.429, 108)
 states/die/node = SubResource("AnimationNodeAnimation_40fga")
-states/die/position = Vector2(593.571, 67.1429)
+states/die/position = Vector2(593.571, 68.8572)
 states/idle/node = SubResource("AnimationNodeAnimation_usv1h")
 states/idle/position = Vector2(447.627, 162)
 states/jump/node = SubResource("AnimationNodeAnimation_0jryu")
@@ -419,6 +419,7 @@ shape = SubResource("CircleShape2D_d632g")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cmjbe")
+animation = &"die"
 autoplay = "default"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,

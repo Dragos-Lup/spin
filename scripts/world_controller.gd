@@ -41,3 +41,4 @@ func start_princely() -> void:
 
 func _on_timer_timeout() -> void:
 	start_princely()
+	# start_jester()

@@ -7,16 +7,20 @@ extends RigidBody2D
 @onready var mc: Node2D = $MovementComponent
 @onready var DashTimer: Timer = $DashTimer
 @onready var TargetTimer: Timer = $UnTargettingTimer
+@onready var laser: Line2D = %Laser
+@onready var laser_particles : GPUParticles2D = $LaserEndParticles
+@onready var flame_wave = preload("res://scenes/saphire_projectile.tscn")
 @onready var player #It's important that literally nothing else in the scene is called one of these two things
 # @onready var follower = %follower #For testing
 
-enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, CLONE, FADED} #List of states, you can add a new one if you want a new behavior
+enum Move_State {IDLE, TARGETING, CIRCLING, LOCKED_ON, LASER, FADED, CRAZY, SLICE}
+#List of states, you can add a new one if you want a new behavior
 var curr_state = Move_State.CIRCLING #The state the boss starts in
 var profile_anim : AnimationPlayer
 
 @export var MAX_FORCE: float = 10 #Set in editor technically, but tweak it in here idc lol
 @export var CIRCLE_SPEED: float = 100
-@export var DASH_SPEED: float = 14000
+@export var DASH_SPEED: float = 9000
 @export var CIRCLE_DISTANCE: float = 80
 @export var DASH_MINSPEED: float = 1000
 @export var MAP_CENTER : Vector2 = Vector2(938, 531)
@@ -31,11 +35,29 @@ var go: bool = false #dash when this is true
 var dash_target: Vector2 = Vector2.ZERO #Dash towards this guy
 var dashing: bool = false #are we currently dashing (for damage purposes)
 var last_vel: float = 0 #The last velocity (for damage purposes)
+var laser_target: Vector2 = Vector2.ZERO
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var state_machine = animation_tree.get("parameters/playback")
+
+var timer: float = 0
+
+var circle_timer : float = 1
+var laser_timer : float = 1
+var max_lasers = 1
+
+var laser_count = max_lasers
+
+var max_dashes = 1
+var dash_count = max_dashes
+
+var max_slices = 2
+var slice_count = max_slices
+
+var slice_next = false
 
 func _ready() -> void:
-	player = %MainSpinner
-		
+	laser.visible = false
 	setup()
 
 
@@ -50,21 +72,70 @@ func set_profile_animator(node : AnimationPlayer):
 
 
 func _physics_process(delta: float) -> void:
+	timer += delta
 	var pos = self.transform.origin
-	if is_dead:
+	if is_dead or !player:
 		return
 	# This should be before state targeting.
 	if dashing and linear_velocity.length() < DASH_MINSPEED:
 		dashing = false
-	if !player:
-		return
 
 	# It's important that this state diagram only switches who we are targeting
 	match curr_state:
 		Move_State.TARGETING: #If we're running right at the player
 			target = player.transform.origin #Our target is just the player origin
 		Move_State.CIRCLING:
-			target = mc.get_encircle(player.transform.origin, encircleR) #Target the mc's surrounding to circle them
+			target = mc.get_encircle(player.transform.origin, encircleR, 250) #Target the mc's surrounding to circle them
+			if timer >= circle_timer:
+				
+				timer-= circle_timer
+				if slice_next:
+					rand_state()
+					slice_next = false
+				else:
+					switch_laser()
+					slice_next = true
+		Move_State.LASER:
+			target = mc.get_encircle(player.transform.origin, encircleR, 250) #Target the mc's surrounding to circle them
+			laser.remove_point(1)
+			laser_target = laser_target.lerp(player.position, .1)
+			var p = (laser_target - self.position)
+			laser.add_point(p)
+			if timer >= laser_timer:
+				laser_count -= 1
+				timer -= laser_timer
+				var fw : Node2D = flame_wave.instantiate()
+				self.add_sibling(fw)
+				fw.position = self.position
+				fw.rotation = self.position.angle_to_point(player.position)
+				fw.direction = Vector2(1,0).rotated(self.position.angle_to_point(player.position))
+				laser.visible = false
+
+				if laser_count <= 0:
+					rand_state()
+					laser_count = max_lasers
+				else:
+					curr_state = Move_State.CIRCLING
+		Move_State.CRAZY:
+			if timer >= 2:
+				timer -= 2
+				TargetTimer.start()
+				dashing = true
+				apply_impulse((player.position - pos).normalized() * DASH_SPEED) #Apply that big boy impulse
+				dash_count -= 1
+				if dash_count <= 0:
+					dash_count = max_dashes
+					rand_state()
+				else:
+					pass
+		Move_State.SLICE:
+			target = mc.get_encircle(player.transform.origin, encircleR, 100) #Target the mc's surrounding to circle them
+			if timer >= 2:
+				timer -= 2
+				$sword_slice.rotation = self.position.angle_to_point(player.position)
+				state_machine.travel("sword_slice")
+
+
 		Move_State.LOCKED_ON:
 			if go: #If its time to dash
 				go = false #Make sure go is false next time
@@ -86,8 +157,6 @@ func _physics_process(delta: float) -> void:
 			pass
 		Move_State.IDLE:
 			target = self.position
-		Move_State.CLONE:
-			target = player.transform.origin #Our target is just the player origin
 
 			pass
 
@@ -96,7 +165,7 @@ func _physics_process(delta: float) -> void:
 	if encircleR >= 360:
 		encircleR = encircleR - 360
 	
-	if target:
+	if target and target != Vector2.ZERO:
 		#Moves the rigidbody to the target location
 		#get_force takes in the rb2ds location, where we wanna go, our current velocity (should always be linear_velocity) and delta
 		apply_central_force(mc.get_force(pos, target, linear_velocity, delta))
@@ -128,8 +197,24 @@ func kill_those_kids(_x):
 func die() -> void:
 	curr_state = Move_State.IDLE
 	is_dead = true
-	$AnimationPlayer.play("die")
+	# $AnimationPlayer.play("die")
 
 func fight_done() -> void:
 	get_parent().jester_died()
 	self.queue_free()
+
+func switch_laser() -> void:
+	curr_state = Move_State.LASER
+	laser.visible = true
+	print("hello?")
+
+func rand_state() -> void:
+	var i = randi_range(0,2)
+	if i == 0:
+		curr_state = Move_State.CIRCLING
+	if i == 1:
+		curr_state = Move_State.SLICE
+	if i == 2:
+		curr_state = Move_State.CRAZY
+		state_machine.travel("chains_out")
+		target = Vector2.ZERO
