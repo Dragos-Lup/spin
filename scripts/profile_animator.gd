@@ -4,6 +4,7 @@ var boss = 0
 @export var jester_sprites: Array[Texture2D]
 @export var princely_sprites: Array[Texture2D]
 @export var charlie_sprites: Array[Texture2D]
+@export var profile_pics: Array[Texture2D]
 
 @export var fonts: Array[FontFile]
 # Called when the node enters the scene tree for the first time.
@@ -60,3 +61,9 @@ func play_player_win():
 		%CharliePic.texture = charlie_sprites[1]
 		%CharlieDialogue.text = "Yippee! I knew my grandpa's revo wouldn't let me down!"
 	%LostChecker.play("show_won")
+
+func switch_icon():
+	if boss == 0:
+		%BossIcon.texture = profile_pics[0]
+	if boss == 1:
+		%BossIcon.texture = profile_pics[1]

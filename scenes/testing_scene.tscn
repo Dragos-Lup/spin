@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ff5cps2hlnvs"]
+[gd_scene load_steps=65 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://mi13xahohrtl" path="res://asesprite/mc/sunnyportsprites3.png" id="16_1hmhw"]
 [ext_resource type="Texture2D" uid="uid://duvothjs72av8" path="res://asesprite/alexstuff/whirly_portraits/jester_neutral.png" id="16_p5mj5"]
 [ext_resource type="Texture2D" uid="uid://vcye5rc0cmdf" path="res://asesprite/mc/sunnyportsprites4.png" id="17_xql4n"]
+[ext_resource type="Texture2D" uid="uid://l2fxv2o6uvv7" path="res://asesprite/ui/uiIguess/saphspin.png" id="18_f8ipb"]
+[ext_resource type="Texture2D" uid="uid://b768fg0r2iv35" path="res://asesprite/ui/uiIguess/joyspin.png" id="19_jinbx"]
 [ext_resource type="AudioStream" uid="uid://bkaliudpoyof3" path="res://music/angryassgamejamsong(bossrushphase1maybe).ogg" id="21_1lqbq"]
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="23_dv5ge"]
 [ext_resource type="Texture2D" uid="uid://cv2pmuh73a0rl" path="res://asesprite/ericsprite/spaceattempt/Layer 7.png" id="24_nuq7x"]
@@ -343,6 +345,7 @@ script = ExtResource("6_60jdd")
 jester_sprites = Array[Texture2D]([ExtResource("9_j1ffr"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5"), ExtResource("6_4aoyh")])
 princely_sprites = Array[Texture2D]([ExtResource("10_4ad83"), ExtResource("11_683q7"), ExtResource("12_lr6iq"), ExtResource("13_yhe7d")])
 charlie_sprites = Array[Texture2D]([ExtResource("14_4tpvi"), ExtResource("15_7tw1i"), ExtResource("16_1hmhw"), ExtResource("17_xql4n")])
+profile_pics = Array[Texture2D]([ExtResource("18_f8ipb"), ExtResource("19_jinbx")])
 fonts = Array[FontFile]([ExtResource("14_8rgc6"), ExtResource("8_vsl84")])
 
 [node name="ProfileBox" type="MarginContainer" parent="CanvasLayer"]
@@ -519,10 +522,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 39.0
-offset_top = 434.0
-offset_right = 217.0
-offset_bottom = 1022.0
+offset_left = 36.0
+offset_top = 278.0
+offset_right = 214.0
+offset_bottom = 866.0
 grow_vertical = 0
 theme = ExtResource("4_qxpu4")
 value = 100.0
@@ -540,10 +543,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 31.0
-offset_top = 372.0
-offset_right = 212.0
-offset_bottom = 960.0
+offset_left = 28.0
+offset_top = 216.0
+offset_right = 209.0
+offset_bottom = 804.0
 grow_vertical = 0
 theme = ExtResource("4_qxpu4")
 value = 100.0
@@ -559,10 +562,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 118.0
-offset_top = 435.0
-offset_right = 296.0
-offset_bottom = 1023.0
+offset_left = 115.0
+offset_top = 279.0
+offset_right = 293.0
+offset_bottom = 867.0
 grow_vertical = 0
 theme = ExtResource("4_qxpu4")
 allow_greater = true
@@ -588,6 +591,14 @@ texture_over = ExtResource("8_vsrbp")
 texture_progress = SubResource("GradientTexture2D_rhig8")
 texture_progress_offset = Vector2(66.75, 11.365)
 
+[node name="BossIcon" type="TextureRect" parent="CanvasLayer/Control/BossHealthBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -78.0
+offset_top = -21.0
+offset_right = 48.0
+offset_bottom = 106.0
+
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
 texture_filter = 1
@@ -597,10 +608,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1508.0
-offset_top = 813.0
-offset_right = 1846.0
-offset_bottom = 1015.0
+offset_left = -6.0
+offset_top = 822.0
+offset_right = 332.0
+offset_bottom = 1024.0
 grow_horizontal = 0
 grow_vertical = 0
 value = 100.0

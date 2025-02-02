@@ -157,11 +157,11 @@ func _on_body_entered(body: Node2D) -> void:
 			#print("Enemy damage biggggggggg")
 		elif e_dash:
 			self.health_component.Damage(5)
+
 			#print("player damage bigggggggggg")
 		$Hit_SE.play()
 		$hitsparks.emitting=true
 		$hitsparks.restart()
-		$Spinnerouch_SE.play()
 
 		#$DampTimer.start()
 		#linear_damp = 20
@@ -209,3 +209,6 @@ func bringUpMenu() -> void:
 	$deathsound.play()
 	%ProfileAnimator.play_player_death()
 	get_parent().player_dead = true
+
+func took_damage() -> void:
+	$Spinnerouch_SE.play()

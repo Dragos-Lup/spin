@@ -19,6 +19,9 @@ func Damage(amount: int):
 		Die()
 	if current_health <= 0:
 		Die() #If you are dead, die!
+	if isPlayer:
+		get_parent().took_damage()
+	
 
 
 	if current_health > max_health:
