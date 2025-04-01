@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://26pbcucpm30h"
-path="res://.godot/imported/settingsbutton.aseprite-0798f4dc49dcc024f288ecfdb377cb94.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menustuff/settingsbutton.aseprite"
-dest_files=["res://.godot/imported/settingsbutton.aseprite-0798f4dc49dcc024f288ecfdb377cb94.res"]
 
 [params]
 

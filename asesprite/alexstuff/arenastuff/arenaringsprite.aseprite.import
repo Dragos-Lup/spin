@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://p6efh6m1wtkq"
-path="res://.godot/imported/arenaringsprite.aseprite-7ee3d305e2e3ef193bfd0fc7d7e4ce62.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/arenastuff/arenaringsprite.aseprite"
-dest_files=["res://.godot/imported/arenaringsprite.aseprite-7ee3d305e2e3ef193bfd0fc7d7e4ce62.res"]
 
 [params]
 

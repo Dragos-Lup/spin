@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://be1870kau4god"
-path="res://.godot/imported/astralaudience1.aseprite-7527dc308cff470f87c9b9e785a0c3ae.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/arenastuff/astralaudience1.aseprite"
-dest_files=["res://.godot/imported/astralaudience1.aseprite-7527dc308cff470f87c9b9e785a0c3ae.res"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://mymk5yk3veiq"]
 
 [ext_resource type="Texture2D" uid="uid://830ydqfjf464" path="res://scenes/sapphirespinnerprojectile.png" id="1_74yn1"]
-[ext_resource type="Script" path="res://scenes/saphire_projectile.gd" id="1_srv5d"]
+[ext_resource type="Script" uid="uid://dt3i3abxtefll" path="res://scenes/saphire_projectile.gd" id="1_srv5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbe1i"]
 size = Vector2(16, 46)

@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://cil67l3ifor6m"
-path="res://.godot/imported/spacelolmodified.aseprite-f5f347a8aac2edbd18232ca0daf72c0b.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menustuff/spacelolmodified.aseprite"
-dest_files=["res://.godot/imported/spacelolmodified.aseprite-f5f347a8aac2edbd18232ca0daf72c0b.res"]
 
 [params]
 

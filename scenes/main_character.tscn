@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=3 uid="uid://cotlpgucmbbhy"]
 
-[ext_resource type="Script" path="res://scripts/main_character.gd" id="1_72jni"]
+[ext_resource type="Script" uid="uid://dfq6vdp2s7bkf" path="res://scripts/main_character.gd" id="1_72jni"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_q0jrw"]
 [ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="2_ygpbf"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="3_lo101"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bkm0q6pcaowns" path="res://asesprite/ericsprite/dasheffect.png" id="14_dpbku"]
 
 [sub_resource type="Curve" id="Curve_sk41o"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0.284211, -0.67033), 0.0, 7.26903, 0, 0, Vector2(1, 1), -0.0907787, 0.0, 0, 0]
 point_count = 2
 
@@ -322,10 +322,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1iu5i"]
 _data = {
-"RESET": SubResource("Animation_byfn0"),
-"die": SubResource("Animation_8wlpm"),
-"idle": SubResource("Animation_lflkc"),
-"jump": SubResource("Animation_g2050")
+&"RESET": SubResource("Animation_byfn0"),
+&"die": SubResource("Animation_8wlpm"),
+&"idle": SubResource("Animation_lflkc"),
+&"jump": SubResource("Animation_g2050")
 }
 
 [sub_resource type="Curve" id="Curve_o0p88"]
@@ -456,7 +456,7 @@ anim_player = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_1iu5i")
+&"": SubResource("AnimationLibrary_1iu5i")
 }
 
 [node name="LocationTimer" type="Timer" parent="."]
@@ -472,19 +472,19 @@ one_shot = true
 z_index = 5
 emitting = false
 amount = 7
-process_material = SubResource("ParticleProcessMaterial_pj1cs")
 texture = ExtResource("2_ygpbf")
 lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_pj1cs")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_2lcra")
 texture = ExtResource("2_ygpbf")
 lifetime = 4.0
 trail_lifetime = 1.32
+process_material = SubResource("ParticleProcessMaterial_2lcra")
 
 [node name="deathsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ery5u")
@@ -526,9 +526,9 @@ texture_filter = 1
 material = SubResource("CanvasItemMaterial_6yr42")
 emitting = false
 amount = 1
+texture = ExtResource("14_dpbku")
 one_shot = true
 speed_scale = 2.24
-texture = ExtResource("14_dpbku")
 particle_flag_align_y = true
 direction = Vector2(0, 0)
 spread = 0.0
@@ -540,9 +540,9 @@ anim_speed_max = 1.2
 material = SubResource("CanvasItemMaterial_usm4s")
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_ibffk")
 texture = ExtResource("11_3uu4x")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ibffk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LocationTimer" to="." method="_on_location_timer_timeout"]

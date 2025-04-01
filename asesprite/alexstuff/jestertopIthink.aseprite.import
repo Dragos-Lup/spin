@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bcw0mbtf821vl"
-path="res://.godot/imported/jestertopIthink.aseprite-f442fd07ecb4f20c2062e160899d1e56.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/jestertopIthink.aseprite"
-dest_files=["res://.godot/imported/jestertopIthink.aseprite-f442fd07ecb4f20c2062e160899d1e56.res"]
 
 [params]
 

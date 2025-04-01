@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://diydt7414cn66"
-path="res://.godot/imported/clasheffect1.aseprite-59e631a4ceeb76bd4f54f2f9f4564c37.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/clasheffect1.aseprite"
-dest_files=["res://.godot/imported/clasheffect1.aseprite-59e631a4ceeb76bd4f54f2f9f4564c37.res"]
 
 [params]
 

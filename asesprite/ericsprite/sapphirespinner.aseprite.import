@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://qwtpiqeagcno"
-path="res://.godot/imported/sapphirespinner.aseprite-a7a51284792ed63d0ef11a8fa98fc494.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/sapphirespinner.aseprite"
-dest_files=["res://.godot/imported/sapphirespinner.aseprite-a7a51284792ed63d0ef11a8fa98fc494.res"]
 
 [params]
 

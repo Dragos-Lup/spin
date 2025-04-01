@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bgdd17oklxx2m"
-path="res://.godot/imported/laserpointerreticle.aseprite-a0ab3524a055cd479ad3268f6f3d9f6c.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/othersprites/laserpointerreticle.aseprite"
-dest_files=["res://.godot/imported/laserpointerreticle.aseprite-a0ab3524a055cd479ad3268f6f3d9f6c.res"]
 
 [params]
 

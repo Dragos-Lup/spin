@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bfqoh7xk8rda3"
-path="res://.godot/imported/fireanim.aseprite-7804723c11e28ec3097a9409c9a5144b.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/assorted maybe important stuff plus portraits/fireanim.aseprite"
-dest_files=["res://.godot/imported/fireanim.aseprite-7804723c11e28ec3097a9409c9a5144b.res"]
 
 [params]
 

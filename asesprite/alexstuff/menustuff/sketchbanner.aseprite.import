@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://da7lf5kpmgda0"
-path="res://.godot/imported/sketchbanner.aseprite-3362ee787756bfd0306b8bd5be606659.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menustuff/sketchbanner.aseprite"
-dest_files=["res://.godot/imported/sketchbanner.aseprite-3362ee787756bfd0306b8bd5be606659.res"]
 
 [params]
 

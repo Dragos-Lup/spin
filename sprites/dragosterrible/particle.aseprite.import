@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://blyp0trmihcnw"
-path="res://.godot/imported/particle.aseprite-21c9e7fc61198d737e8536650539ec69.res"
+valid=false
 
 [deps]
 
 source_file="res://sprites/dragosterrible/particle.aseprite"
-dest_files=["res://.godot/imported/particle.aseprite-21c9e7fc61198d737e8536650539ec69.res"]
 
 [params]
 

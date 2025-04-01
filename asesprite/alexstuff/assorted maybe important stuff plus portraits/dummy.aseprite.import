@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b30qw7cx7pw0v"
-path="res://.godot/imported/dummy.aseprite-7673e99a5241441ef67d1aa785890872.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/assorted maybe important stuff plus portraits/dummy.aseprite"
-dest_files=["res://.godot/imported/dummy.aseprite-7673e99a5241441ef67d1aa785890872.res"]
 
 [params]
 

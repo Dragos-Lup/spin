@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dnhq2i2eilhr2"
-path="res://.godot/imported/jesternewspinner.aseprite-c8c8ea8763321f5995456b5593bb5d7d.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/jesternewspinner.aseprite"
-dest_files=["res://.godot/imported/jesternewspinner.aseprite-c8c8ea8763321f5995456b5593bb5d7d.res"]
 
 [params]
 

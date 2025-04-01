@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bxkw18m2j3bw7"
-path="res://.godot/imported/betterjesterportrait.aseprite-8465a48a8a1851aaa6edf789d4817fa4.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/betterjesterportrait.aseprite"
-dest_files=["res://.godot/imported/betterjesterportrait.aseprite-8465a48a8a1851aaa6edf789d4817fa4.res"]
 
 [params]
 

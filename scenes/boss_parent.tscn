@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=3 uid="uid://ba5t7qcjqpnl5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_sn01m"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_yd2ff"]
+[ext_resource type="Script" uid="uid://bvy8wsdu8uk2p" path="res://scripts/enemy.gd" id="1_yd2ff"]
 [ext_resource type="PackedScene" uid="uid://bkeu04vc2k4sl" path="res://scenes/components/health_component.tscn" id="2_is18t"]
 [ext_resource type="AudioStream" uid="uid://c78cny74edbqb" path="res://sound_effects/JesterVoice/laugh2.ogg" id="3_vm3i6"]
 [ext_resource type="AudioStream" uid="uid://c17uixcmuqil0" path="res://sound_effects/JesterVoice/laugh3.ogg" id="4_yk8hk"]
@@ -13,14 +13,14 @@
 [ext_resource type="AudioStream" uid="uid://s1mihg48c2r" path="res://sound_effects/JesterVoice/jesterwoosh.ogg" id="6_wx0sq"]
 [ext_resource type="AudioStream" uid="uid://bstphbhqpcgnb" path="res://sound_effects/JesterVoice/jestersparkle2.ogg" id="7_lt1ax"]
 [ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://asesprite/othersprites/explosion_no_background.png" id="11_sl5ug"]
-[ext_resource type="Script" path="res://scripts/explosion.gd" id="12_8lnbl"]
+[ext_resource type="Script" uid="uid://ey62brbvq3jg" path="res://scripts/explosion.gd" id="12_8lnbl"]
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="13_7abq4"]
 [ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="14_iuwuf"]
 [ext_resource type="AudioStream" uid="uid://cctc5sg1usn08" path="res://sound_effects/smallexplosion.ogg" id="15_moihm"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_xus0f"]
 [ext_resource type="Texture2D" uid="uid://ctrpl0sbxmsi" path="res://asesprite/ericsprite/DRAGOSLOOKHERE/jesterdash.png" id="19_btxm0"]
 [ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_ddfms"]
-[ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_tj05g"]
+[ext_resource type="Script" uid="uid://b1n8b7onubafd" path="res://scenes/weak_spot!.gd" id="19_tj05g"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="20_mjgvj"]
 [ext_resource type="AudioStream" uid="uid://cxqm32ra76cqn" path="res://sound_effects/JesterVoice/jesterdie.ogg" id="22_jlpii"]
 [ext_resource type="AudioStream" uid="uid://big6oog0x3j3p" path="res://sound_effects/JesterVoice/spawn.ogg" id="23_2qm2p"]
@@ -169,10 +169,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dol65"]
 _data = {
-"RESET": SubResource("Animation_1iemr"),
-"die": ExtResource("6_c1cy3"),
-"fade_in": SubResource("Animation_6jj7g"),
-"fade_out": SubResource("Animation_imnxb")
+&"RESET": SubResource("Animation_1iemr"),
+&"die": ExtResource("6_c1cy3"),
+&"fade_in": SubResource("Animation_6jj7g"),
+&"fade_out": SubResource("Animation_imnxb")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j27fs"]
@@ -323,7 +323,7 @@ stream = SubResource("AudioStreamRandomizer_7mwgt")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_dol65")
+&"": SubResource("AnimationLibrary_dol65")
 }
 
 [node name="JesterWoosh" type="AudioStreamPlayer2D" parent="."]
@@ -399,9 +399,9 @@ target_position = Vector2(0, 500)
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
 amount = 17
-process_material = SubResource("ParticleProcessMaterial_tjcbn")
 texture = ExtResource("11_sl5ug")
 speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_tjcbn")
 script = ExtResource("12_8lnbl")
 
 [node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
@@ -414,11 +414,11 @@ max_polyphony = 2
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
 amount = 11
-process_material = SubResource("ParticleProcessMaterial_f1l77")
 texture = ExtResource("11_sl5ug")
 one_shot = true
 speed_scale = 0.9
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_f1l77")
 
 [node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
 stream = SubResource("AudioStreamRandomizer_8in6e")
@@ -431,11 +431,11 @@ texture_repeat = 2
 material = SubResource("CanvasItemMaterial_4f4il")
 emitting = false
 amount = 69
-process_material = SubResource("ParticleProcessMaterial_asnq0")
 texture = ExtResource("15_xus0f")
 lifetime = 1.5
 randomness = 0.02
 trail_lifetime = 0.69
+process_material = SubResource("ParticleProcessMaterial_asnq0")
 
 [node name="LightningDash" type="CPUParticles2D" parent="."]
 texture_filter = 1
@@ -444,9 +444,9 @@ rotation = 0.827286
 scale = Vector2(1.5, 1.5)
 emitting = false
 amount = 1
+texture = ExtResource("19_btxm0")
 one_shot = true
 speed_scale = 2.24
-texture = ExtResource("19_btxm0")
 particle_flag_align_y = true
 direction = Vector2(0, 0)
 spread = 0.0

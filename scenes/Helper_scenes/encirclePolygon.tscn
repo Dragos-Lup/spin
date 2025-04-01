@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlii8k1wqclcl"]
 
-[ext_resource type="Script" path="res://scenes/helper_scenes/encircle_polygon.gd" id="1_1rhh3"]
+[ext_resource type="Script" uid="uid://cxy5ke8q3iu0i" path="res://scenes/helper_scenes/encircle_polygon.gd" id="1_1rhh3"]
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 16

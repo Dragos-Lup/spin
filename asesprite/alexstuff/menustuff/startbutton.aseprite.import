@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://xgwtu5nvcfgj"
-path="res://.godot/imported/startbutton.aseprite-420ec53d2e2fe54194f51616b63d96c4.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menustuff/startbutton.aseprite"
-dest_files=["res://.godot/imported/startbutton.aseprite-420ec53d2e2fe54194f51616b63d96c4.res"]
 
 [params]
 

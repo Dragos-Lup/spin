@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://b01t5p51imsyh"
-path="res://.godot/imported/menuring.aseprite-c4550be9bfb4e0ce187d8ac93bd97eda.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menuring.aseprite"
-dest_files=["res://.godot/imported/menuring.aseprite-c4550be9bfb4e0ce187d8ac93bd97eda.res"]
 
 [params]
 

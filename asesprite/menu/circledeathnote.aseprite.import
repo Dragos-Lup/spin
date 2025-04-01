@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dmgrv6elef8u0"
-path="res://.godot/imported/circledeathnote.aseprite-de44ff91f8752ea30876a97f050c08c7.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/menu/circledeathnote.aseprite"
-dest_files=["res://.godot/imported/circledeathnote.aseprite-de44ff91f8752ea30876a97f050c08c7.res"]
 
 [params]
 

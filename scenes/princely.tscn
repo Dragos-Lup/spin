@@ -1,8 +1,8 @@
 [gd_scene load_steps=92 format=3 uid="uid://hjpl2fkxarlu"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_nog7e"]
-[ext_resource type="Script" path="res://scripts/princely.gd" id="2_s4v8x"]
-[ext_resource type="Script" path="res://scenes/sword.gd" id="5_0hm2k"]
+[ext_resource type="Script" uid="uid://vsputkystaui" path="res://scripts/princely.gd" id="2_s4v8x"]
+[ext_resource type="Script" uid="uid://dgm1sqootskb" path="res://scenes/sword.gd" id="5_0hm2k"]
 [ext_resource type="Texture2D" uid="uid://c8q1w4pmja2dj" path="res://scenes/sapphirespinnersword.png" id="5_v7rd0"]
 [ext_resource type="AudioStream" uid="uid://d25kdwqx70thf" path="res://sound_effects/princely/emergencyprincleysounds/laserlockon.wav" id="6_e0a6y"]
 [ext_resource type="AudioStream" uid="uid://dto61keghasyp" path="res://sound_effects/princely/emergencyprincleysounds/lazerpew.wav" id="7_kn30c"]
@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bp3dfip6sxo3n" path="res://asesprite/othersprites/explosion_no_background.png" id="12_2jq5q"]
 [ext_resource type="Texture2D" uid="uid://de8us5naswkua" path="res://sprites/dragosterrible/particle.png" id="12_vsdmw"]
 [ext_resource type="Texture2D" uid="uid://cy23wimsny8hx" path="res://scenes/laserpointerreticle.png" id="12_yt8k1"]
-[ext_resource type="Script" path="res://scripts/explosion.gd" id="13_3qpdo"]
-[ext_resource type="Script" path="res://scenes/laser_end.gd" id="13_dph4h"]
+[ext_resource type="Script" uid="uid://ey62brbvq3jg" path="res://scripts/explosion.gd" id="13_3qpdo"]
+[ext_resource type="Script" uid="uid://dtwd4e8uovoq4" path="res://scenes/laser_end.gd" id="13_dph4h"]
 [ext_resource type="AudioStream" uid="uid://dn6dyarhbfvub" path="res://sound_effects/bigexplosion.ogg" id="14_5cbwx"]
 [ext_resource type="Texture2D" uid="uid://byavkxtngjkd0" path="res://scenes/sapphirespinner.png" id="15_ag1h6"]
 [ext_resource type="Texture2D" uid="uid://de83bfxwn3y25" path="res://asesprite/othersprites/tiny_jestereffect.png" id="15_j8suu"]
@@ -22,7 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://ckfp3wi557vdo" path="res://sound_effects/explosion.ogg" id="18_4a8di"]
 [ext_resource type="Texture2D" uid="uid://dgyleearaalua" path="res://scenes/revoweakpoint.png" id="19_41xkb"]
 [ext_resource type="AudioStream" uid="uid://dewlpi8o7mg33" path="res://sound_effects/drill-machine-sound-144498.wav" id="19_admal"]
-[ext_resource type="Script" path="res://scenes/weak_spot!.gd" id="19_qchbr"]
+[ext_resource type="Script" uid="uid://b1n8b7onubafd" path="res://scenes/weak_spot!.gd" id="19_qchbr"]
 [ext_resource type="Texture2D" uid="uid://dpxugsk624p2c" path="res://asesprite/ericsprite/stupidball.png" id="21_5fl3j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1ytd"]
@@ -647,12 +647,12 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eujig"]
 _data = {
-"RESET": SubResource("Animation_jdhju"),
-"chains_norm": SubResource("Animation_h7qfg"),
-"chains_out": SubResource("Animation_265gc"),
-"die": SubResource("Animation_pv6q2"),
-"norm": SubResource("Animation_6o2xj"),
-"sword_slice": SubResource("Animation_0c7u4")
+&"RESET": SubResource("Animation_jdhju"),
+&"chains_norm": SubResource("Animation_h7qfg"),
+&"chains_out": SubResource("Animation_265gc"),
+&"die": SubResource("Animation_pv6q2"),
+&"norm": SubResource("Animation_6o2xj"),
+&"sword_slice": SubResource("Animation_0c7u4")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ivwym"]
@@ -932,7 +932,7 @@ anim_player = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_eujig")
+&"": SubResource("AnimationLibrary_eujig")
 }
 autoplay = "norm"
 
@@ -1006,10 +1006,10 @@ metadata/_aseprite_wizard_source_file_hash_ = "2d4264d1ef3b8a0a2303681422c08714"
 visible = false
 z_index = -4
 amount = 60
-process_material = SubResource("ParticleProcessMaterial_k8gh7")
 texture = ExtResource("12_vsdmw")
 lifetime = 2.0
 trail_lifetime = 1.32
+process_material = SubResource("ParticleProcessMaterial_k8gh7")
 
 [node name="explode_SE" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
@@ -1021,9 +1021,9 @@ max_polyphony = 2
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
 amount = 17
-process_material = SubResource("ParticleProcessMaterial_tjcbn")
 texture = ExtResource("12_2jq5q")
 speed_scale = 1.1
+process_material = SubResource("ParticleProcessMaterial_tjcbn")
 script = ExtResource("13_3qpdo")
 
 [node name="explode_SE" type="AudioStreamPlayer2D" parent="explosion"]
@@ -1035,11 +1035,11 @@ max_polyphony = 2
 material = SubResource("CanvasItemMaterial_p3f07")
 emitting = false
 amount = 19
-process_material = SubResource("ParticleProcessMaterial_f1l77")
 texture = ExtResource("12_2jq5q")
 one_shot = true
 speed_scale = 0.9
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_f1l77")
 
 [node name="bigexplode_SE" type="AudioStreamPlayer2D" parent="big_explosion"]
 unique_name_in_owner = true
@@ -1054,11 +1054,11 @@ texture_repeat = 2
 material = SubResource("CanvasItemMaterial_4f4il")
 emitting = false
 amount = 69
-process_material = SubResource("ParticleProcessMaterial_asnq0")
 texture = ExtResource("15_j8suu")
 lifetime = 1.5
 randomness = 0.02
 trail_lifetime = 0.69
+process_material = SubResource("ParticleProcessMaterial_asnq0")
 
 [node name="Drill" type="AudioStreamPlayer2D" parent="."]
 rotation = 1.65457
@@ -1100,21 +1100,21 @@ metadata/_aseprite_wizard_source_file_hash_ = "42154c691b8b0c6e4b03ae17553281f2"
 material = SubResource("CanvasItemMaterial_6ogwq")
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_xwgmc")
 texture = ExtResource("21_5fl3j")
 speed_scale = 1.62
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xwgmc")
 
 [node name="shoot_particles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_wtqn8")
 emitting = false
 amount = 23
-process_material = SubResource("ParticleProcessMaterial_8oneb")
 texture = ExtResource("21_5fl3j")
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8oneb")
 
 [connection signal="body_entered" from="sword_slice/Area2D" to="sword_slice/Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

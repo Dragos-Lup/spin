@@ -1,17 +1,17 @@
 [gd_scene load_steps=65 format=3 uid="uid://ff5cps2hlnvs"]
 
 [ext_resource type="PackedScene" uid="uid://cotlpgucmbbhy" path="res://scenes/main_character.tscn" id="1_3mtgv"]
-[ext_resource type="Script" path="res://scripts/world_controller.gd" id="1_va4xm"]
+[ext_resource type="Script" uid="uid://brcdgkcw1ogh1" path="res://scripts/world_controller.gd" id="1_va4xm"]
 [ext_resource type="PackedScene" uid="uid://cgye685ugtv8o" path="res://scenes/settings.tscn" id="2_1x36q"]
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="2_8jgto"]
-[ext_resource type="Script" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
+[ext_resource type="Script" uid="uid://xl6eucriqhm0" path="res://scripts/spin_bar.gd" id="4_ngjhq"]
 [ext_resource type="AudioStream" uid="uid://d2ct6gxn8d1r6" path="res://music/gamejammenu.ogg" id="4_qoumr"]
 [ext_resource type="Theme" uid="uid://yrwmm3rh75qx" path="res://misc/spinbar_theme.tres" id="4_qxpu4"]
 [ext_resource type="AudioStream" uid="uid://ceaptuejclkab" path="res://music/gamejambossrush2.ogg" id="4_tv64y"]
 [ext_resource type="Texture2D" uid="uid://b8saawvjq2rwr" path="res://asesprite/ui/uiIguess/speedbar.png" id="5_p4nwr"]
 [ext_resource type="Texture2D" uid="uid://bpnvsr5rqf20l" path="res://asesprite/alexstuff/whirly_portraits/jester_freaky.png" id="6_4aoyh"]
 [ext_resource type="Texture2D" uid="uid://d2und1w15jv8q" path="res://asesprite/ui/uiIguess/speedbarfill.png" id="6_7phrs"]
-[ext_resource type="Script" path="res://scripts/profile_animator.gd" id="6_60jdd"]
+[ext_resource type="Script" uid="uid://b0w68777wprso" path="res://scripts/profile_animator.gd" id="6_60jdd"]
 [ext_resource type="Texture2D" uid="uid://b7spxm2v65nii" path="res://asesprite/ui/uiIguess/chargemeter.png" id="8_kxoa4"]
 [ext_resource type="FontFile" uid="uid://cyyq878n0h3gr" path="res://fonts/QTCoronation.otf" id="8_vsl84"]
 [ext_resource type="Texture2D" uid="uid://1faxpom4n52e" path="res://asesprite/ui/uiIguess/bosshealthbar.png" id="8_vsrbp"]
@@ -147,9 +147,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_juofl"]
 _data = {
-"RESET": SubResource("Animation_7ofq7"),
-"show_lost": SubResource("Animation_lj542"),
-"show_won": SubResource("Animation_wi0wc")
+&"RESET": SubResource("Animation_7ofq7"),
+&"show_lost": SubResource("Animation_lj542"),
+&"show_won": SubResource("Animation_wi0wc")
 }
 
 [sub_resource type="Animation" id="Animation_mlb3w"]
@@ -209,8 +209,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_js46g"]
 _data = {
-"RESET": SubResource("Animation_mlb3w"),
-"laughing": SubResource("Animation_qa7sb")
+&"RESET": SubResource("Animation_mlb3w"),
+&"laughing": SubResource("Animation_qa7sb")
 }
 
 [sub_resource type="Theme" id="Theme_jmp54"]
@@ -295,8 +295,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyn50"]
 _data = {
-"RESET": SubResource("Animation_meddl"),
-"fade_out": SubResource("Animation_wakj0")
+&"RESET": SubResource("Animation_meddl"),
+&"fade_out": SubResource("Animation_wakj0")
 }
 
 [node name="World" type="Node2D"]
@@ -332,14 +332,14 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 root_node = NodePath("../ProfileAnimator")
 libraries = {
-"": SubResource("AnimationLibrary_juofl")
+&"": SubResource("AnimationLibrary_juofl")
 }
 
 [node name="ProfileAnimator" type="AnimationPlayer" parent="CanvasLayer"]
 unique_name_in_owner = true
 root_node = NodePath("../ProfileBox/VBoxContainer/ProfilePic")
 libraries = {
-"": SubResource("AnimationLibrary_js46g")
+&"": SubResource("AnimationLibrary_js46g")
 }
 script = ExtResource("6_60jdd")
 jester_sprites = Array[Texture2D]([ExtResource("9_j1ffr"), ExtResource("14_0nsa1"), ExtResource("15_esjbj"), ExtResource("16_p5mj5"), ExtResource("6_4aoyh")])
@@ -661,7 +661,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "96e3e0f2f92f3c8ec43e42ed5fbba848"
 unique_name_in_owner = true
 root_node = NodePath("../bossrushphase1")
 libraries = {
-"": SubResource("AnimationLibrary_hyn50")
+&"": SubResource("AnimationLibrary_hyn50")
 }
 
 [node name="menutheme" type="AudioStreamPlayer" parent="."]

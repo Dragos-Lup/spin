@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://rn8xb2lpcfwm"
-path="res://.godot/imported/exitbutton.aseprite-dc4fd203b1626f6240ca24933be41928.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/menustuff/exitbutton.aseprite"
-dest_files=["res://.godot/imported/exitbutton.aseprite-dc4fd203b1626f6240ca24933be41928.res"]
 
 [params]
 

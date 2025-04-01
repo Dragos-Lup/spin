@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://bsstyikvca80y"
-path="res://.godot/imported/dasheffect.aseprite-328eee1648e73c60f9de9b1a81424020.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/dasheffect.aseprite"
-dest_files=["res://.godot/imported/dasheffect.aseprite-328eee1648e73c60f9de9b1a81424020.res"]
 
 [params]
 

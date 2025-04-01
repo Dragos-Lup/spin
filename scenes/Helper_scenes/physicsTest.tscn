@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5poo1bxojyc5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bfeae8w0xhk85" path="res://misc/SpinnerPhysicsMaterial.tres" id="1_8f8k5"]
-[ext_resource type="Script" path="res://scripts/physicsTesting.gd" id="2_wwr34"]
+[ext_resource type="Script" uid="uid://dri6024gb0irx" path="res://scripts/physicsTesting.gd" id="2_wwr34"]
 [ext_resource type="Texture2D" uid="uid://dc8nr7xmyyrm6" path="res://asesprite/dragosbad/dummy.png" id="3_js1v7"]
 [ext_resource type="Texture2D" uid="uid://cbqvyy615oqnv" path="res://asesprite/alexstuff/arenaringsprite.png" id="4_7uraw"]
 

@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://t3dy4fkjktly"
-path="res://.godot/imported/jesterdash.aseprite-cb3d68587703b6d13acc2f9fef36a59e.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/DRAGOSLOOKHERE/jesterdash.aseprite"
-dest_files=["res://.godot/imported/jesterdash.aseprite-cb3d68587703b6d13acc2f9fef36a59e.res"]
 
 [params]
 

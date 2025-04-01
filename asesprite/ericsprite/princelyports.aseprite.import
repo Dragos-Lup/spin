@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://dh2miext55lfl"
-path="res://.godot/imported/princelyports.aseprite-3e0391c563296b7ad575c4f527d7a91a.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/ericsprite/princelyports.aseprite"
-dest_files=["res://.godot/imported/princelyports.aseprite-3e0391c563296b7ad575c4f527d7a91a.res"]
 
 [params]
 

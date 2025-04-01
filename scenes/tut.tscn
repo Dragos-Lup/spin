@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://be15jsym1ah2g"]
 
 [ext_resource type="Texture2D" uid="uid://brvnxepk1xtlw" path="res://sprites/menu/tutorialpaper.png" id="1_3ymr8"]
-[ext_resource type="Script" path="res://scenes/tut.gd" id="1_3ynef"]
+[ext_resource type="Script" uid="uid://cryau75ed1twg" path="res://scenes/tut.gd" id="1_3ynef"]
 [ext_resource type="Texture2D" uid="uid://cd588y1vwvhpm" path="res://asesprite/mc/sunnyportsprites2.png" id="3_iuvdl"]
 [ext_resource type="Texture2D" uid="uid://m45tv7jdi8iv" path="res://asesprite/menu/circledeathnote.png" id="4_2svnn"]
 [ext_resource type="Texture2D" uid="uid://cp8whdktjv7lg" path="res://asesprite/ericsprite/spaceattempt/Layer 1.png" id="4_7y803"]

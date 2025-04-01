@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin"
 type="SpriteFrames"
 uid="uid://be3t5feovs33s"
-path="res://.godot/imported/explosion.aseprite-03f65e8ba3a199d75a2a5e54fae3e438.res"
+valid=false
 
 [deps]
 
 source_file="res://asesprite/alexstuff/explosion/explosion.aseprite"
-dest_files=["res://.godot/imported/explosion.aseprite-03f65e8ba3a199d75a2a5e54fae3e438.res"]
 
 [params]
 
